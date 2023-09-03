@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     private CharacterController characterController;
     private Vector3 velocity;
+  //  private Touch touch;
 
     void Start()
     {
@@ -17,9 +18,25 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+     /*   if (Input.touchCount > 0)
+        {
+
+            touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                transform.position = new Vector3(
+                    transform.position.x + touch.deltaPosition.x * speed * Time.deltaTime,
+                    transform.position.y,
+                    transform.position.z
+                );
+            }
+        }*/
+
         MovePlayer();
         ApplyGravity();
     }
+
 
     private void MovePlayer()
     {
