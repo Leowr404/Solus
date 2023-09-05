@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-   /* public ModuloPista[] listaModulos;
+    /*public ModuloPista[] listaModulos;
 
     public int tamanhoInicial;
     ModuloPista copiado;
-    static public Pista pista;
+    private static Ground pista;
     
    
 
@@ -49,7 +49,7 @@ public class Ground : MonoBehaviour
         
             GerarPista();
         
-    }
+    }*/
 
-    */
+    
 }
