@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0dc4bf4826482429877154ff378763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   gravity: 3
 --- !u!136 &797215872
 CapsuleCollider:
@@ -562,6 +562,7 @@ MonoBehaviour:
   - {fileID: 3854524807878814226, guid: a332b37237ddc424490db11f441c8cd7, type: 3}
   - {fileID: 3854524807878814226, guid: 6253f1061e6af4d419c02aa613c0b4b4, type: 3}
   moveTime: 10
+  moveRange: 600
 --- !u!4 &1218456462
 Transform:
   m_ObjectHideFlags: 0
