@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class baseEnemy : MonoBehaviour
 {
+    float speed = 2f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +14,11 @@ public class baseEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        float displacement = speed * Time.fixedDeltaTime;
+        transform.Translate(Vector3.forward * displacement* -1);
+            
     }
 }
+
