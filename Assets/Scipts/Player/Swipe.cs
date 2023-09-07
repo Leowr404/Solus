@@ -19,6 +19,7 @@ public class Swipe : MonoBehaviour
             startTouchPosition = Input.GetTouch(0).position;
 
         }
+        
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             endTouchPosition = Input.GetTouch(0).position;
