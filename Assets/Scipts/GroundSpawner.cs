@@ -51,7 +51,7 @@ public class GroundSpawner : MonoBehaviour
 
         
         //ARRUMAR UM JEITO DISSO FUNCIONAR ' -'
-        Debug.Log("rodou");
+       
         GameObject currentTile = bornTiles[currentIndex];
 
         int nextIndex =  next /*(currentIndex + 1) % bornTiles.Count*/;
@@ -67,7 +67,7 @@ public class GroundSpawner : MonoBehaviour
         else next = 0;
         if(currentIndex != 3) currentIndex++;
         else currentIndex = 0;
-        Debug.Log("terminou de rodar");
+        
 
     }
 

@@ -663,6 +663,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemButton: {fileID: 274504275}
+  battery:
+  - {fileID: 589983209}
+  - {fileID: 1821828414}
+  - {fileID: 1951692405}
+  - {fileID: 593727738}
+  batteryReloadTime: 1
 --- !u!1 &954711448
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Camera
 --- !u!222 &1140693318
 CanvasRenderer:
   m_ObjectHideFlags: 0
