@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; // Importe o namespace do New Input.
 
-public class lanterna : MonoBehaviour
+public class Lanterna : MonoBehaviour
 {
     public Light luz;
-    public float alcanceLanterna = 10f; // Defina o alcance desejado da lanterna.
-    public LayerMask monstrosLayer; // Certifique-se de configurar a Layer nos monstros para detectá-los corretamente.
+    public float alcanceLanterna = 10f;
+    public LayerMask monstrosLayer;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) // Troque por qualquer tecla que você queira para ligar/desligar a lanterna.
+        if (Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada.
         {
             ToggleLanterna();
         }
@@ -18,7 +19,7 @@ public class lanterna : MonoBehaviour
 
     public void ToggleLanterna()
     {
-        luz.enabled = !luz.enabled; // Liga/desliga a luz da lanterna.
+        luz.enabled = !luz.enabled;
 
         if (luz.enabled)
         {
@@ -32,7 +33,6 @@ public class lanterna : MonoBehaviour
 
         foreach (var monstroCollider in monstros)
         {
-            // Certifique-se de que o monstro tem o componente "MonstroController" anexado.
             baseEnemy monstro = monstroCollider.GetComponent<baseEnemy>();
 
             if (monstro != null)
