@@ -16,7 +16,7 @@ public class lanterna : MonoBehaviour
         }
     }
 
-    private void ToggleLanterna()
+    public void ToggleLanterna()
     {
         luz.enabled = !luz.enabled; // Liga/desliga a luz da lanterna.
 
