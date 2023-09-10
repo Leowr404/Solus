@@ -8,23 +8,29 @@ public class Lanterna : MonoBehaviour
     public Light luz;
     public float alcanceLanterna = 10f;
     public LayerMask monstrosLayer;
+    private bool podeLigarLanterna = true;
 
     private void Update()
     {
-        if (Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada.
+        if (podeLigarLanterna && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
         {
-            ToggleLanterna();
+            StartCoroutine(LigarLanternaPorTempo(1f)); // Ligue a lanterna por 1 segundo.
         }
     }
 
-    public void ToggleLanterna()
+    private IEnumerator LigarLanternaPorTempo(float duracao)
     {
-        luz.enabled = !luz.enabled;
+        luz.enabled = true; // Liga a lanterna.
 
-        if (luz.enabled)
-        {
-            DetectarMonstrosNoAlcance();
-        }
+        yield return new WaitForSeconds(duracao); // Aguarde a duração especificada.
+
+        luz.enabled = false; // Desliga a lanterna.
+
+        // Inicie o cooldown de 2 segundos.
+        podeLigarLanterna = false;
+        yield return new WaitForSeconds(1.5f); // Aguarde o cooldown de 2 segundos.
+        podeLigarLanterna = true; // A lanterna pode ser ligada novamente.
+        DetectarMonstrosNoAlcance();
     }
 
     private void DetectarMonstrosNoAlcance()
