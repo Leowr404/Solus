@@ -6,7 +6,7 @@ using UnityEngine.InputSystem; // Importe o namespace do New Input.
 public class Lanterna : MonoBehaviour
 {
     public Light luz;
-    public float alcanceLanterna = 10f;
+    public float alcanceLanterna;
     public LayerMask monstrosLayer;
     private bool podeLigarLanterna = true;
 
@@ -21,16 +21,16 @@ public class Lanterna : MonoBehaviour
     private IEnumerator LigarLanternaPorTempo(float duracao)
     {
         luz.enabled = true; // Liga a lanterna.
+        DetectarMonstrosNoAlcance();
 
-        yield return new WaitForSeconds(duracao); // Aguarde a duração especificada.
+        yield return new WaitForSeconds(0.5f); // Aguarde a duração especificada.
 
         luz.enabled = false; // Desliga a lanterna.
 
         // Inicie o cooldown de 2 segundos.
         podeLigarLanterna = false;
-        yield return new WaitForSeconds(1.5f); // Aguarde o cooldown de 2 segundos.
+        yield return new WaitForSeconds(0.5f); // Aguarde o cooldown de 1.5 segundos.
         podeLigarLanterna = true; // A lanterna pode ser ligada novamente.
-        DetectarMonstrosNoAlcance();
     }
 
     private void DetectarMonstrosNoAlcance()

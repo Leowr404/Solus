@@ -1503,7 +1503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luz: {fileID: 578470707}
-  alcanceLanterna: 1000
+  alcanceLanterna: 100
   monstrosLayer:
     serializedVersion: 2
     m_Bits: 64
