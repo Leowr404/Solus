@@ -1,0 +1,34 @@
+{
+    "name": "Buttons",
+    "maps": [
+        {
+            "name": "FlashLightButton",
+            "id": "b18cda3a-654f-4390-9bf7-b7b49af95715",
+            "actions": [
+                {
+                    "name": "PressButton",
+                    "type": "Button",
+                    "id": "9fa253ad-c4ea-418a-8b81-671008208028",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5bdc14e8-783a-4370-94c7-9b8117f87d1f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -988,7 +988,7 @@ MonoBehaviour:
   - {fileID: 1821828414}
   - {fileID: 1951692405}
   - {fileID: 593727738}
-  whichItem: 1
+  whichItem: 2
   batteryReloadTime: 1
   luz: {fileID: 578470707}
   alcanceLanterna: 1000
