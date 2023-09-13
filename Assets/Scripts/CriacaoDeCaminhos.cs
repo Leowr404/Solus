@@ -1,23 +1,57 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CriacaoDeCaminhos : MonoBehaviour
+public class GerenciadorCaminhos : MonoBehaviour
 {
-    public Transform caminhoPrefab; // Prefab do caminho a ser criado.
+    public List<GameObject> caminhosPrefabs = new List<GameObject>();
+
+    private List<Transform> caminhosAtivos = new List<Transform>();
+    private float distanciaReciclagem = 170f;
+    private float distanciaEntreCaminhos = 149f;
 
     private void Start()
     {
-        // Crie os caminhos na cena.
-        CriarCaminho("Caminho1", new Vector3(0f, 0f, 0f));
-        CriarCaminho("Caminho2", new Vector3(0f, 0f, 10f));
-        CriarCaminho("Caminho3", new Vector3(0f, 0f, 20f));
+        GerarCaminhosIniciais();
     }
 
-    private void CriarCaminho(string nome, Vector3 posicao)
+    private void Update()
     {
-        // Crie um novo objeto vazio para representar o caminho.
-        Transform caminho = Instantiate(caminhoPrefab, posicao, Quaternion.identity);
-        caminho.name = nome; // Defina o nome do objeto do caminho.
+        ReciclarCaminhos();
+    }
+
+    private void GerarCaminhosIniciais()
+    {
+        Vector3 posicaoInicial = Vector3.zero;
+
+        for (int i = 0; i < caminhosPrefabs.Count; i++)
+        {
+            GameObject novoCaminho = Instantiate(caminhosPrefabs[i], posicaoInicial, Quaternion.identity);
+            caminhosAtivos.Add(novoCaminho.transform);
+            posicaoInicial += Vector3.forward * distanciaEntreCaminhos;
+        }
+    }
+
+    private void ReciclarCaminhos()
+    {
+        GameObject jogador = GameObject.FindGameObjectWithTag("Player");
+
+        if (jogador == null)
+            return; // Não encontrou o jogador com a tag "Player".
+
+        if (caminhosAtivos.Count == 0)
+            return;
+
+        Transform primeiroCaminho = caminhosAtivos[0];
+        float distanciaJogadorPrimeiroCaminho = jogador.transform.position.z - primeiroCaminho.position.z;
+
+        if (distanciaJogadorPrimeiroCaminho > distanciaReciclagem)
+        {
+            // Mova o primeiro caminho para a frente.
+            primeiroCaminho.position += Vector3.forward * (distanciaEntreCaminhos * caminhosPrefabs.Count);
+
+            // Remova o primeiro caminho da lista e adicione-o ao final.
+            caminhosAtivos.RemoveAt(0);
+            caminhosAtivos.Add(primeiroCaminho);
+        }
     }
 }

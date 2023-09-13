@@ -1367,6 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1218456462}
   - component: {fileID: 1218456461}
+  - component: {fileID: 1218456463}
   m_Layer: 0
   m_Name: GroundSpawner
   m_TagString: Untagged
@@ -1381,7 +1382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218456460}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6373078254ff11746a3cf764da28c926, type: 3}
   m_Name: 
@@ -1408,6 +1409,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218456463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218456460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4bf2710c3ec5c489548a0c2bfcfef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caminhosPrefabs:
+  - {fileID: 3854524807878814226, guid: 304c580ed5ccae74993b618857f5e6f4, type: 3}
+  - {fileID: 3854524807878814226, guid: 960674c30db0b174e9e92e574b8461bc, type: 3}
+  - {fileID: 3854524807878814226, guid: a332b37237ddc424490db11f441c8cd7, type: 3}
 --- !u!1 &1316003898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1626,7 @@ GameObject:
   - component: {fileID: 1724025743}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
