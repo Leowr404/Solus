@@ -555,7 +555,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 100
+  m_Intensity: 500
   m_Range: 50
   m_SpotAngle: 76.033005
   m_InnerSpotAngle: 67.83508
@@ -594,7 +594,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 5
@@ -1624,6 +1624,7 @@ GameObject:
   - component: {fileID: 1724025745}
   - component: {fileID: 1724025744}
   - component: {fileID: 1724025743}
+  - component: {fileID: 1724025746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1689,6 +1690,19 @@ Transform:
   - {fileID: 1439939521}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1724025746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724025742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44365ca81e9e74e4ea91db51d8c17cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jogador: {fileID: 0}
 --- !u!1 &1821828414
 GameObject:
   m_ObjectHideFlags: 0
