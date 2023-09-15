@@ -16,7 +16,7 @@ public class baseEnemy : MonoBehaviour
             // Por exemplo, você pode desativar visualmente o monstro, tocar uma animação de morte, reproduzir um som, etc.
 
             // Aqui, vamos apenas desativar o GameObject do monstro.
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             //gameObject.SetActive(false);
 
             estaVivo = false;
