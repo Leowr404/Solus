@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public float speed = 5;
     public float gravity;
 
+    public BatteryCol battery;
+
     private CharacterController characterController;
     private Vector3 velocity;
   //  private Touch touch;
@@ -58,5 +60,18 @@ public class Player : MonoBehaviour
             velocity.y -= gravity * Time.deltaTime;
             characterController.Move(velocity * Time.deltaTime);
         }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+       
+        if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
+        {
+            Debug.Log("colidiu");
+            other.gameObject.SetActive(false);
+            // BatteryCol.Recharge();
+        }
+
+
     }
 }

@@ -6183,6 +6183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   gravity: 3
+  battery: {fileID: 0}
 --- !u!143 &1724025744
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6737,11 +6738,17 @@ MonoBehaviour:
     baseEnemy: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
       type: 3}
     size: 5
+  - tag: battery
+    baseEnemy: {fileID: 6673286731539176024, guid: dce42e423f805414c88be2f6bcd2c09b,
+      type: 3}
+    size: 3
   enemyCommon: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 50
   spawnCd: 3
+  spawnBatteryCd: 4
+  batteryChance: 10
 --- !u!4 &2107321987
 Transform:
   m_ObjectHideFlags: 0
