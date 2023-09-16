@@ -27,6 +27,10 @@ public class CameraItem : MonoBehaviour
     private float activatedTime = 0f;
     private bool buttonPressed = false;
 
+   /* private int recharge { get {return recharge; } 
+        set {recharge = value; } 
+    }*/
+
     void Start()
     {
         
@@ -161,10 +165,23 @@ public class CameraItem : MonoBehaviour
 
 
     }
-    #endregion
 
-    #region scriptLanterna
-    void ActivateItemFlashlight()
+
+    public void CompleteReload()
+    {
+        CancelInvoke("ReloadCamera");
+        for(int i = 0; i< battery.Count-1; i++) { 
+        Image image = battery[i].GetComponent<Image>();
+        }
+
+        index = battery.Count - 1;
+    }
+
+
+        #endregion
+
+        #region scriptLanterna
+        void ActivateItemFlashlight()
     {
 
         if(flashLightIndex <= 0 )

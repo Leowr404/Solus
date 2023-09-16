@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float speed = 5;
     public float gravity;
 
-    public BatteryCol battery;
+
 
     private CharacterController characterController;
     private Vector3 velocity;
@@ -69,7 +69,10 @@ public class Player : MonoBehaviour
         {
             Debug.Log("colidiu");
             other.gameObject.SetActive(false);
-            // BatteryCol.Recharge();
+            //BatteryCol.Recharge();
+
+          //  CameraItem cameraItemInstance = new CameraItem();
+          //  cameraItemInstance.CompleteReload();
         }
 
 

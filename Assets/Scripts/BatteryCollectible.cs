@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class BatteryCol : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int rotationSpeed;
+    private Vector3 rotate;
+
+    
     void Start()
     {
-        
+        rotate = new Vector3(0,rotationSpeed,0);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        transform.Rotate(rotate * Time.deltaTime);
+
     }
 
 
-    public void Recharge()
+    public static void Recharge()
     {
-
+        
 
 
     }

@@ -6183,7 +6183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   gravity: 3
-  battery: {fileID: 0}
 --- !u!143 &1724025744
 CharacterController:
   m_ObjectHideFlags: 0
