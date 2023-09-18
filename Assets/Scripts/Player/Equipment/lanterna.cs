@@ -10,6 +10,7 @@ public class Lanterna : MonoBehaviour
     public LayerMask monstrosLayer;
     private bool podeLigarLanterna = true;
 
+    //LINHA SÓ PRA PODER DAR UM PÚSH TLGD?
     private void Update()
     {
         if (podeLigarLanterna && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.

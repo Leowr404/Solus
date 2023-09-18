@@ -30,7 +30,7 @@ public class CameraItem : MonoBehaviour
    /* private int recharge { get {return recharge; } 
         set {recharge = value; } 
     }*/
-
+   //LINHA SÓ PRA PODER DAR UM PÚSH TLGD?
     void Start()
     {
         
