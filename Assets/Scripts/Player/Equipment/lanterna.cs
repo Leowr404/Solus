@@ -10,7 +10,10 @@ public class Lanterna : MonoBehaviour
     public LayerMask monstrosLayer;
     private bool podeLigarLanterna = true;
 
-    //LINHA SÓ PRA PODER DAR UM PÚSH TLGD?
+    private void Start()
+    {
+        luz.enabled = false;
+    }
     private void Update()
     {
         if (podeLigarLanterna && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
@@ -19,8 +22,9 @@ public class Lanterna : MonoBehaviour
         }
     }
 
-    private IEnumerator LigarLanternaPorTempo(float duracao)
+    public IEnumerator LigarLanternaPorTempo(float duracao)
     {
+        Debug.Log("CAMERA ATIVAR CHAMADO");
         luz.enabled = true; // Liga a lanterna.
         DetectarMonstrosNoAlcance();
 
@@ -34,7 +38,7 @@ public class Lanterna : MonoBehaviour
         podeLigarLanterna = true; // A lanterna pode ser ligada novamente.
     }
 
-    private void DetectarMonstrosNoAlcance()
+    public void DetectarMonstrosNoAlcance()
     {
         Collider[] monstros = Physics.OverlapSphere(transform.position, alcanceLanterna, monstrosLayer);
 

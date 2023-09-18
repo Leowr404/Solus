@@ -836,13 +836,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9d45974700c274f82a780e65289365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LanternaGO: {fileID: 1439939520}
   itemButton: {fileID: 274504275}
   battery:
   - {fileID: 589983209}
   - {fileID: 1821828414}
   - {fileID: 1951692405}
   - {fileID: 593727738}
-  whichItem: 2
+  whichItem: 1
   batteryReloadTime: 1
   luz: {fileID: 578470707}
   alcanceLanterna: 1000
@@ -850,6 +851,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   timeForEachBaterry: 1.2
+  activatedTime: 0
 --- !u!1 &954711448
 GameObject:
   m_ObjectHideFlags: 0
@@ -6181,6 +6183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0dc4bf4826482429877154ff378763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemObject: {fileID: 914409410}
   speed: 15
   gravity: 3
 --- !u!143 &1724025744

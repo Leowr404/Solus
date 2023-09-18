@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject itemObject;
+
     public float speed = 5;
     public float gravity;
 
@@ -12,31 +14,39 @@ public class Player : MonoBehaviour
 
     private CharacterController characterController;
     private Vector3 velocity;
-  //  private Touch touch;
+
+    private ItensPlayer itemScript;
+
+    private bool gameOver = false;
+    //  private Touch touch;
 
     void Start()
     {
+        itemScript = itemObject.GetComponent<ItensPlayer>();
+
+
+
         characterController = GetComponent<CharacterController>();
 
-        
+
     }
 
     void FixedUpdate()
     {
-     /*   if (Input.touchCount > 0)
-        {
+        /*   if (Input.touchCount > 0)
+           {
 
-            touch = Input.GetTouch(0);
+               touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Moved)
-            {
-                transform.position = new Vector3(
-                    transform.position.x + touch.deltaPosition.x * speed * Time.deltaTime,
-                    transform.position.y,
-                    transform.position.z
-                );
-            }
-        }*/
+               if (touch.phase == TouchPhase.Moved)
+               {
+                   transform.position = new Vector3(
+                       transform.position.x + touch.deltaPosition.x * speed * Time.deltaTime,
+                       transform.position.y,
+                       transform.position.z
+                   );
+               }
+           }*/
 
         MovePlayer();
         ApplyGravity();
@@ -64,17 +74,24 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-       
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
         {
+
+            itemScript.CompleteBatteryReload();
             Debug.Log("colidiu");
             other.gameObject.SetActive(false);
-            //BatteryCol.Recharge();
 
-          //  CameraItem cameraItemInstance = new CameraItem();
-          //  cameraItemInstance.CompleteReload();
         }
 
 
+        //da pra fazer o gameOver ou a referencia pro script que vai rodar ele apartir daqui 
+        if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
+        {
+            Debug.Log("Colidiu com inimigo");
+            gameOver = true;
+            Time.timeScale = 0f;
+            this.gameObject.SetActive(false);
+        }
     }
 }

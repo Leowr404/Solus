@@ -5,8 +5,11 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraItem : MonoBehaviour
+public class ItensPlayer : MonoBehaviour
 {
+    [Header("Game Objects")]
+    public GameObject LanternaGO;
+
     [Header("Buttons and battery")]
     public Button itemButton;
     public List<GameObject> battery = new List<GameObject>();
@@ -24,16 +27,16 @@ public class CameraItem : MonoBehaviour
     public LayerMask monstrosLayer;
     public float timeForEachBaterry = 3.0f;
     private int flashLightIndex;
-    private float activatedTime = 0f;
+    public float activatedTime = 0f;
     private bool buttonPressed = false;
 
-   /* private int recharge { get {return recharge; } 
-        set {recharge = value; } 
-    }*/
-   //LINHA SÓ PRA PODER DAR UM PÚSH TLGD?
+    private Lanterna lanternaScript;
+
+   
     void Start()
     {
-        
+        lanternaScript = LanternaGO.GetComponent<Lanterna>();
+
         flashLightIndex = battery.Count-1;
         int cargas = battery.Count;
 
@@ -46,6 +49,8 @@ public class CameraItem : MonoBehaviour
 
     void Update()
     {
+ 
+        
 
         #region bateriaLanterna
         if (whichItem == 2) { 
@@ -92,6 +97,10 @@ public class CameraItem : MonoBehaviour
 
                 else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == battery.Count - 4)
                 {
+                    luz.enabled = false;
+                    itemButton.interactable = false;
+                    buttonPressed = false;
+
                     Image image = battery[flashLightIndex].GetComponent<Image>();
 
                     if (image != null)
@@ -109,12 +118,12 @@ public class CameraItem : MonoBehaviour
     #region scriptCamera
     void ActivateItemCamera()
     {
-      
+        lanternaScript.StartCoroutine(lanternaScript.LigarLanternaPorTempo(1f));
 
 
 
 
-   itemButton.interactable = !itemButton.interactable;
+        itemButton.interactable = !itemButton.interactable;
 
 
         
@@ -167,21 +176,34 @@ public class CameraItem : MonoBehaviour
     }
 
 
-    public void CompleteReload()
+
+
+    #endregion
+
+    public void CompleteBatteryReload()
     {
+        activatedTime = 0;
+
         CancelInvoke("ReloadCamera");
-        for(int i = 0; i< battery.Count-1; i++) { 
-        Image image = battery[i].GetComponent<Image>();
+
+        for (int i = 0; i < battery.Count; i++)
+        {
+            Image image = battery[i].GetComponent<Image>();
+
+            if (image != null)
+                image.color = Color.green;
+
+            itemButton.interactable = true;
+
+
         }
 
-        index = battery.Count - 1;
+        flashLightIndex = battery.Count - 1;
+
     }
 
-
-        #endregion
-
-        #region scriptLanterna
-        void ActivateItemFlashlight()
+    #region scriptLanterna
+    void ActivateItemFlashlight()
     {
 
         if(flashLightIndex <= 0 )
