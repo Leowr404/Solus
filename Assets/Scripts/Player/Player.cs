@@ -6,6 +6,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject itemObject;
+    public float rechargeAmountFlashlight = 20.0f;
+    public LayerMask batteryLayer;
+    public GameObject FlashLightItem;
 
     public float speed = 5;
     public float gravity;
@@ -72,7 +75,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    /*void OnTriggerStay(Collider other)
     {
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
@@ -80,6 +83,7 @@ public class Player : MonoBehaviour
 
             itemScript.CompleteBatteryReload();
             Debug.Log("colidiu");
+            
             //other.gameObject.SetActive(false);
 
         }
@@ -93,5 +97,5 @@ public class Player : MonoBehaviour
             this.gameObject.SetActive(false);
             Time.timeScale = 0f;
         }
-    }
+    }*/
 }

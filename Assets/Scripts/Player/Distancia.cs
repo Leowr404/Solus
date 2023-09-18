@@ -22,6 +22,6 @@ public class Distancia : MonoBehaviour
         float distance = player.position.z - initialPlayerPosition;
 
         // Atualize o texto do marcador de distância
-        distanceText.text = "Distância: " + distance.ToString("F0") + "m"; // "F0" formata para um número inteiro
+        distanceText.text = distance.ToString("F0"); // "F0" formata para um número inteiro
     }
 }

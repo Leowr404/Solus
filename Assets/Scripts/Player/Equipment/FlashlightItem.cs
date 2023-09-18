@@ -9,22 +9,30 @@ public class FlashLightItem : MonoBehaviour
     public Light luz;
     public float flashlightRange;
     public LayerMask monsterLayer;
-    public Slider batterySlider; // Referência ao Slider que representa a carga da bateria
+    public Slider sliderDeCarga; // Referência ao slider de carga no UI
+
+
+    public float cargaMaxima = 100f; // Capacidade máxima da lanterna
+    public float cargaAtual; // Carga atual da lanterna
+    public float taxaDeConsumo = 1f; // Taxa de consumo de carga por segundo
 
     private float batteryCharge = 100.0f; // Capacidade inicial da bateria
     public float batteryConsumptionRate = 10.0f; // Taxa de consumo da bateria por segundo
 
+    
 
     private void Start()
     {
         luz.enabled = false;
+        cargaAtual = cargaMaxima;
+        AtualizarSliderDeCarga();
     }
 
     void Update()
     {
         if (Keyboard.current.gKey.wasPressedThisFrame)
         {
-            if (batteryCharge > 0)
+            if (cargaAtual > 0)
             {
                 FlashlightOn();
             }
@@ -38,15 +46,16 @@ public class FlashLightItem : MonoBehaviour
         // Consumir a bateria enquanto a lanterna estiver ligada
         if (luz.enabled)
         {
-            batteryCharge -= batteryConsumptionRate * Time.deltaTime;
-            UpdateBatteryFill();
+            cargaAtual -= taxaDeConsumo * Time.deltaTime;
+            
 
             if (batteryCharge <= 0)
             {
                 FlashlightOff();
             }
         }
-            UpdateBatteryFill();
+        AtualizarSliderDeCarga();
+
     }
 
     public void FlashlightOn()
@@ -77,17 +86,21 @@ public class FlashLightItem : MonoBehaviour
             }
         }
     }
-    private void UpdateBatteryFill()
+    public void RecarregarLanterna(float quantidade)
     {
-        if (batterySlider != null)
+        // Método para recarregar a lanterna quando colidir com uma bateria
+        cargaAtual += quantidade;
+        cargaAtual = Mathf.Clamp(cargaAtual, 0, cargaMaxima);
+        AtualizarSliderDeCarga();
+    }
+
+    private void AtualizarSliderDeCarga()
+    {
+        // Atualizar o valor do slider de carga no UI
+        if (sliderDeCarga != null)
         {
-            float fillValue = batteryCharge / 100.0f; // Supondo que a carga máxima da bateria seja 100
-            batterySlider.value = fillValue;
+            sliderDeCarga.value = cargaAtual / cargaMaxima;
         }
     }
-    public void RechargeBattery(float amount)
-    {
-        batteryCharge = Mathf.Clamp(batteryCharge + amount, 0.0f, 100.0f); // Limita a carga máxima da bateria a 100
-        UpdateBatteryFill();
-    }
+   
 }
