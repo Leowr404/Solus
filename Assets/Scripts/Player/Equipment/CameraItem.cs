@@ -24,11 +24,11 @@ public class CameraItem : MonoBehaviour
 
     public IEnumerator LigarLanternaPorTempo(float duracao)
     {
-    
+     
         luz.enabled = true; // Liga a lanterna.
         DetectarMonstrosNoAlcance();
 
-        yield return new WaitForSeconds(0.5f); // Aguarde a duração especificada.
+        yield return new WaitForSeconds(0.1f); // Aguarde a duração especificada.
 
         luz.enabled = false; // Desliga a lanterna.
 
