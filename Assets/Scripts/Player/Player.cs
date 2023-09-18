@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
             itemScript.CompleteBatteryReload();
             Debug.Log("colidiu");
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
 
         }
 

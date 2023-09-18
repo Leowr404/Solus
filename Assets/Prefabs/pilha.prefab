@@ -136,3 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
+  rechargeAmountCamera: 20
+  rechargeAmountFlashlight: 20
+  batteryLayer:
+    serializedVersion: 2
+    m_Bits: 8
