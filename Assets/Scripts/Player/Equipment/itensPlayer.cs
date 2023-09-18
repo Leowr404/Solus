@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class ItensPlayer : MonoBehaviour
 {
     [Header("Game Objects")]
-    public GameObject LanternaGO;
+    public GameObject CameraGO;
 
     [Header("Buttons and battery")]
     public Button itemButton;
@@ -30,12 +30,12 @@ public class ItensPlayer : MonoBehaviour
     public float activatedTime = 0f;
     private bool buttonPressed = false;
 
-    private Lanterna lanternaScript;
+    private CameraItem cameraItemScript;
 
    
     void Start()
     {
-        lanternaScript = LanternaGO.GetComponent<Lanterna>();
+        cameraItemScript = CameraGO.GetComponent<CameraItem>();
 
         flashLightIndex = battery.Count-1;
         int cargas = battery.Count;
@@ -118,7 +118,7 @@ public class ItensPlayer : MonoBehaviour
     #region scriptCamera
     void ActivateItemCamera()
     {
-        lanternaScript.StartCoroutine(lanternaScript.LigarLanternaPorTempo(1f));
+        cameraItemScript.StartCoroutine(cameraItemScript.LigarLanternaPorTempo(1f));
 
 
 

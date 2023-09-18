@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // Importe o namespace do New Input.
 
-public class Lanterna : MonoBehaviour
+public class CameraItem : MonoBehaviour
 {
     public Light luz;
-    public float alcanceLanterna;
+    public float alcanceCamera;
     public LayerMask monstrosLayer;
-    private bool podeLigarLanterna = true;
+    private bool podeLigarCamera = true;
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class Lanterna : MonoBehaviour
     }
     private void Update()
     {
-        if (podeLigarLanterna && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
+        if (podeLigarCamera && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
         {
             StartCoroutine(LigarLanternaPorTempo(1f)); // Ligue a lanterna por 1 segundo.
         }
@@ -24,7 +24,7 @@ public class Lanterna : MonoBehaviour
 
     public IEnumerator LigarLanternaPorTempo(float duracao)
     {
-        Debug.Log("CAMERA ATIVAR CHAMADO");
+    
         luz.enabled = true; // Liga a lanterna.
         DetectarMonstrosNoAlcance();
 
@@ -33,14 +33,14 @@ public class Lanterna : MonoBehaviour
         luz.enabled = false; // Desliga a lanterna.
 
         // Inicie o cooldown de 2 segundos.
-        podeLigarLanterna = false;
+        podeLigarCamera = false;
         yield return new WaitForSeconds(0.5f); // Aguarde o cooldown de 1.5 segundos.
-        podeLigarLanterna = true; // A lanterna pode ser ligada novamente.
+        podeLigarCamera = true; // A lanterna pode ser ligada novamente.
     }
 
     public void DetectarMonstrosNoAlcance()
     {
-        Collider[] monstros = Physics.OverlapSphere(transform.position, alcanceLanterna, monstrosLayer);
+        Collider[] monstros = Physics.OverlapSphere(transform.position, alcanceCamera, monstrosLayer);
 
         foreach (var monstroCollider in monstros)
         {

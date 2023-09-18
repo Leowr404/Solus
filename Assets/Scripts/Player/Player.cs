@@ -90,8 +90,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Colidiu com inimigo");
             gameOver = true;
-            Time.timeScale = 0f;
             this.gameObject.SetActive(false);
+            Time.timeScale = 0f;
         }
     }
 }
