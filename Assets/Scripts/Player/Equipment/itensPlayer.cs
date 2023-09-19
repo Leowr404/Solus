@@ -270,7 +270,7 @@ public class ItensPlayer : MonoBehaviour
         }
         else 
         {
-            //luz.enabled = false;
+            flashlightItemScript.FlashlightOff();
         }
     }
     

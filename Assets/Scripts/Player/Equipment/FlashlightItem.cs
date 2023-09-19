@@ -50,16 +50,16 @@ public class FlashLightItem : MonoBehaviour
         }
 
         // Consumir a bateria enquanto a lanterna estiver ligada
-        if (luz.enabled)
-        {
+    //    if (luz.enabled)
+    //    {
            // cargaAtual -= taxaDeConsumo * Time.deltaTime;
             
 
          //   if (batteryCharge <= 0)
            // {
-                FlashlightOff();
+        //        FlashlightOff();
         //    }
-        }
+     //   }
         //AtualizarSliderDeCarga();
 
     }
