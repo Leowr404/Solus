@@ -115,6 +115,7 @@ public class ItensPlayer : MonoBehaviour
                     //luz.enabled = false;
                     itemButton.interactable = false;
                     buttonPressed = false;
+                    flashlightItemScript.FlashlightOff();
 
                     chargeSlider.value -= 1;
 
