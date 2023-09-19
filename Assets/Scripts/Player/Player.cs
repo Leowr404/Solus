@@ -75,19 +75,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
         {
-
+            Debug.Log("colidiu com player");
             itemScript.CompleteBatteryReload();
             Debug.Log("colidiu");
-            
-            //other.gameObject.SetActive(false);
+
+            other.gameObject.SetActive(false);
 
         }
-
+        /*
 
         //da pra fazer o gameOver ou a referencia pro script que vai rodar ele apartir daqui 
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
             gameOver = true;
             this.gameObject.SetActive(false);
             Time.timeScale = 0f;
-        }
-    }*/
+        }*/
+    }
+
 }

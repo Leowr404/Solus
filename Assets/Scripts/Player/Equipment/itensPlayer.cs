@@ -7,8 +7,15 @@ using UnityEngine.UI;
 
 public class ItensPlayer : MonoBehaviour
 {
+    [Header("Slider Controller")]
+    public Slider chargeSlider;
+    public Color safeColor;
+    public Color riskyColor;
+    public Color dangerColor;
+
     [Header("Game Objects")]
     public GameObject CameraGO;
+    public GameObject FlashlightGO;
 
     [Header("Buttons and battery")]
     public Button itemButton;
@@ -19,25 +26,36 @@ public class ItensPlayer : MonoBehaviour
 
     [Header("Camera configs")]
     public float batteryReloadTime;
-    private int index = 0;
+    public int index = 0;
 
     [Header("Flashlight configs")]
-    public Light luz;
-    public float alcanceLanterna = 10f;
-    public LayerMask monstrosLayer;
+
     public float timeForEachBaterry = 3.0f;
     private int flashLightIndex;
     public float activatedTime = 0f;
     private bool buttonPressed = false;
 
     private CameraItem cameraItemScript;
+    private FlashLightItem flashlightItemScript;
 
    
     void Start()
     {
-        cameraItemScript = CameraGO.GetComponent<CameraItem>();
+        /*ta dando algum erro que deixa a bateria transparente essa parte, serve pra mudar a cor do suquinho da bateria
+        if (chargeSlider != null)
+        {
+            // Crie uma estrutura de cores personalizada com a nova cor.
+            ColorBlock colorBlock = chargeSlider.colors;
+            colorBlock.disabledColor = safeColor; // Define a nova cor para o estado desativado (disabled).
 
-        flashLightIndex = battery.Count-1;
+            // Atribui a estrutura de cores de volta ao Slider.
+            chargeSlider.colors = colorBlock;
+        }*/
+            chargeSlider.value = 4;
+        cameraItemScript = CameraGO.GetComponent<CameraItem>();
+        flashlightItemScript = FlashlightGO.GetComponent<FlashLightItem>();
+
+        flashLightIndex = 3;
         int cargas = battery.Count;
 
         if(whichItem == 1)
@@ -60,51 +78,43 @@ public class ItensPlayer : MonoBehaviour
             activatedTime += Time.deltaTime;
 
 
-                if(activatedTime > timeForEachBaterry && flashLightIndex == battery.Count-1) {
-                    Image image = battery[flashLightIndex].GetComponent<Image>();
-
-                    if (image != null)
-                        image.color = Color.red;
+                if(activatedTime > timeForEachBaterry && flashLightIndex == 3) {
+                    Debug.Log("rodou 1");
+                    chargeSlider.value -= 1;
 
                     if(flashLightIndex > 0)
                     flashLightIndex--;
                 }
 
 
-                else if (activatedTime > 2*timeForEachBaterry && flashLightIndex == battery.Count - 2)
+                else if (activatedTime > 2*timeForEachBaterry && flashLightIndex == 2)
                 {
-                    Image image = battery[flashLightIndex].GetComponent<Image>();
-
-                    if (image != null)
-                        image.color = Color.red;
+                    Debug.Log("rodou 2");
+                    chargeSlider.value -= 1;
 
                     if (flashLightIndex > 0)
                         flashLightIndex--;
                 }
 
 
-                else if (activatedTime > 3 * timeForEachBaterry && flashLightIndex == battery.Count - 3)
+                else if (activatedTime > 3 * timeForEachBaterry && flashLightIndex == 1)
                 {
-                    Image image = battery[flashLightIndex].GetComponent<Image>();
-
-                    if (image != null)
-                        image.color = Color.red;
+                    Debug.Log("rodou 3");
+                    chargeSlider.value -= 1;
 
                     if (flashLightIndex > 0)
                         flashLightIndex--;
                 }
 
 
-                else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == battery.Count - 4)
+                else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == 0)
                 {
-                    luz.enabled = false;
+                    Debug.Log("rodou 4");
+                    //luz.enabled = false;
                     itemButton.interactable = false;
                     buttonPressed = false;
 
-                    Image image = battery[flashLightIndex].GetComponent<Image>();
-
-                    if (image != null)
-                        image.color = Color.red;
+                    chargeSlider.value -= 1;
 
                     if (flashLightIndex > 0)
                         flashLightIndex--;
@@ -118,7 +128,7 @@ public class ItensPlayer : MonoBehaviour
     #region scriptCamera
     void ActivateItemCamera()
     {
-        cameraItemScript.StartCoroutine(cameraItemScript.LigarLanternaPorTempo(1f));
+        cameraItemScript.StartCoroutine(cameraItemScript.LigarCameraPorTempo(1f));
 
 
 
@@ -144,7 +154,7 @@ public class ItensPlayer : MonoBehaviour
 
                
         }
-           
+        chargeSlider.value = 0;
             InvokeRepeating("ReloadCamera", batteryReloadTime, batteryReloadTime);
      
 
@@ -155,14 +165,11 @@ public class ItensPlayer : MonoBehaviour
 
     void ReloadCamera()
     {
-       
 
-        Image image = battery[index].GetComponent<Image>();
 
-        if (image != null)
-            image.color = Color.green;
+        chargeSlider.value += 1;
 
-        if (index == battery.Count - 1) {
+        if (index == 3) {
             itemButton.interactable = !itemButton.interactable;
             index = -1;
             CancelInvoke("ReloadCamera");
@@ -216,19 +223,19 @@ public class ItensPlayer : MonoBehaviour
        
         if (buttonPressed)
         {
-            luz.enabled = true;
-            DetectarMonstrosNoAlcance();
+            //luz.enabled = true;
+            flashlightItemScript.FlashlightOn();
         }
         else 
         {
-            luz.enabled = false;
+            //luz.enabled = false;
         }
     }
     
 
 
 
-    private void DetectarMonstrosNoAlcance()
+   /* private void DetectarMonstrosNoAlcance()
     {
         Collider[] monstros = Physics.OverlapSphere(transform.position, alcanceLanterna, monstrosLayer);
 
@@ -241,6 +248,6 @@ public class ItensPlayer : MonoBehaviour
                 monstro.Morrer();
             }
         }
-    }
+    }*/
     #endregion
 }

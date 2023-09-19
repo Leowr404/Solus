@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class teste : MonoBehaviour
 {
-    public float quantidadeRecarga = 50f; // Quantidade de carga que a bateria fornece à lanterna
+/*    public float quantidadeRecarga = 50f; // Quantidade de carga que a bateria fornece à lanterna
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,9 +14,9 @@ public class teste : MonoBehaviour
             if (lanterna != null)
             {
                 // Recarregar a lanterna e destruir a bateria
-                lanterna.RecarregarLanterna(quantidadeRecarga);
+               // lanterna.RecarregarLanterna(quantidadeRecarga);
                 Destroy(gameObject);
             }
         }
-    }
+    }*/
 }

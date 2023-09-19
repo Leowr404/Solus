@@ -621,7 +621,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 06fc2b06fb452d84bb6f0195bc455cbd,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 06fc2b06fb452d84bb6f0195bc455cbd,
         type: 3}
@@ -1076,7 +1076,7 @@ GameObject:
   - component: {fileID: 914409411}
   - component: {fileID: 914409412}
   m_Layer: 0
-  m_Name: ButtonsController
+  m_Name: ItensController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1109,16 +1109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9d45974700c274f82a780e65289365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeSlider: {fileID: 1343206476}
+  safeColor: {r: 0, g: 0.9607844, b: 0.20784315, a: 0}
+  riskyColor: {r: 0.9716981, g: 0.57006085, b: 0.050418302, a: 0}
+  dangerColor: {r: 1, g: 0, b: 0, a: 0}
   CameraGO: {fileID: 1660633277}
+  FlashlightGO: {fileID: 1439939520}
   itemButton: {fileID: 274504275}
   battery: []
   whichItem: 1
   batteryReloadTime: 1
-  luz: {fileID: 578470707}
-  alcanceLanterna: 1000
-  monstrosLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  index: 0
   timeForEachBaterry: 3
   activatedTime: 0
 --- !u!1 &917870600
@@ -1239,7 +1240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5865590fadd517643a0660ebabb72284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quantidadeRecarga: 50
 --- !u!1 &954711448
 GameObject:
   m_ObjectHideFlags: 0
@@ -6503,7 +6503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15.9, y: -34.5}
+  m_AnchoredPosition: {x: 15.900024, y: -34.5}
   m_SizeDelta: {x: 130, y: 70}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1343206475
@@ -6559,9 +6559,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MaxValue: 4
+  m_WholeNumbers: 1
+  m_Value: 4
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6584,21 +6584,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439939520}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0479fffec58e5134b958eeebc5c985dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   luz: {fileID: 578470707}
-  flashlightRange: 50
+  flashlightRange: 500
   monsterLayer:
     serializedVersion: 2
     m_Bits: 64
-  sliderDeCarga: {fileID: 1343206476}
-  cargaMaxima: 100
-  cargaAtual: 0
-  taxaDeConsumo: 1
-  batteryConsumptionRate: 100
 --- !u!1 &1587296437
 GameObject:
   m_ObjectHideFlags: 0
@@ -6811,11 +6806,6 @@ MonoBehaviour:
   monsterLayer:
     serializedVersion: 2
     m_Bits: 64
-  sliderDeCarga: {fileID: 1343206476}
-  cargaMaxima: 100
-  cargaAtual: 0
-  taxaDeConsumo: 50
-  batteryConsumptionRate: 10
 --- !u!1001 &1771680619
 PrefabInstance:
   m_ObjectHideFlags: 0

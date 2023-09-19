@@ -18,11 +18,11 @@ public class CameraItem : MonoBehaviour
     {
         if (podeLigarCamera && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
         {
-            StartCoroutine(LigarLanternaPorTempo(1f)); // Ligue a lanterna por 1 segundo.
+            StartCoroutine(LigarCameraPorTempo(1f)); // Ligue a lanterna por 1 segundo.
         }
     }
 
-    public IEnumerator LigarLanternaPorTempo(float duracao)
+    public IEnumerator LigarCameraPorTempo(float duracao)
     {
      
         luz.enabled = true; // Liga a lanterna.

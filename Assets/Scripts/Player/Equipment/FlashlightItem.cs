@@ -6,65 +6,72 @@ using UnityEngine.UI;
 
 public class FlashLightItem : MonoBehaviour
 {
+
+
     public Light luz;
     public float flashlightRange;
     public LayerMask monsterLayer;
-    public Slider sliderDeCarga; // Referência ao slider de carga no UI
+   // public Slider sliderDeCarga; // Referência ao slider de carga no UI
 
 
-    public float cargaMaxima = 100f; // Capacidade máxima da lanterna
-    public float cargaAtual; // Carga atual da lanterna
-    public float taxaDeConsumo = 1f; // Taxa de consumo de carga por segundo
+   // public float cargaMaxima = 4;//100f; // Capacidade máxima da lanterna
+    //public float cargaAtual; // Carga atual da lanterna
+  //  public float taxaDeConsumo = 1f; // Taxa de consumo de carga por segundo
 
-    private float batteryCharge = 100.0f; // Capacidade inicial da bateria
-    public float batteryConsumptionRate = 10.0f; // Taxa de consumo da bateria por segundo
+ //   private float batteryCharge = 100.0f; // Capacidade inicial da bateria
+    //public float batteryConsumptionRate = 10.0f; // Taxa de consumo da bateria por segundo
 
     
 
     private void Start()
     {
         luz.enabled = false;
-        cargaAtual = cargaMaxima;
-        AtualizarSliderDeCarga();
+       // cargaAtual = cargaMaxima;
+        //AtualizarSliderDeCarga();
     }
 
     void Update()
     {
         if (Keyboard.current.gKey.wasPressedThisFrame)
         {
-            if (cargaAtual > 0)
-            {
+            // if (cargaAtual > 0)
+            //  {
+         
                 FlashlightOn();
-            }
+            
+          //  }
         }
 
         if (Keyboard.current.gKey.wasReleasedThisFrame)
         {
+          
+
             FlashlightOff();
         }
 
         // Consumir a bateria enquanto a lanterna estiver ligada
         if (luz.enabled)
         {
-            cargaAtual -= taxaDeConsumo * Time.deltaTime;
+           // cargaAtual -= taxaDeConsumo * Time.deltaTime;
             
 
-            if (batteryCharge <= 0)
-            {
+         //   if (batteryCharge <= 0)
+           // {
                 FlashlightOff();
-            }
+        //    }
         }
-        AtualizarSliderDeCarga();
+        //AtualizarSliderDeCarga();
 
     }
 
     public void FlashlightOn()
     {
-        if (batteryCharge > 0)
-        {
+        Debug.Log("flashlight on rodado");
+      //  if (batteryCharge > 0)
+       // {
             luz.enabled = true;
             DetectMonstersInRange();
-        }
+        //}
     }
 
     public void FlashlightOff()
@@ -86,21 +93,21 @@ public class FlashLightItem : MonoBehaviour
             }
         }
     }
-    public void RecarregarLanterna(float quantidade)
+   /* public void RecarregarLanterna(float quantidade)
     {
         // Método para recarregar a lanterna quando colidir com uma bateria
         cargaAtual += quantidade;
         cargaAtual = Mathf.Clamp(cargaAtual, 0, cargaMaxima);
         AtualizarSliderDeCarga();
-    }
+    }*/
 
-    private void AtualizarSliderDeCarga()
+   /* private void AtualizarSliderDeCarga()
     {
         // Atualizar o valor do slider de carga no UI
         if (sliderDeCarga != null)
         {
             sliderDeCarga.value = cargaAtual / cargaMaxima;
         }
-    }
+    }*/
    
 }
