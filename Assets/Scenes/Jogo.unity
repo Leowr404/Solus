@@ -1120,7 +1120,7 @@ MonoBehaviour:
   whichItem: 2
   batteryReloadTime: 1
   index: 0
-  timeForEachBaterry: 1
+  timeForEachBaterry: 5
   activatedTime: 0
 --- !u!1 &917870600
 GameObject:

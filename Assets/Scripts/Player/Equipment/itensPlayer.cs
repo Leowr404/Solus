@@ -81,7 +81,7 @@ public class ItensPlayer : MonoBehaviour
 
 
                 if(activatedTime > timeForEachBaterry && flashLightIndex == 3) {
-                    Debug.Log("rodou 1");
+                    
                     chargeSlider.value -= 1;
 
                     if(flashLightIndex > 0)
@@ -91,7 +91,7 @@ public class ItensPlayer : MonoBehaviour
 
                 else if (activatedTime > 2*timeForEachBaterry && flashLightIndex == 2)
                 {
-                    Debug.Log("rodou 2");
+                   
                     chargeSlider.value -= 1;
 
                     if (flashLightIndex > 0)
@@ -101,7 +101,7 @@ public class ItensPlayer : MonoBehaviour
 
                 else if (activatedTime > 3 * timeForEachBaterry && flashLightIndex == 1)
                 {
-                    Debug.Log("rodou 3");
+                    
                     chargeSlider.value -= 1;
 
                     if (flashLightIndex > 0)
@@ -111,7 +111,7 @@ public class ItensPlayer : MonoBehaviour
 
                 else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == 0)
                 {
-                    Debug.Log("rodou 4");
+                   
                     //luz.enabled = false;
                     itemButton.interactable = false;
                     buttonPressed = false;

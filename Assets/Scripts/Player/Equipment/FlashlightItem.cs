@@ -11,6 +11,7 @@ public class FlashLightItem : MonoBehaviour
     public Light luz;
     public float flashlightRange;
     public LayerMask monsterLayer;
+    
    // public Slider sliderDeCarga; // Referência ao slider de carga no UI
 
 
@@ -39,7 +40,8 @@ public class FlashLightItem : MonoBehaviour
          
                 FlashlightOn();
             
-          //  }
+
+            //  }
         }
 
         if (Keyboard.current.gKey.wasReleasedThisFrame)
@@ -66,21 +68,25 @@ public class FlashLightItem : MonoBehaviour
 
     public void FlashlightOn()
     {
-        Debug.Log("flashlight on rodado");
+        
       //  if (batteryCharge > 0)
        // {
             luz.enabled = true;
-            DetectMonstersInRange();
+        
+        Invoke("DetectMonstersInRange", 0f);
+
         //}
     }
 
     public void FlashlightOff()
     {
         luz.enabled = false;
+        
     }
 
     public void DetectMonstersInRange()
     {
+     
         Collider[] monstros = Physics.OverlapSphere(transform.position, flashlightRange, monsterLayer);
 
         foreach (var monstroCollider in monstros)
@@ -92,6 +98,8 @@ public class FlashLightItem : MonoBehaviour
                 monstro.Morrer();
             }
         }
+
+      
     }
    /* public void RecarregarLanterna(float quantidade)
     {
