@@ -41,16 +41,17 @@ public class ItensPlayer : MonoBehaviour
    
     void Start()
     {
-        /*ta dando algum erro que deixa a bateria transparente essa parte, serve pra mudar a cor do suquinho da bateria
+        //ta dando algum erro que deixa a bateria transparente essa parte, serve pra mudar a cor do suquinho da bateria
         if (chargeSlider != null)
         {
+
             // Crie uma estrutura de cores personalizada com a nova cor.
             ColorBlock colorBlock = chargeSlider.colors;
             colorBlock.disabledColor = safeColor; // Define a nova cor para o estado desativado (disabled).
 
             // Atribui a estrutura de cores de volta ao Slider.
             chargeSlider.colors = colorBlock;
-        }*/
+        }
             chargeSlider.value = 4;
         cameraItemScript = CameraGO.GetComponent<CameraItem>();
         flashlightItemScript = FlashlightGO.GetComponent<FlashLightItem>();
@@ -75,7 +76,8 @@ public class ItensPlayer : MonoBehaviour
 
             if (buttonPressed)
         {
-            activatedTime += Time.deltaTime;
+                flashlightItemScript.FlashlightOn();
+                activatedTime += Time.deltaTime;
 
 
                 if(activatedTime > timeForEachBaterry && flashLightIndex == 3) {
@@ -123,6 +125,55 @@ public class ItensPlayer : MonoBehaviour
 
     }
         #endregion
+    }
+
+    //ainda mexendo nesse metodo aqui, a mudanca ficou meio esquisita
+    public void OnSliderValueChanged()
+    {
+        
+
+        ColorBlock colorBlock = chargeSlider.colors;
+        switch (chargeSlider.value)
+        {
+            case 1:
+                colorBlock.disabledColor = dangerColor;
+                colorBlock.normalColor = dangerColor; 
+                colorBlock.highlightedColor = dangerColor; 
+                colorBlock.pressedColor = dangerColor; 
+                
+                break;
+            case 2:
+                colorBlock.disabledColor = riskyColor;
+                colorBlock.normalColor = riskyColor;
+                colorBlock.highlightedColor = riskyColor;
+                colorBlock.pressedColor = riskyColor;
+                
+                break;
+            default:
+                colorBlock.disabledColor = safeColor;
+                colorBlock.normalColor = safeColor;
+                colorBlock.highlightedColor = safeColor;
+                colorBlock.pressedColor = safeColor;
+             
+                break;
+        }
+
+        chargeSlider.colors = colorBlock;
+
+        /* switch (chargeSlider.value)
+    {
+        case 1:
+            chargeSlider.colors = new ColorBlock { disabledColor = dangerColor };
+            break;
+        case 2:
+            chargeSlider.colors = new ColorBlock { disabledColor = riskyColor };
+            break;
+        default:
+            chargeSlider.colors = new ColorBlock { disabledColor = safeColor };
+            break;
+    }*/
+
+
     }
 
     #region scriptCamera
@@ -193,19 +244,10 @@ public class ItensPlayer : MonoBehaviour
 
         CancelInvoke("ReloadCamera");
 
-        for (int i = 0; i < battery.Count; i++)
-        {
-            Image image = battery[i].GetComponent<Image>();
+        chargeSlider.value = 4;
 
-            if (image != null)
-                image.color = Color.green;
-
-            itemButton.interactable = true;
-
-
-        }
-
-        flashLightIndex = battery.Count - 1;
+        itemButton.interactable = true;
+        flashLightIndex = 3;
 
     }
 
@@ -224,7 +266,7 @@ public class ItensPlayer : MonoBehaviour
         if (buttonPressed)
         {
             //luz.enabled = true;
-            flashlightItemScript.FlashlightOn();
+            //flashlightItemScript.FlashlightOn();
         }
         else 
         {
@@ -249,5 +291,5 @@ public class ItensPlayer : MonoBehaviour
             }
         }
     }*/
-    #endregion
-}
+#endregion
+    }

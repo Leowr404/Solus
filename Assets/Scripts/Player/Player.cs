@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+        
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
         {
