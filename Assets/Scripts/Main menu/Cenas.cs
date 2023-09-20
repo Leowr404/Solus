@@ -24,5 +24,11 @@ public class Cenas : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(1);
     }
-    
+
+    public void CarregarMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+
 }
