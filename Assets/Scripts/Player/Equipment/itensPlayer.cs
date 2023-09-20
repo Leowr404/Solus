@@ -41,6 +41,18 @@ public class ItensPlayer : MonoBehaviour
    
     void Start()
     {
+        whichItem = PlayerPrefs.GetInt("ChosenItem");
+
+        if(whichItem == 1)
+        {
+            CameraGO.SetActive(true);
+}
+        else
+        {
+            FlashlightGO.SetActive(true);
+
+        }
+
         //ta dando algum erro que deixa a bateria transparente essa parte, serve pra mudar a cor do suquinho da bateria
         if (chargeSlider != null)
         {

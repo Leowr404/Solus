@@ -621,7 +621,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 06fc2b06fb452d84bb6f0195bc455cbd,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 06fc2b06fb452d84bb6f0195bc455cbd,
         type: 3}
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   whichItem: 2
   batteryReloadTime: 1
   index: 0
-  timeForEachBaterry: 5
+  timeForEachBaterry: 2
   activatedTime: 0
 --- !u!1 &917870600
 GameObject:
@@ -1447,7 +1447,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Camera
+  m_Text: Item
 --- !u!222 &1140693318
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6899,7 +6899,7 @@ PrefabInstance:
     - target: {fileID: 5550564952665328422, guid: 8214829b557f42b419035bc6a7833ef9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
