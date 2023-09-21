@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float rechargeAmountFlashlight = 20.0f;
     public LayerMask batteryLayer;
     public GameObject FlashLightItem;
+    public GameObject GameController;
 
     public float speed = 5;
     public float gravity;
@@ -19,12 +20,16 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
 
     private ItensPlayer itemScript;
+    private GameController gameController;
 
     private bool gameOver = false;
     //  private Touch touch;
 
     void Start()
     {
+
+        gameController = GameController.GetComponent<GameController>();
+
         itemScript = itemObject.GetComponent<ItensPlayer>();
 
 
@@ -88,7 +93,7 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
 
         }
-        /*
+        
 
         //da pra fazer o gameOver ou a referencia pro script que vai rodar ele apartir daqui 
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
@@ -96,8 +101,8 @@ public class Player : MonoBehaviour
             Debug.Log("Colidiu com inimigo");
             gameOver = true;
             this.gameObject.SetActive(false);
-            Time.timeScale = 0f;
-        }*/
+            gameController.ActivateGameOverMenu();
+        }
     }
 
 }
