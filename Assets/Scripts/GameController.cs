@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
 
-    public GameObject Player;
+   
     public GameObject GameOverUI;
     public GameObject GameRunningUI;
 
@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        playerScript = Player.GetComponent<Player>();
+       
     }
 
     public void ActivateGameOverMenu()
