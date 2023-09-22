@@ -12,15 +12,16 @@ public class GameController : MonoBehaviour
    
     public GameObject GameOverUI;
     public GameObject GameRunningUI;
+    public GameObject GamePausedUI;
+    
 
-    //    cameraItemScript = CameraGO.GetComponent<CameraItem>();
-    //  private CameraItem cameraItemScript;
-
-    private Player playerScript;
 
     private void Start()
     {
-       
+        GameOverUI.SetActive(false);
+        GameRunningUI.SetActive(true);
+        GamePausedUI.SetActive(false);
+
     }
 
     public void ActivateGameOverMenu()
@@ -28,18 +29,31 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0f;
         GameOverUI.SetActive(true);
         GameRunningUI.SetActive(false);
-
     }
 
-
-    public void Restart()
+    public void PauseMenuOn()
     {
+        Time.timeScale = 0f;
+        GamePausedUI.SetActive(true);
+        GameRunningUI.SetActive(false);
+        
 
-        string currentSceneName = SceneManager.GetActiveScene().name;
 
 
-        SceneManager.LoadScene(currentSceneName);
+
 
     }
+
+    public void ResumeGame() 
+    {
+        Time.timeScale = 1f;
+        GamePausedUI.SetActive(false);
+        GameRunningUI.SetActive(true);
+      
+
+
+
+    }
+    
 
 }

@@ -23,6 +23,7 @@ public class Cenas : MonoBehaviour
     public void CarregarJogo()
     {
         SceneManager.LoadSceneAsync(1);
+        Time.timeScale = 1.0f;
     }
 
     public void CarregarMenu()
