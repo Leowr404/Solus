@@ -778,7 +778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 68730973178915307, guid: 697e44d396b539d449bdaf128ee02381,
+      - m_Target: {fileID: 8470196385957641381, guid: 697e44d396b539d449bdaf128ee02381,
           type: 3}
         m_TargetAssemblyTypeName: Cenas, Assembly-CSharp
         m_MethodName: CarregarJogo
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 68730973178915307, guid: 697e44d396b539d449bdaf128ee02381,
+      - m_Target: {fileID: 8470196385957641381, guid: 697e44d396b539d449bdaf128ee02381,
           type: 3}
         m_TargetAssemblyTypeName: Cenas, Assembly-CSharp
         m_MethodName: CarregarMenu
@@ -9204,7 +9204,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 68730973178915307, guid: 697e44d396b539d449bdaf128ee02381,
+      - m_Target: {fileID: 8470196385957641381, guid: 697e44d396b539d449bdaf128ee02381,
           type: 3}
         m_TargetAssemblyTypeName: Cenas, Assembly-CSharp
         m_MethodName: CarregarMenu
