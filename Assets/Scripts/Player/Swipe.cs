@@ -57,12 +57,12 @@ public class Swipe : MonoBehaviour
         Vector3 position = Player.transform.position;
         if(plataformRef > plataform)
         {
-            position.x += 10;
+            position.x += 3.5f;
 
         }
         else if (plataformRef < plataform)
         {
-            position.x -= 10;
+            position.x -= 3.5f;
 
         }
         
