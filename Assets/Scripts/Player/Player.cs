@@ -88,7 +88,19 @@ public class Player : MonoBehaviour
             this.gameObject.SetActive(false);
             gameController.ActivateGameOverMenu();
         }
-    }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
+        {
+            
+            other.gameObject.SetActive(false);
+            
+            StartCoroutine(itemScript.PowerUpInfiniteBattery());
+
+
+
+        }
+
+        }
 
     
 }

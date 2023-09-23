@@ -677,9 +677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f571a2cf29b9a4282ab9ec0ab92f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverUI: {fileID: 0}
-  GameRunningUI: {fileID: 0}
-  GamePausedUI: {fileID: 0}
+  GameOverUI: {fileID: 1217363969}
+  GameRunningUI: {fileID: 1362355223}
+  GamePausedUI: {fileID: 1052223467}
 --- !u!4 &163072361
 Transform:
   m_ObjectHideFlags: 0
@@ -2754,6 +2754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeSlider: {fileID: 1343206476}
+  powerUpColor: {r: 0.031149892, g: 0.9433962, b: 0.93498, a: 1}
   safeColor: {r: 0.06704913, g: 0.9607843, b: 0, a: 1}
   riskyColor: {r: 0.9716981, g: 0.57006085, b: 0.050418302, a: 1}
   dangerColor: {r: 1, g: 0, b: 0, a: 1}
@@ -2761,11 +2762,13 @@ MonoBehaviour:
   FlashlightGO: {fileID: 1439939520}
   itemButton: {fileID: 274504275}
   battery: []
-  whichItem: 2
+  whichItem: 1
   batteryReloadTime: 1
   index: 0
   timeForEachBaterry: 2
   activatedTime: 0
+  powerUpDuration: 6
+  powerUpActivated: 0
 --- !u!1 &932049521
 GameObject:
   m_ObjectHideFlags: 0
@@ -9284,7 +9287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c557600c78233d4784a019e851f48c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1724025742}
+  startPos: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  m_Text: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!4 &1587296439
 Transform:
   m_ObjectHideFlags: 0
@@ -9883,6 +9889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c557600c78233d4784a019e851f48c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  m_Text: {fileID: 1140693317}
   Player: {fileID: 1724025742}
 --- !u!114 &1724025751
 MonoBehaviour:
@@ -10771,13 +10780,19 @@ MonoBehaviour:
     baseEnemy: {fileID: 6673286731539176024, guid: dce42e423f805414c88be2f6bcd2c09b,
       type: 3}
     size: 3
+  - tag: powerUp
+    baseEnemy: {fileID: 4401216060723085670, guid: d657326def161ca41ad52a8fb3d2d6d8,
+      type: 3}
+    size: 3
   enemyCommon: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 50
   spawnCd: 3
   spawnBatteryCd: 4
+  spawnPowerUpCd: 4
   batteryChance: 10
+  powerUpChance: 5
 --- !u!4 &2107321987
 Transform:
   m_ObjectHideFlags: 0

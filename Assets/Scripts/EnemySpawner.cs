@@ -20,7 +20,9 @@ public class EnemySpawner : MonoBehaviour
     public float spawnDistance;
     public float spawnCd;
     public float spawnBatteryCd;
+    public float spawnPowerUpCd;
     public int batteryChance = 5;
+    public int powerUpChance = 5;
 
     void Start()
     {
@@ -41,6 +43,7 @@ public class EnemySpawner : MonoBehaviour
 
         InvokeRepeating("SpawnEnemy", 0, spawnCd);
         InvokeRepeating("Spawnbattery", spawnBatteryCd, spawnBatteryCd);
+        InvokeRepeating("SpawnPowerUp", spawnPowerUpCd, spawnPowerUpCd);
     }
 
     public void SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
@@ -96,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
 
             Vector3 position = player.transform.position;
             position.z += spawnDistance;
-            position.y = 0.594f;
+            position.y = 0.005f;
 
             int randomNumber = UnityEngine.Random.Range(1, 4);
 
@@ -104,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
             switch (randomNumber)
             {
                 case 1:
-                    position.x = -10;
+                    position.x = -3.5f;
                     break;
 
                 case 2:
@@ -112,7 +115,7 @@ public class EnemySpawner : MonoBehaviour
                     break;
 
                 case 3:
-                    position.x = 10;
+                    position.x = 3.5f ;
                     break;
             }
 
@@ -121,6 +124,46 @@ public class EnemySpawner : MonoBehaviour
         }
 
 
+
+
         
     }
-}
+
+
+    public void SpawnPowerUp()
+    {
+        int chanceSpawn = UnityEngine.Random.Range(1, 11);
+        if (chanceSpawn <= powerUpChance)
+        {
+
+
+
+
+            Vector3 position = player.transform.position;
+            position.z += spawnDistance;
+            position.y = 0.005f;
+
+            int randomNumber = UnityEngine.Random.Range(1, 4);
+
+
+            switch (randomNumber)
+            {
+                case 1:
+                    position.x = -3.5f;
+                    break;
+
+                case 2:
+                    position.x = 0;
+                    break;
+
+                case 3:
+                    position.x = 3.5f;
+                    break;
+            }
+
+            
+            SpawnFromPool("powerUp", position, Quaternion.identity);
+
+        }
+    }
+    }

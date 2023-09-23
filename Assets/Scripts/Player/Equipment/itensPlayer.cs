@@ -9,9 +9,11 @@ public class ItensPlayer : MonoBehaviour
 {
     [Header("Slider Controller")]
     public Slider chargeSlider;
+    public Color powerUpColor;
     public Color safeColor;
     public Color riskyColor;
     public Color dangerColor;
+    
 
     [Header("Game Objects")]
     public GameObject CameraGO;
@@ -35,12 +37,17 @@ public class ItensPlayer : MonoBehaviour
     public float activatedTime = 0f;
     private bool buttonPressed = false;
 
+    [Header("Flashlight configs")]
+    public int powerUpDuration;
+
     private CameraItem cameraItemScript;
     private FlashLightItem flashlightItemScript;
+    public bool powerUpActivated = false;
 
    
     void Start()
     {
+
         whichItem = PlayerPrefs.GetInt("ChosenItem");
 
         if(whichItem == 1)
@@ -53,7 +60,7 @@ public class ItensPlayer : MonoBehaviour
 
         }
 
-        //ta dando algum erro que deixa a bateria transparente essa parte, serve pra mudar a cor do suquinho da bateria
+        
         if (chargeSlider != null)
         {
 
@@ -81,7 +88,7 @@ public class ItensPlayer : MonoBehaviour
     void Update()
     {
  
-        
+       
 
         #region bateriaLanterna
         if (whichItem == 2) { 
@@ -89,6 +96,7 @@ public class ItensPlayer : MonoBehaviour
             if (buttonPressed)
         {
                 flashlightItemScript.FlashlightOn();
+                if(powerUpActivated == false) { 
                 activatedTime += Time.deltaTime;
 
 
@@ -135,16 +143,17 @@ public class ItensPlayer : MonoBehaviour
                         flashLightIndex--;
                 }
             }
-
-    }
+            }
+        }
         #endregion
     }
 
     //ainda mexendo nesse metodo aqui, a mudanca ficou meio esquisita
     public void OnSliderValueChanged()
     {
+        //comno fazer esse carinha funcionar...
         
-
+        if(powerUpActivated == false) { 
         ColorBlock colorBlock = chargeSlider.colors;
         switch (chargeSlider.value)
         {
@@ -173,60 +182,36 @@ public class ItensPlayer : MonoBehaviour
 
         chargeSlider.colors = colorBlock;
 
-        /* switch (chargeSlider.value)
-    {
-        case 1:
-            chargeSlider.colors = new ColorBlock { disabledColor = dangerColor };
-            break;
-        case 2:
-            chargeSlider.colors = new ColorBlock { disabledColor = riskyColor };
-            break;
-        default:
-            chargeSlider.colors = new ColorBlock { disabledColor = safeColor };
-            break;
-    }*/
+    
 
-
+            }
     }
 
     #region scriptCamera
     void ActivateItemCamera()
     {
-        cameraItemScript.StartCoroutine(cameraItemScript.LigarCameraPorTempo(1f));
+       
+            cameraItemScript.StartCoroutine(cameraItemScript.LigarCameraPorTempo(1f));
+
+        if (powerUpActivated == false)
+        {
+
+
+            itemButton.interactable = !itemButton.interactable;
 
 
 
 
-        itemButton.interactable = !itemButton.interactable;
-
-
-        
-
-            #region colocarCorVermelha
-            foreach (GameObject obj in battery)
-            {
-
-                Image image = obj.GetComponent<Image>();
-                if (image != null)
-                {
-                 
-                    image.color = Color.red;
-                }
-                #endregion
-
-                
-
-               
-        }
-        chargeSlider.value = 0;
+           
+            chargeSlider.value = 0;
             InvokeRepeating("ReloadCamera", batteryReloadTime, batteryReloadTime);
-     
 
 
 
-    
+
+
+        }
     }
-
     void ReloadCamera()
     {
 
@@ -264,6 +249,31 @@ public class ItensPlayer : MonoBehaviour
 
     }
 
+    public IEnumerator PowerUpInfiniteBattery()
+    {
+        powerUpActivated = true;
+        Debug.Log("powerUp ativo!");
+        activatedTime = 0;
+        chargeSlider.value = 4;
+        flashLightIndex = 3;
+
+
+        ColorBlock colorBlock = chargeSlider.colors;
+        colorBlock.disabledColor = powerUpColor;
+        colorBlock.normalColor = powerUpColor;
+        colorBlock.highlightedColor = powerUpColor;
+        colorBlock.pressedColor = powerUpColor;
+
+        chargeSlider.colors = colorBlock;
+
+        itemButton.interactable = true;
+        
+        yield return new WaitForSeconds(powerUpDuration);
+
+        powerUpActivated = false;
+        OnSliderValueChanged();
+    }
+
     #region scriptLanterna
     void ActivateItemFlashlight()
     {
@@ -290,19 +300,6 @@ public class ItensPlayer : MonoBehaviour
 
 
 
-   /* private void DetectarMonstrosNoAlcance()
-    {
-        Collider[] monstros = Physics.OverlapSphere(transform.position, alcanceLanterna, monstrosLayer);
-
-        foreach (var monstroCollider in monstros)
-        {
-            baseEnemy monstro = monstroCollider.GetComponent<baseEnemy>();
-
-            if (monstro != null)
-            {
-                monstro.Morrer();
-            }
-        }
-    }*/
+  
 #endregion
     }
