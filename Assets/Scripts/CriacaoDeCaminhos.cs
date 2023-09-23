@@ -7,7 +7,7 @@ public class GerenciadorCaminhos : MonoBehaviour
 
     private List<Transform> caminhosAtivos = new List<Transform>();
     private float distanciaReciclagem = 170f;
-    private float distanciaEntreCaminhos = 150f;
+    private float distanciaEntreCaminhos = 300f;
 
     private void Start()
     {

@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         switch (randomNumber)
         {
             case 1:
-                position.x = -10;
+                position.x = -3.5f;
                 break;
 
             case 2:
@@ -77,7 +77,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
 
             case 3:
-                position.x = 10;
+                position.x = 3.5f;
                 break;
         }
 

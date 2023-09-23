@@ -6,10 +6,15 @@ public class Swipe : MonoBehaviour
 {
 
     private Vector2 startTouchPosition;
-        private Vector2 endTouchPosition;
+    private Vector2 endTouchPosition;
 
     public GameObject Player;
     private int plataform = 2, plataformRef = 2;
+
+    private void Start()
+    {
+        
+    }
 
     private void FixedUpdate()
     {
@@ -27,7 +32,7 @@ public class Swipe : MonoBehaviour
             if(endTouchPosition.x < startTouchPosition.x)
             {
                 plataformRef++;
-                move(ref plataform, plataformRef);
+                Move(ref plataform, plataformRef);
                 
 
             }
@@ -35,7 +40,7 @@ public class Swipe : MonoBehaviour
             if(endTouchPosition.x > startTouchPosition.x)
             {
                 plataformRef--; 
-                move(ref plataform, plataformRef);
+                Move(ref plataform, plataformRef);
 
             }
 
@@ -44,7 +49,7 @@ public class Swipe : MonoBehaviour
         }
     }
 
-    private void move(ref int plataform, int plataformRef)
+    private void Move(ref int plataform, int plataformRef)
     {
 
         Debug.Log("Moveu");
