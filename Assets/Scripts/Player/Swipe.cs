@@ -29,10 +29,10 @@ public class Swipe : MonoBehaviour
             }
         }
 
-         void Move(ref int plataform, int plataformRef)
+        void Move(ref int plataform, int plataformRef)
         {
 
-            
+
 
             Debug.Log("Moveu");
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     public LayerMask batteryLayer;
     public GameObject FlashLightItem;
     public GameObject GameController;
+    public Transform player;
 
     public float speed = 5;
     public float gravity;
@@ -35,12 +37,17 @@ public class Player : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
        
 
         MovePlayer();
         ApplyGravity();
+
+      /*  if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            ChangePath(3.5f);
+        }*/
     }
 
 
@@ -50,7 +57,13 @@ public class Player : MonoBehaviour
         characterController.Move(frontMove * Time.deltaTime);
     }
 
+    /*public void ChangePath(float distance)
+    {
+        Debug.Log("mudar trilha chamado");
+        player.position = new Vector3(player.position.x + distance, player.position.y, player.position.z);
 
+
+    }*/
 
     private void ApplyGravity()
     {

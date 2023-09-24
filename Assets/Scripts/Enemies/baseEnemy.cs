@@ -19,7 +19,7 @@ public class baseEnemy : MonoBehaviour
             gameObject.SetActive(false);
             //gameObject.SetActive(false);
 
-            estaVivo = false;
+  
         }
     }
 

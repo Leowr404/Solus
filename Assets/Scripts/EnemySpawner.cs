@@ -26,6 +26,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        //SCRIPT TEMPORARIO: faz spawn do inimigo padrao usando instantiate ao inves de List
+     //   InvokeRepeating("SpawnEnemyTemp", 0f, spawnCd);
+
+
+
         baseEnemyPool = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pools pool in pools)
@@ -87,6 +92,41 @@ public class EnemySpawner : MonoBehaviour
         
         SpawnFromPool("baseEnemy", position, Quaternion.identity);
     }
+
+
+
+
+  /*  //METODO TEMPORARIO: spawna o inimigo na cena e destroi ele depois de 5 segundos, n eh eficiente que nem List, entao vai ter que mudar ate a ultima entrega 
+    public void SpawnEnemyTemp()
+    {
+
+        Debug.Log("spawnado");
+
+        Vector3 position = player.transform.position;
+        position.z += spawnDistance;
+
+        int randomNumber = UnityEngine.Random.Range(1, 4);
+
+
+        switch (randomNumber)
+        {
+            case 1:
+                position.x = -3.5f;
+                break;
+
+            case 2:
+                position.x = 0;
+                break;
+
+            case 3:
+                position.x = 3.5f;
+                break;
+        }
+
+        GameObject enemyInstanciate = Instantiate(enemyCommon, position, Quaternion.identity);
+
+        Destroy(enemyInstanciate, 10f);
+    }*/
 
     public void Spawnbattery()
     {
