@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class Swipe : MonoBehaviour
 {
     public Vector2 startPos; public Vector2 direction;
-    public Text m_Text; string message;
+    
     private int plataform = 2, plataformRef = 2;
     public GameObject Player;
+    public int currentPlataform = 2;
     void Update()
     {
-        m_Text.text = "Touch : " + message + "in direction" + direction;
+       
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -19,13 +20,16 @@ public class Swipe : MonoBehaviour
             {
                 case TouchPhase.Began:
                     startPos = touch.position;
-                    message = "Begun "; break;
+              //      message = "Begun ";
+                    break;
                 case TouchPhase.Moved:
                     direction = touch.position - startPos;
-                    message = "Moving "; break;
+                 //   message = "Moving ";
+                    break;
                 case TouchPhase.Ended:
                     Move(ref plataform, plataformRef);
-                    message = "Ending "; break;
+                 //   message = "Ending ";
+                    break;
             }
         }
 
@@ -38,32 +42,24 @@ public class Swipe : MonoBehaviour
 
             Vector3 position = Player.transform.position;
 
-            if (direction.x > startPos.x && direction.x - startPos.x > 100)
+            if (direction.x > startPos.x && direction.x - startPos.x > 100 && currentPlataform != 1)
+            {
+                Debug.Log("moveu pra esquerda");
+                position.x -= 3.5f;
+                currentPlataform--;
+            }
+            if (direction.x < startPos.x && startPos.x - direction.x > 100 && currentPlataform != 3)
             {
                 Debug.Log("moveu pra direita");
-                position.x -= 3.5f;
-            }
-            if (direction.x < startPos.x && startPos.x - direction.x > 100)
-            {
-                Debug.Log("moveu pra Esquerda");
                 position.x += 3.5f;
+                currentPlataform++;
             }
 
 
-            if (plataformRef > plataform)
-            {
-                position.x += 3.5f;
-
-            }
-            else if (plataformRef < plataform)
-            {
-                position.x -= 3.5f;
-
-            }
 
             Player.transform.position = position;
 
-            plataform = plataformRef;
+
 
 
         }

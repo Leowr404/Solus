@@ -9406,7 +9406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luz: {fileID: 143298356}
-  alcanceCamera: 50
+  alcanceCamera: 500
   monstrosLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -9968,8 +9968,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0}
   direction: {x: 0, y: 0}
-  m_Text: {fileID: 1140693317}
   Player: {fileID: 1724025742}
+  currentPlataform: 2
 --- !u!114 &1724025751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10852,7 +10852,7 @@ MonoBehaviour:
   - tag: baseEnemy
     baseEnemy: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
       type: 3}
-    size: 3
+    size: 6
   - tag: battery
     baseEnemy: {fileID: 6673286731539176024, guid: dce42e423f805414c88be2f6bcd2c09b,
       type: 3}
@@ -10865,9 +10865,9 @@ MonoBehaviour:
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 100
-  spawnCd: 3
+  spawnCd: 2
   spawnBatteryCd: 4
-  spawnPowerUpCd: 4
+  spawnPowerUpCd: 5
   batteryChance: 10
   powerUpChance: 5
 --- !u!4 &2107321987
