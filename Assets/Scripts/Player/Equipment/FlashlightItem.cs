@@ -12,7 +12,7 @@ public class FlashLightItem : MonoBehaviour
     public Light luz;
     public float flashlightRange;
     public LayerMask monsterLayer;
-    public GameObject collider;
+    
     
    
     
