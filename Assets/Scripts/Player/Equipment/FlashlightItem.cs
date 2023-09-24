@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class FlashLightItem : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class FlashLightItem : MonoBehaviour
 
             luz.enabled = true;
         
+
         Invoke("DetectMonstersInRange", 0f);
 
     
@@ -59,8 +61,8 @@ public class FlashLightItem : MonoBehaviour
 
     public void FlashlightOff()
     {
-       //collider.SetActive(false);
-
+        //collider.SetActive(false);
+        
         luz.enabled = false;
         
     }

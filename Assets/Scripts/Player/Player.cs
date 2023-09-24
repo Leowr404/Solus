@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
         {
             Debug.Log("colidiu com player");
+            AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Coletavel, 1f);
             itemScript.CompleteBatteryReload();
             Debug.Log("colidiu");
 

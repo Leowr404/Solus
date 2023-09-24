@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class ItensPlayer : MonoBehaviour
 {
@@ -198,11 +199,12 @@ public class ItensPlayer : MonoBehaviour
 
 
             itemButton.interactable = !itemButton.interactable;
+            AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
 
 
 
 
-           
+
             chargeSlider.value = 0;
             InvokeRepeating("ReloadCamera", batteryReloadTime, batteryReloadTime);
 
@@ -280,6 +282,7 @@ public class ItensPlayer : MonoBehaviour
 
         if(flashLightIndex <= 0 )
             itemButton.interactable = !itemButton.interactable;
+        AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
 
 
 
@@ -288,6 +291,7 @@ public class ItensPlayer : MonoBehaviour
        
         if (buttonPressed)
         {
+            AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
             //luz.enabled = true;
             //flashlightItemScript.FlashlightOn();
         }

@@ -23,10 +23,10 @@ public class Swipe : MonoBehaviour
               //      message = "Begun ";
                     break;
                 case TouchPhase.Moved:
-                    direction = touch.position - startPos;
                  //   message = "Moving ";
                     break;
                 case TouchPhase.Ended:
+                    direction = touch.position - startPos;
                     Move(ref plataform, plataformRef);
                  //   message = "Ending ";
                     break;
@@ -48,7 +48,7 @@ public class Swipe : MonoBehaviour
                 position.x -= 3.5f;
                 currentPlataform--;
             }
-            if (direction.x < startPos.x && startPos.x - direction.x > 100 && currentPlataform != 3)
+            else if (direction.x < startPos.x && startPos.x - direction.x > 100 && currentPlataform != 3)
             {
                 Debug.Log("moveu pra direita");
                 position.x += 3.5f;
