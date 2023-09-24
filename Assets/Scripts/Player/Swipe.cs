@@ -38,10 +38,15 @@ public class Swipe : MonoBehaviour
 
             Vector3 position = Player.transform.position;
 
-            if (direction.x > startPos.x)
+            if (direction.x > startPos.x && direction.x - startPos.x > 100)
             {
                 Debug.Log("moveu pra direita");
                 position.x -= 3.5f;
+            }
+            if (direction.x < startPos.x && startPos.x - direction.x > 100)
+            {
+                Debug.Log("moveu pra Esquerda");
+                position.x += 3.5f;
             }
 
 
