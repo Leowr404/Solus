@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Cenas : MonoBehaviour
+public class CoinController : MonoBehaviour
 {
-    private static Cenas instance;
 
-    
+    private static CoinController instance;
+
+    public int coin = 0;
 
     private void Awake()
     {
@@ -21,18 +22,7 @@ public class Cenas : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    public void CarregarJogo()
-    {
-        SceneManager.LoadSceneAsync(1);
-        Time.timeScale = 1.0f;
-    }
-
-    public void CarregarMenu()
-    {
-        SceneManager.LoadSceneAsync(0);
-        Time.timeScale = 1.0f;
-    }
 
 
+    }
 }

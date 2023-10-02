@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public LayerMask batteryLayer;
     public GameObject FlashLightItem;
     public GameObject GameController;
+    public GameObject CoinManager;
     public Transform player;
 
     public float speed = 5;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
 
     private ItensPlayer itemScript;
     private GameController gameController;
+    private CoinController coinController;
 
     
 
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
         gameController = GameController.GetComponent<GameController>();
         itemScript = itemObject.GetComponent<ItensPlayer>();
         characterController = GetComponent<CharacterController>();
+        coinController = CoinManager.GetComponent<CoinController>();
 
 
     }
@@ -109,6 +112,18 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
             
             StartCoroutine(itemScript.PowerUpInfiniteBattery());
+
+
+
+        }
+
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
+        {
+            other.gameObject.SetActive(false);
+            coinController.coin++;
+
+
 
 
 

@@ -21,8 +21,10 @@ public class EnemySpawner : MonoBehaviour
     public float spawnCd;
     public float spawnBatteryCd;
     public float spawnPowerUpCd;
+    public float spawnCoinCd;
     public int batteryChance = 5;
     public int powerUpChance = 5;
+    public int coinChance = 5;
 
     void Start()
     {
@@ -49,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
         InvokeRepeating("SpawnEnemy", 0, spawnCd);
         InvokeRepeating("Spawnbattery", spawnBatteryCd, spawnBatteryCd);
         InvokeRepeating("SpawnPowerUp", spawnPowerUpCd, spawnPowerUpCd);
+        InvokeRepeating("CoinSpawner", spawnCoinCd, spawnCoinCd);
     }
 
     public void SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
@@ -206,4 +209,44 @@ public class EnemySpawner : MonoBehaviour
 
         }
     }
+
+
+    public void CoinSpawner()
+    {
+        int chanceSpawn = UnityEngine.Random.Range(1, 11);
+        if (chanceSpawn <= coinChance)
+        {
+
+
+
+
+            Vector3 position = player.transform.position;
+            position.z += spawnDistance;
+            
+
+            int randomNumber = UnityEngine.Random.Range(1, 4);
+
+
+            switch (randomNumber)
+            {
+                case 1:
+                    position.x = -3.5f;
+                    break;
+
+                case 2:
+                    position.x = 0;
+                    break;
+
+                case 3:
+                    position.x = 3.5f;
+                    break;
+            }
+
+
+            SpawnFromPool("coin", position, Quaternion.identity);
+
+        }
     }
+
+
+}
