@@ -48,7 +48,7 @@ public class ItensPlayer : MonoBehaviour
    
     void Start()
     {
-
+        //verifica qual item o jogador escolheu no menu
         whichItem = PlayerPrefs.GetInt("ChosenItem");
 
         if(whichItem == 1)
@@ -65,11 +65,11 @@ public class ItensPlayer : MonoBehaviour
         if (chargeSlider != null)
         {
 
-            // Crie uma estrutura de cores personalizada com a nova cor.
-            ColorBlock colorBlock = chargeSlider.colors;
-            colorBlock.disabledColor = safeColor; // Define a nova cor para o estado desativado (disabled).
 
-            // Atribui a estrutura de cores de volta ao Slider.
+            ColorBlock colorBlock = chargeSlider.colors;
+            colorBlock.disabledColor = safeColor; 
+
+          
             chargeSlider.colors = colorBlock;
         }
             chargeSlider.value = 4;
@@ -133,7 +133,7 @@ public class ItensPlayer : MonoBehaviour
                 else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == 0)
                 {
                    
-                    //luz.enabled = false;
+
                     itemButton.interactable = false;
                     buttonPressed = false;
                     flashlightItemScript.FlashlightOff();
@@ -149,10 +149,10 @@ public class ItensPlayer : MonoBehaviour
         #endregion
     }
 
-    //ainda mexendo nesse metodo aqui, a mudanca ficou meio esquisita
+    //modifica a cor da bateria a medida que a energia eh gasta ou restaurada
     public void OnSliderValueChanged()
     {
-        //comno fazer esse carinha funcionar...
+
         
         if(powerUpActivated == false) { 
         ColorBlock colorBlock = chargeSlider.colors;
@@ -238,6 +238,7 @@ public class ItensPlayer : MonoBehaviour
 
     #endregion
 
+    //metodo chamado quando o jogador colide com uma bateria
     public void CompleteBatteryReload()
     {
         activatedTime = 0;
@@ -250,7 +251,7 @@ public class ItensPlayer : MonoBehaviour
         flashLightIndex = 3;
 
     }
-
+    //metodo chamado quando o jogador colide com um power up
     public IEnumerator PowerUpInfiniteBattery()
     {
         powerUpActivated = true;
@@ -292,8 +293,7 @@ public class ItensPlayer : MonoBehaviour
         if (buttonPressed)
         {
             AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
-            //luz.enabled = true;
-            //flashlightItemScript.FlashlightOn();
+           
         }
         else 
         {

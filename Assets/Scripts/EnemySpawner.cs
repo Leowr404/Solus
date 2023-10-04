@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,23 +14,34 @@ public class EnemySpawner : MonoBehaviour
     }
     public Dictionary<string, Queue<GameObject>> baseEnemyPool;
     public List<Pools> pools;
-   
 
+
+    [Header("Prefabs")]
     public GameObject enemyCommon;
     public GameObject player;
+
+    [Header("Geral Configs")]
     public float spawnDistance;
-    public float spawnCd;
+    [Header("Main Enemy")]
+    public float MainEnemyspawnCd;
+    [Header("Battery")]
     public float spawnBatteryCd;
-    public float spawnPowerUpCd;
-    public float spawnCoinCd;
     public int batteryChance = 5;
+    [Header("Power up")]
+    public float spawnPowerUpCd;
     public int powerUpChance = 5;
+    [Header("Coins")]
+    public float coinSpawnDistance;
+    public float spawnCoinCd;
     public int coinChance = 5;
 
+    private int distanceAmongCoins = 4;
+
+
+    //Gera todas as listas e pools, nao mexer
     void Start()
     {
-        //SCRIPT TEMPORARIO: faz spawn do inimigo padrao usando instantiate ao inves de List
-     //   InvokeRepeating("SpawnEnemyTemp", 0f, spawnCd);
+        
 
 
 
@@ -48,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
             baseEnemyPool.Add(pool.tag, objectPool);
         }
 
-        InvokeRepeating("SpawnEnemy", 0, spawnCd);
+        InvokeRepeating("SpawnEnemy", 0, MainEnemyspawnCd);
         InvokeRepeating("Spawnbattery", spawnBatteryCd, spawnBatteryCd);
         InvokeRepeating("SpawnPowerUp", spawnPowerUpCd, spawnPowerUpCd);
         InvokeRepeating("CoinSpawner", spawnCoinCd, spawnCoinCd);
@@ -68,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
         objToSpawn.transform.rotation = rotation;
         objToSpawn.SetActive(true);
 
-        // Reenfileira o objeto para ser reutilizado.
+
         baseEnemyPool[tag].Enqueue(objToSpawn);
     }
 
@@ -95,41 +107,6 @@ public class EnemySpawner : MonoBehaviour
         
         SpawnFromPool("baseEnemy", position, Quaternion.identity);
     }
-
-
-
-
-  /*  //METODO TEMPORARIO: spawna o inimigo na cena e destroi ele depois de 5 segundos, n eh eficiente que nem List, entao vai ter que mudar ate a ultima entrega 
-    public void SpawnEnemyTemp()
-    {
-
-        Debug.Log("spawnado");
-
-        Vector3 position = player.transform.position;
-        position.z += spawnDistance;
-
-        int randomNumber = UnityEngine.Random.Range(1, 4);
-
-
-        switch (randomNumber)
-        {
-            case 1:
-                position.x = -3.5f;
-                break;
-
-            case 2:
-                position.x = 0;
-                break;
-
-            case 3:
-                position.x = 3.5f;
-                break;
-        }
-
-        GameObject enemyInstanciate = Instantiate(enemyCommon, position, Quaternion.identity);
-
-        Destroy(enemyInstanciate, 10f);
-    }*/
 
     public void Spawnbattery()
     {
@@ -165,13 +142,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnFromPool("battery", position, Quaternion.identity);
 
         }
-
-
-
-
-        
     }
-
 
     public void SpawnPowerUp()
     {
@@ -210,12 +181,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-
     public void CoinSpawner()
     {
+        //numero minimo de moedas que serao geradas em sequencia
+        int coinsToSpawn = 3;
+        bool continueSpawn = true;
+
+
         int chanceSpawn = UnityEngine.Random.Range(1, 11);
         if (chanceSpawn <= coinChance)
         {
+            
 
 
 
@@ -242,9 +218,32 @@ public class EnemySpawner : MonoBehaviour
                     break;
             }
 
+            
+
 
             SpawnFromPool("coin", position, Quaternion.identity);
 
+            for(int i = 1; i < coinsToSpawn; i++)
+            {
+                position.z += distanceAmongCoins;
+
+                SpawnFromPool("coin", position, Quaternion.identity);
+            }
+
+//depois de gerar o minimo de moedas esse while eh executado: 50% de gerar mais uma moeda e repetir o while, e 50% de nao gerar 
+            while (continueSpawn)
+            {
+                randomNumber = UnityEngine.Random.Range(1, 3);
+
+                if(randomNumber == 1)
+                {
+                    position.z += distanceAmongCoins;
+                    SpawnFromPool("coin", position, Quaternion.identity);
+                }
+                else  continueSpawn = false; 
+
+
+            }
         }
     }
 

@@ -10609,18 +10609,19 @@ MonoBehaviour:
   - tag: coin
     baseEnemy: {fileID: 6996486295491727981, guid: 96c9f1ff3414885449dc5d50125a9bc0,
       type: 3}
-    size: 3
+    size: 6
   enemyCommon: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 100
-  spawnCd: 2
+  MainEnemyspawnCd: 2
   spawnBatteryCd: 4
-  spawnPowerUpCd: 5
-  spawnCoinCd: 6
   batteryChance: 10
+  spawnPowerUpCd: 5
   powerUpChance: 5
-  coinChance: 4
+  coinSpawnDistance: 140
+  spawnCoinCd: 7
+  coinChance: 6
 --- !u!4 &2107321987
 Transform:
   m_ObjectHideFlags: 0
