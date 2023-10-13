@@ -12,6 +12,7 @@ public class FlashLightItem : MonoBehaviour
     public Light luz;
     public float flashlightRange;
     public LayerMask monsterLayer;
+   
     
     
    
@@ -49,7 +50,7 @@ public class FlashLightItem : MonoBehaviour
 
     public void FlashlightOn()
     {
-       // collider.SetActive(true);
+        
 
             luz.enabled = true;
         
@@ -61,36 +62,39 @@ public class FlashLightItem : MonoBehaviour
 
     public void FlashlightOff()
     {
-        //collider.SetActive(false);
+       
         
         luz.enabled = false;
         
     }
 
+
+    
     public void DetectMonstersInRange()
     {
 
 
-
-
-
         
-        float radius = flashlightRange; // Raio no eixo Z
 
-        Vector3 center = transform.position;
-        center.x = center.y = 0f; // Defina as coordenadas X e Y como zero para restringir a detecção ao eixo Z
 
-        Collider[] monsters = Physics.OverlapSphere(center, radius, monsterLayer);
+
+        float radius = flashlightRange;
+        Collider[] monsters = Physics.OverlapSphere(transform.position, radius, monsterLayer);
 
         foreach (var monsterCollider in monsters)
         {
+
             baseEnemy monster = monsterCollider.GetComponent<baseEnemy>();
 
-            if (monster != null)
+            if (monster != null && Mathf.Approximately(monster.transform.position.x, transform.position.x -0.558f))
             {
                 monster.Morrer();
             }
         }
+
+
+
+
     }
     
 
