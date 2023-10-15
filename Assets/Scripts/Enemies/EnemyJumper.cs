@@ -7,57 +7,69 @@ public class EnemyJumper : MonoBehaviour
 {
     public float speed = 2f;
     public float changePathCd = 1.5f;
-
     private bool estaVivo = true;
 
     public void Morrer()
     {
         if (estaVivo)
         {
-
             gameObject.SetActive(false);
-
-
         }
     }
 
     void Start()
     {
-        InvokeRepeating("ChangePaths", changePathCd, changePathCd);
+        StartCoroutine(ChangePathsRoutine());
     }
 
-    void FixedUpdate()
+    IEnumerator ChangePathsRoutine()
     {
-        float displacement = speed * Time.fixedDeltaTime;
-        transform.Translate(Vector3.forward * displacement * -1);
+        while (estaVivo)
+        {
+            ChangePaths();
+            yield return new WaitForSeconds(changePathCd);
+        }
+    }
 
+    void Update()
+    {
+        // Use o Update para movimento suave
+        float displacement = speed * Time.deltaTime;
+        transform.Translate(Vector3.forward * displacement * -1);
     }
 
     void ChangePaths()
     {
         Debug.Log("CHAMADO MUDAR POSICAO ROXO");
 
-        int randomNumber = UnityEngine.Random.Range(1,4);
+        int randomNumber = UnityEngine.Random.Range(1, 4);
 
-        Vector3 newPosition = transform.position;
-
+        Vector3 targetPosition = transform.position;
 
         switch (randomNumber)
         {
             case 1:
-                newPosition.x = -3.5f;
+                targetPosition.x = -3.5f;
                 break;
 
             case 2:
-                newPosition.x = 0;
+                targetPosition.x = 0;
                 break;
 
             case 3:
-                newPosition.x = 3.5f;
+                targetPosition.x = 3.5f;
                 break;
         }
 
-        transform.position = newPosition;
+        StartCoroutine(MoveToTarget(targetPosition));
+    }
 
+    IEnumerator MoveToTarget(Vector3 targetPosition)
+    {
+        while (transform.position != targetPosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
+        }
     }
 }
