@@ -13,17 +13,10 @@ public class CameraItem : MonoBehaviour
     {
         luz.enabled = false;
     }
-    private void Update()
-    {
-        if (podeLigarCamera ) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
-        {
-            StartCoroutine(LigarCameraPorTempo(1f)); // Ligue a lanterna por 1 segundo.
-        }
-    }
 
     public IEnumerator LigarCameraPorTempo(float duracao)
     {
-     
+
         luz.enabled = true; // Liga a lanterna.
         DetectarMonstrosNoAlcance();
 
@@ -49,6 +42,15 @@ public class CameraItem : MonoBehaviour
             {
                 monstro.Morrer();
             }
+
+            EnemyJumper jumperMonster = monstroCollider.GetComponent<EnemyJumper>();
+
+            if(jumperMonster != null)
+            {
+                jumperMonster.Morrer();
+            }
+
+            
         }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class EnemyJumper : MonoBehaviour
 {
     private float speed = 10f;
-    public float changePathCd = 1.5f;
     public float timeOnCurrentPath = 2f; // Tempo que o inimigo fica em um caminho antes de mudar
     private bool estaVivo = true;
 

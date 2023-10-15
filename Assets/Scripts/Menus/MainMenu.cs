@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
 {
     public Text mensagemText;
     public float tempoExibicao = 2f;
+    public GameObject mainMenu;
+    public GameObject storeMenu;
+
+
+
 
     private void Start()
     {
@@ -50,5 +55,22 @@ public class MainMenu : MonoBehaviour
 
 
     }
+
+    public void OpenStoreMenu()
+    {
+        mainMenu.SetActive(false);
+        storeMenu.SetActive(true);
+
+    }
+
+    public void OpenMainMenu()
+    {
+        storeMenu.SetActive(false);
+        mainMenu.SetActive(true);
+
+    }
+
+
+
 
 }
