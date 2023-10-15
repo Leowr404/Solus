@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem; // Importe o namespace do New Input.
 
 public class CameraItem : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class CameraItem : MonoBehaviour
     }
     private void Update()
     {
-        if (podeLigarCamera && Keyboard.current.fKey.wasPressedThisFrame) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
+        if (podeLigarCamera ) // Verifique se a tecla 'F' foi pressionada e se a lanterna pode ser ligada.
         {
             StartCoroutine(LigarCameraPorTempo(1f)); // Ligue a lanterna por 1 segundo.
         }

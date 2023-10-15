@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
@@ -27,22 +27,7 @@ public class FlashLightItem : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.gKey.wasPressedThisFrame)
-        {
-          
-         
-                FlashlightOn();
-            
-
- 
-        }
-
-        if (Keyboard.current.gKey.wasReleasedThisFrame)
-        {
-          
-
-            FlashlightOff();
-        }
+        
 
    
 
