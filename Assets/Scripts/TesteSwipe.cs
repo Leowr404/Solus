@@ -1,55 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class TesteSwipe : MonoBehaviour
 {
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
     public GameObject Player;
+    public float swipeSensitivity = 50f;
+    public float minX = -3.5f; // Ajuste conforme necessário
+    public float maxX = 3.5f; // Ajuste conforme necessário
 
     private void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0)
         {
-            startTouchPosition = Input.GetTouch(0).position;
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    startTouchPosition = touch.position;
+                    break;
+
+                case TouchPhase.Ended:
+                    endTouchPosition = touch.position;
+                    HandleSwipe();
+                    break;
+            }
         }
+    }
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+    private void HandleSwipe()
+    {
+        float swipeDeltaX = endTouchPosition.x - startTouchPosition.x;
+
+        if (Mathf.Abs(swipeDeltaX) > swipeSensitivity)
         {
-            endTouchPosition = Input.GetTouch(0).position;
-
-            if (endTouchPosition.x > startTouchPosition.x)
+            if (swipeDeltaX > 0)
             {
                 RightSwipe();
             }
-
-            if (endTouchPosition.x < startTouchPosition.x)
+            else
             {
                 LeftSwipe();
             }
-
-
         }
-
     }
 
     private void RightSwipe()
     {
-       // Vector3 position = Player.transform.position;
-        //position.x -= 3.5f;
-        Player.transform.position = new Vector3(Player.transform.position.x+3.5f,Player.transform.position.y, Player.transform.position.z);
-        Debug.Log("funcionou");
-        
+        float newX = Player.transform.position.x + 3.5f;
+        newX = Mathf.Clamp(newX, minX, maxX);
+        Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
+        Debug.Log("Swipe para a direita");
     }
+
     private void LeftSwipe()
     {
-        //Vector3 position = Player.transform.position;
-        //position.x += 3.5f;
-        Player.transform.position = new Vector3(Player.transform.position.x-3.5f, Player.transform.position.y, Player.transform.position.z);
-        Debug.Log("funcionou");
+        float newX = Player.transform.position.x - 3.5f;
+        newX = Mathf.Clamp(newX, minX, maxX);
+        Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
+        Debug.Log("Swipe para a esquerda");
     }
 
 }
