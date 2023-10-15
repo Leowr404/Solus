@@ -5,71 +5,72 @@ using UnityEngine.UIElements;
 
 public class EnemyJumper : MonoBehaviour
 {
-    public float speed = 2f;
+    private float speed = 10f;
     public float changePathCd = 1.5f;
+    public float timeOnCurrentPath = 2f; // Tempo que o inimigo fica em um caminho antes de mudar
     private bool estaVivo = true;
+
+    private Vector3 targetPosition;
+    private float timeSinceLastPathChange;
 
     public void Morrer()
     {
         if (estaVivo)
         {
             gameObject.SetActive(false);
+            
+
         }
     }
 
     void Start()
     {
-        StartCoroutine(ChangePathsRoutine());
-    }
-
-    IEnumerator ChangePathsRoutine()
-    {
-        while (estaVivo)
-        {
-            ChangePaths();
-            yield return new WaitForSeconds(changePathCd);
-        }
+        
+        timeSinceLastPathChange = 0f;
+        ChooseNewPath();
+        
     }
 
     void Update()
     {
-        // Use o Update para movimento suave
-        float displacement = speed * Time.deltaTime;
-        transform.Translate(Vector3.forward * displacement * -1);
+        // Move o inimigo em direção à posição alvo de forma suave
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+        // Se o inimigo atingir a posição alvo, contar o tempo no caminho atual
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+        {
+            timeSinceLastPathChange += Time.deltaTime;
+
+            // Se o tempo no caminho atual exceder o limite, escolha um novo caminho
+            if (timeSinceLastPathChange >= timeOnCurrentPath)
+            {
+                ChooseNewPath();
+            }
+        }
     }
 
-    void ChangePaths()
+    void ChooseNewPath()
     {
         Debug.Log("CHAMADO MUDAR POSICAO ROXO");
 
         int randomNumber = UnityEngine.Random.Range(1, 4);
 
-        Vector3 targetPosition = transform.position;
-
         switch (randomNumber)
         {
             case 1:
-                targetPosition.x = -3.5f;
+                targetPosition = new Vector3(-3.5f, transform.position.y, transform.position.z);
                 break;
 
             case 2:
-                targetPosition.x = 0;
+                targetPosition = new Vector3(0, transform.position.y, transform.position.z);
                 break;
 
             case 3:
-                targetPosition.x = 3.5f;
+                targetPosition = new Vector3(3.5f, transform.position.y, transform.position.z);
                 break;
         }
 
-        StartCoroutine(MoveToTarget(targetPosition));
-    }
-
-    IEnumerator MoveToTarget(Vector3 targetPosition)
-    {
-        while (transform.position != targetPosition)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            yield return null;
-        }
+        // Reinicia o contador de tempo no caminho atual
+        timeSinceLastPathChange = 0f;
     }
 }

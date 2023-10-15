@@ -13,7 +13,17 @@ public class GameController : MonoBehaviour
     public GameObject GameOverUI;
     public GameObject GameRunningUI;
     public GameObject GamePausedUI;
-    
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            
+        }
+        
+    }
+
 
 
     private void Start()

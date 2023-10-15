@@ -31,7 +31,14 @@ public class AudioController : MonoBehaviour
         if (instancia == null)
         {
             instancia = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
     }
     void Start()
     {
