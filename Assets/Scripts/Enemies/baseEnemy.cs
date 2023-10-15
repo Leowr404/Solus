@@ -12,13 +12,9 @@ public class baseEnemy : MonoBehaviour
     {
         if (estaVivo)
         {
-            // Adicione aqui qualquer lógica para a "morte" do monstro.
-            // Por exemplo, você pode desativar visualmente o monstro, tocar uma animação de morte, reproduzir um som, etc.
-
-            // Aqui, vamos apenas desativar o GameObject do monstro.
+            
             gameObject.SetActive(false);
-            //gameObject.SetActive(false);
-
+            
   
         }
     }

@@ -90,6 +90,13 @@ public class FlashLightItem : MonoBehaviour
             {
                 monster.Morrer();
             }
+
+EnemyJumper jumperMonster = monsterCollider.GetComponent<EnemyJumper>();
+
+            if (jumperMonster != null && Mathf.Approximately(jumperMonster.transform.position.x, transform.position.x - 0.558f))
+            {
+                jumperMonster.Morrer();
+            }
         }
 
 

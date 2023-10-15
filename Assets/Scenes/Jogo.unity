@@ -10488,11 +10488,16 @@ MonoBehaviour:
     baseEnemy: {fileID: 6996486295491727981, guid: 96c9f1ff3414885449dc5d50125a9bc0,
       type: 3}
     size: 6
+  - tag: JumperEnemy
+    baseEnemy: {fileID: 1326824353345877972, guid: ff0f701ee3d531242a416aad5298950d,
+      type: 3}
+    size: 3
   enemyCommon: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 100
   MainEnemyspawnCd: 2
+  EnemyJumperCd: 5
   spawnBatteryCd: 4
   batteryChance: 10
   spawnPowerUpCd: 5

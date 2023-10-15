@@ -22,8 +22,9 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Geral Configs")]
     public float spawnDistance;
-    [Header("Main Enemy")]
+    [Header("Enemies")]
     public float MainEnemyspawnCd;
+    public float EnemyJumperCd;
     [Header("Battery")]
     public float spawnBatteryCd;
     public int batteryChance = 5;
@@ -61,6 +62,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         InvokeRepeating("SpawnEnemy", 0, MainEnemyspawnCd);
+        InvokeRepeating("SpawnEnemyJumper", EnemyJumperCd, EnemyJumperCd);
         InvokeRepeating("Spawnbattery", spawnBatteryCd, spawnBatteryCd);
         InvokeRepeating("SpawnPowerUp", spawnPowerUpCd, spawnPowerUpCd);
         InvokeRepeating("CoinSpawner", spawnCoinCd, spawnCoinCd);
@@ -107,6 +109,34 @@ public class EnemySpawner : MonoBehaviour
         
         SpawnFromPool("baseEnemy", position, Quaternion.identity);
     }
+
+    public void SpawnEnemyJumper()
+    {
+        Vector3 position = player.transform.position;
+        position.z += spawnDistance;
+        int randomNumber = UnityEngine.Random.Range(1, 4);
+        switch (randomNumber)
+        {
+            case 1:
+                position.x = -3.5f;
+                break;
+
+            case 2:
+                position.x = 0;
+                break;
+
+            case 3:
+                position.x = 3.5f;
+                break;
+        }
+
+
+        SpawnFromPool("JumperEnemy", position, Quaternion.identity);
+
+    }
+
+
+
 
     public void Spawnbattery()
     {
