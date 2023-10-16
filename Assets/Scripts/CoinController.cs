@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CoinController : MonoBehaviour
 {
+    public Text amountOfCoins;
 
     private static CoinController instance;
 
@@ -21,6 +23,19 @@ public class CoinController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+
+    }
+
+    private void Start()
+    {
+
+        if (amountOfCoins != null)
+        {
+            amountOfCoins.text = coin.ToString();
+
+
         }
 
 
