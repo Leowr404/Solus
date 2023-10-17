@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private ItensPlayer itemScript;
     private GameController gameController;
     private CoinController coinController;
+    private AudioSource Coletavel;
 
     
 
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         itemScript = itemObject.GetComponent<ItensPlayer>();
         characterController = GetComponent<CharacterController>();
         coinController = CoinManager.GetComponent<CoinController>();
+        Coletavel = AudioController.instancia.GetComponent<AudioSource>();
 
 
     }
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Collectible"))
         {
 
-            AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Coletavel, 1f);
+            Coletavel.PlayOneShot(AudioController.instancia.Audio_Coletavel, 1f);
             itemScript.CompleteBatteryReload();
  
 
