@@ -8,6 +8,8 @@ public class StoreNavigation : MonoBehaviour
     public Button buyButton;
     public Text buyText;
     public GameObject coinManager;
+    public GameObject inventoryControl;
+
 
     public List<Text> texts = new List<Text>();
     public List<int> prices = new List<int>();
@@ -16,12 +18,15 @@ public class StoreNavigation : MonoBehaviour
     [SerializeField] int currentPrice = 0;
 
     private CoinController coinController;
+    private InventoryController inventoryController;
 
 
     //obtem a variavel "coin" do CoinController e da a primeira atualizada no display
     private void Start()
     {
         coinController = coinManager.GetComponent<CoinController>();
+        inventoryController = inventoryControl.GetComponent<InventoryController>();
+        
 ChangePriceDisplay();
     }
 
@@ -82,6 +87,7 @@ ChangePriceDisplay();
     {
         coinController.coin = coinController.coin - prices[currentPrice];
         coinController.UpdateCoins();
+        inventoryController.bought[currentItem] = true;
 
         ChangePriceDisplay();
 
