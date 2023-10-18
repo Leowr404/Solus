@@ -10975,6 +10975,11 @@ PrefabInstance:
       objectReference: {fileID: 1381783181}
     - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
+      propertyPath: CoinCollect
+      value: 
+      objectReference: {fileID: 8300000, guid: 011ff6be9236c4540a6f8ad4ccdf7058, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
       propertyPath: MusicSlider
       value: 
       objectReference: {fileID: 115873350}
@@ -10985,6 +10990,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: d828f184ef356e64db4c877ad0db0e97, type: 3}
     - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
+      propertyPath: Audio_PowerUp
+      value: 
+      objectReference: {fileID: 8300000, guid: 4db5eabca8739ea4b9a2d2ec24c191a9, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
       propertyPath: Audio_Lanterna
       value: 
       objectReference: {fileID: 8300000, guid: cc6c4350610a53f41acb8ce43332c27a, type: 3}
@@ -10992,7 +11002,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Audio_Coletavel
       value: 
-      objectReference: {fileID: 8300000, guid: 94d2040199d9dfd45b2aacba50975b11, type: 3}
+      objectReference: {fileID: 8300000, guid: 674bc80a988c8804eb8372d39ae2cd37, type: 3}
     - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
       propertyPath: m_LocalPosition.x
