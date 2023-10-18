@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public bool cheatOn;
     public GameObject itemObject;
     public float rechargeAmountFlashlight = 20.0f;
     public LayerMask batteryLayer;
@@ -87,9 +88,13 @@ public class Player : MonoBehaviour
         //da pra fazer o gameOver ou a referencia pro script que vai rodar ele apartir daqui 
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
+            if (cheatOn == false) { 
             gameOver = true;
             this.gameObject.SetActive(false);
             gameController.ActivateGameOverMenu();
+            }
+            else other.gameObject.SetActive(false);
+
         }
         
         

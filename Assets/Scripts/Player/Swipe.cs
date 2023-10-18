@@ -12,6 +12,13 @@ public class Swipe : MonoBehaviour
     public float minX = -3.5f; // Ajuste conforme necessário
     public float maxX = 3.5f; // Ajuste conforme necessário
 
+    private Player player;
+
+    private void Start()
+    {
+        player = Player.GetComponent<Player>();
+    }
+
     private void Update()
     {
         if (Input.touchCount > 0)
@@ -31,11 +38,11 @@ public class Swipe : MonoBehaviour
             }
         }
         //IMPLEMENTE O CHEAT AQUI
-        //if(Input.touchCount == 5 )
-        //{
-
+        if(Input.touchCount == 5 )
+        {
+            player.cheatOn = true;
           
-       // }
+        }
     }
 
     private void HandleSwipe()

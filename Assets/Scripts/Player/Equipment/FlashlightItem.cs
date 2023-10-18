@@ -54,45 +54,44 @@ public class FlashLightItem : MonoBehaviour
     }
 
 
-    
+
     public void DetectMonstersInRange()
     {
-
-
-        
-
-
-
         float radius = flashlightRange;
         Collider[] monsters = Physics.OverlapSphere(transform.position, radius, monsterLayer);
 
         foreach (var monsterCollider in monsters)
         {
-
             baseEnemy monster = monsterCollider.GetComponent<baseEnemy>();
-
-            if (monster != null && Mathf.Approximately(monster.transform.position.x, transform.position.x -0.558f))
-            {
-                monster.Morrer();
-            }
-
             EnemyJumper jumperMonster = monsterCollider.GetComponent<EnemyJumper>();
 
-            if (jumperMonster != null && Mathf.Approximately(jumperMonster.transform.position.x, transform.position.x - 0.558f))
+            if (monster != null)
             {
-                jumperMonster.Morrer();
+                float monsterX = monster.transform.position.x;
+                if (Mathf.Approximately(monsterX, transform.position.x - 0.558f) ||
+                    (monsterX >= transform.position.x - 0.558f - 1f && monsterX <= transform.position.x - 0.558f + 1f))
+                {
+                    monster.Morrer();
+                }
+            }
+
+            if (jumperMonster != null)
+            {
+                float jumperMonsterX = jumperMonster.transform.position.x;
+                if (Mathf.Approximately(jumperMonsterX, transform.position.x - 0.558f) ||
+                    (jumperMonsterX >= transform.position.x - 0.558f - 1f && jumperMonsterX <= transform.position.x - 0.558f + 1f))
+                {
+                    jumperMonster.Morrer();
+                }
             }
         }
-
-
-
-
     }
-    
 
 
 
 
-   
+
+
+
 
 }

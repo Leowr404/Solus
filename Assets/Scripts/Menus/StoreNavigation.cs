@@ -73,13 +73,20 @@ ChangePriceDisplay();
     //atualiza o texto para ficar igual ao preco do item em questao, caso o jogador tenha menos moedas que o preco, torna o botao impossivel de se interagir
     void ChangePriceDisplay()
     {
+        if (inventoryController.bought[currentItem])
+        {
+            buyText.text = "sold out";
+            buyButton.interactable = false;
+        }
+
+        else { 
         buyText.text = prices[currentPrice].ToString();
 
         if(coinController.coin < prices[currentPrice]) {
             buyButton.interactable = false;
         }
         else buyButton.interactable = true;
-
+        }
     }
 
     //por enquanto eh chamado quando o jogador aperta no botao com o preco e subtrai ele do saldo

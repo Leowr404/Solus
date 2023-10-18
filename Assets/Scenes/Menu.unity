@@ -2238,7 +2238,7 @@ PrefabInstance:
     - target: {fileID: 8435779082807249664, guid: ab77bdcb24de2f24ab84651b9205e8b7,
         type: 3}
       propertyPath: coin
-      value: 0
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 8435779082807249664, guid: ab77bdcb24de2f24ab84651b9205e8b7,
         type: 3}
