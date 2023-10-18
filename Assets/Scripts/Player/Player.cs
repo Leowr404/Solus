@@ -25,8 +25,10 @@ public class Player : MonoBehaviour
     private GameController gameController;
     private CoinController coinController;
     private AudioSource Coletavel;
+    private AudioSource CoinCollect;
+    private AudioSource Audio_PowerUp;
 
-    
+
 
     private bool gameOver = false;
     //  private Touch touch;
@@ -39,6 +41,8 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         coinController = CoinManager.GetComponent<CoinController>();
         Coletavel = AudioController.instancia.GetComponent<AudioSource>();
+        CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
+        Audio_PowerUp = AudioController.instancia.GetComponent<AudioSource>();
 
 
     }
@@ -103,7 +107,9 @@ public class Player : MonoBehaviour
         {
             
             other.gameObject.SetActive(false);
-            
+            Audio_PowerUp.PlayOneShot(AudioController.instancia.Audio_PowerUp, 1f); 
+
+
             StartCoroutine(itemScript.PowerUpInfiniteBattery());
 
 
@@ -114,6 +120,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
             other.gameObject.SetActive(false);
+            CoinCollect.PlayOneShot(AudioController.instancia.CoinCollect, 1f);
             coinController.coin++;
 
         }

@@ -17,6 +17,7 @@ public class AudioController : MonoBehaviour
 
     [Header("Configura��es de Sons")]
     //public AudioClip bgmSound;
+    public AudioClip CoinCollect;
     public AudioClip Audio_Lanterna;
     public AudioClip Audio_Camera;
     public AudioClip Audio_PowerUp;
