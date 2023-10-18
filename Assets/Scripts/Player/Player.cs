@@ -44,15 +44,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-       
-
         MovePlayer();
         ApplyGravity();
-
-      /*  if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            ChangePath(3.5f);
-        }*/
     }
 
 
@@ -61,14 +54,6 @@ public class Player : MonoBehaviour
         Vector3 frontMove = Vector3.forward * speed;
         characterController.Move(frontMove * Time.deltaTime);
     }
-
-    /*public void ChangePath(float distance)
-    {
-        Debug.Log("mudar trilha chamado");
-        player.position = new Vector3(player.position.x + distance, player.position.y, player.position.z);
-
-
-    }*/
 
     private void ApplyGravity()
     {
@@ -97,16 +82,17 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
 
         }
-        
+
 
         //da pra fazer o gameOver ou a referencia pro script que vai rodar ele apartir daqui 
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
-
             gameOver = true;
             this.gameObject.SetActive(false);
             gameController.ActivateGameOverMenu();
         }
+        
+        
 
         if (other.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
         {
@@ -125,13 +111,13 @@ public class Player : MonoBehaviour
             other.gameObject.SetActive(false);
             coinController.coin++;
 
-
-
-
-
         }
 
-        }
+    }
+
+    
+    
+
 
     
 }

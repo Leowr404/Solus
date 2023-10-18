@@ -726,7 +726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149233925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521313, y: 0.000000032966827, z: -0.0000000048385016, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521313, y: 0.000000032966824, z: -0.000000004838501, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 3, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2966,7 +2966,7 @@ Camera:
   m_GameObject: {fileID: 954711448}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3016,7 +3016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954711448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521313, y: 0.000000032966827, z: -0.0000000048385016, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521313, y: 0.000000032966824, z: -0.000000004838501, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 3, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9610,9 +9610,7 @@ GameObject:
   - component: {fileID: 1724025745}
   - component: {fileID: 1724025744}
   - component: {fileID: 1724025743}
-  - component: {fileID: 1724025747}
   - component: {fileID: 1724025748}
-  - component: {fileID: 1724025749}
   - component: {fileID: 1724025751}
   - component: {fileID: 1724025752}
   m_Layer: 0
@@ -9690,27 +9688,6 @@ Transform:
   - {fileID: 1660633278}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1724025747
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724025742}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2.08, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1724025748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9728,22 +9705,6 @@ MonoBehaviour:
   monsterLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1724025749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724025742}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c557600c78233d4784a019e851f48c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0}
-  direction: {x: 0, y: 0}
-  Player: {fileID: 1724025742}
-  currentPlataform: 2
 --- !u!114 &1724025751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9766,7 +9727,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1724025742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e1c05b15df1084b95efc5f0244416f, type: 3}
+  m_Script: {fileID: 11500000, guid: e14b3c2026f5b3544992368ae8ffd915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1724025742}
@@ -10850,6 +10811,11 @@ PrefabInstance:
       propertyPath: Audio_Camera
       value: 
       objectReference: {fileID: 8300000, guid: d828f184ef356e64db4c877ad0db0e97, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: Audio_Lanterna
+      value: 
+      objectReference: {fileID: 8300000, guid: cc6c4350610a53f41acb8ce43332c27a, type: 3}
     - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
       propertyPath: Audio_Coletavel

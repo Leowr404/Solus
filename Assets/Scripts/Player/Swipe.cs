@@ -1,163 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Swipe : MonoBehaviour
 {
-    public Vector2 startPos; public Vector2 direction;
-    
-    private int plataform = 2, plataformRef = 2;
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
     public GameObject Player;
-    public int currentPlataform = 2;
-    void Update()
+    public float swipeSensitivity = 50f;
+    public float minX = -3.5f; // Ajuste conforme necessário
+    public float maxX = 3.5f; // Ajuste conforme necessário
+
+    private void Update()
     {
-       
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    startPos = touch.position;
-              //      message = "Begun ";
+                    startTouchPosition = touch.position;
                     break;
-                case TouchPhase.Moved:
-                 //   message = "Moving ";
-                    break;
+
                 case TouchPhase.Ended:
-                    direction = touch.position - startPos;
-                    Move(ref plataform, plataformRef);
-                 //   message = "Ending ";
+                    endTouchPosition = touch.position;
+                    HandleSwipe();
                     break;
             }
         }
-
-        void Move(ref int plataform, int plataformRef)
-        {
-
-
-
-            Debug.Log("Moveu");
-
-            Vector3 position = Player.transform.position;
-
-            if (direction.x < startPos.x && startPos.x - direction.x > 100 && currentPlataform != 1)
-            {
-                Debug.Log("moveu pra esquerda");
-                position.x -= 3.5f;
-                currentPlataform--;
-            }
-            else if (direction.x > startPos.x && direction.x - startPos.x > 100 && currentPlataform != 3)
-            {
-                Debug.Log("moveu pra direita");
-                position.x += 3.5f;
-                currentPlataform++;
-            }
-
-
-
-            Player.transform.position = position;
-
-
-
-
-
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-
-    private Vector2 startTouchPosition;
-    private Vector2 endTouchPosition;
-
-    public GameObject Player;
-    private int plataform = 2, plataformRef = 2;
-
-    private void Start()
-    {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            startTouchPosition = Input.GetTouch(0).position;
-
-        }
-        
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            endTouchPosition = Input.GetTouch(0).position;
-
-            if(endTouchPosition.x < startTouchPosition.x)
-            {
-                plataformRef++;
-                Move(ref plataform, plataformRef);
-                
-
-            }
-
-            if(endTouchPosition.x > startTouchPosition.x)
-            {
-                plataformRef--; 
-                Move(ref plataform, plataformRef);
-
-            }
+        //IMPLEMENTE O CHEAT AQUI
+        //if(Input.touchCount == 5 )
+        //{
 
           
-
-        }
+       // }
     }
 
-    private void Move(ref int plataform, int plataformRef)
+    private void HandleSwipe()
     {
+        float swipeDeltaX = endTouchPosition.x - startTouchPosition.x;
 
-        Debug.Log("Moveu");
-
-        Vector3 position = Player.transform.position;
-        if(plataformRef > plataform)
+        if (Mathf.Abs(swipeDeltaX) > swipeSensitivity)
         {
-            position.x += 3.5f;
-
+            if (swipeDeltaX > 0)
+            {
+                RightSwipe();
+            }
+            else
+            {
+                LeftSwipe();
+            }
         }
-        else if (plataformRef < plataform)
-        {
-            position.x -= 3.5f;
-
-        }
-        
-        Player.transform.position = position;
-        
-        plataform = plataformRef;
-
-
     }
 
+    private void RightSwipe()
+    {
+        float newX = Player.transform.position.x + 3.5f;
+        newX = Mathf.Clamp(newX, minX, maxX);
+        Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
+        Debug.Log("Swipe para a direita");
+    }
 
-     */
-
+    private void LeftSwipe()
+    {
+        float newX = Player.transform.position.x - 3.5f;
+        newX = Mathf.Clamp(newX, minX, maxX);
+        Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
+        Debug.Log("Swipe para a esquerda");
+    }
+    
 
 }
