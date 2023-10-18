@@ -185,7 +185,7 @@ public class EnemySpawner : MonoBehaviour
 
             Vector3 position = player.transform.position;
             position.z += spawnDistance;
-            position.y = 0.005f;
+            position.y = 0.945f;
 
             int randomNumber = UnityEngine.Random.Range(1, 4);
 
