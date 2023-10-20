@@ -15,8 +15,15 @@ public class MainMenu : MonoBehaviour
   
     public void OpenStoreMenu()
     {
-        mainMenu.SetActive(false);
+        
         storeMenu.SetActive(true);
+
+    }
+
+    public void CloseStoreMenu()
+    {
+        
+        storeMenu.SetActive(false);
 
     }
 
