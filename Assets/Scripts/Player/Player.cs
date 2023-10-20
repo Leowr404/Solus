@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
 
     private ItensPlayer itemScript;
     private GameController gameController;
+    [SerializeField]
     private CoinController coinController;
     private AudioSource Coletavel;
     private AudioSource CoinCollect;
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
         Coletavel = AudioController.instancia.GetComponent<AudioSource>();
         CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
         Audio_PowerUp = AudioController.instancia.GetComponent<AudioSource>();
-        coinController = CoinController.instance;
+        
 
 
 
@@ -138,6 +139,8 @@ public class Player : MonoBehaviour
         moedasColetadas++;
         coinTxt.AtualizarMoedas(moedasColetadas);
     }
+
+
 
 
 

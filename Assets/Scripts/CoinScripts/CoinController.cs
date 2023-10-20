@@ -9,32 +9,23 @@ public class CoinController : MonoBehaviour
 {
     [SerializeField]
     private Text amountOfCoins;
+    public Text amountOfCoinsloja;
+
+
 
     public static CoinController instance;
-
+    private bool isInGame = false;
     public int coin = 0;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-         DontDestroyOnLoad(transform.root.gameObject);
-        
-
-    }
-
+    
     private void Start()
     {
         LoadCoins();
-        
-        amountOfCoins.text = coin.ToString("D4");
+        CheckGameState();
+        if (!isInGame)
+        {
+            amountOfCoins.text = coin.ToString("D4");
+            amountOfCoinsloja.text = coin.ToString("D4");
+        }
     }
     public void CollectCoin()
     {
@@ -45,22 +36,10 @@ public class CoinController : MonoBehaviour
     public void UpdateCoins()
     {
        SaveCoins();
-       FindCoinText();
-        if (amountOfCoins != null)
+        if (!isInGame)
         {
             amountOfCoins.text = coin.ToString("D4");
-        }
-        else
-        {
-            Debug.LogError("Texto de moedas não encontrado dinamicamente.");
-        }
-       amountOfCoins.text = coin.ToString("D4");
-    }
-    private void OnEnable()
-    {
-        if (amountOfCoins != null)
-        {
-            amountOfCoins.text = coin.ToString("D4");
+            amountOfCoinsloja.text = coin.ToString("D4");
         }
     }
 
@@ -84,14 +63,9 @@ public class CoinController : MonoBehaviour
             Debug.Log("Nenhuma moeda salva encontrada.");
         }
     }
-
-    private void FindCoinText()
+    private void CheckGameState()
     {
-        // Tente encontrar a referência do Text no objeto atual ou na cena
-        amountOfCoins = GetComponentInChildren<Text>();
-        if (amountOfCoins == null)
-        {
-            amountOfCoins = FindObjectOfType<Text>();
-        }
+        // Verifique se a cena atual é a cena do jogo
+        isInGame = SceneManager.GetActiveScene().name == "Jogo";
     }
 }
