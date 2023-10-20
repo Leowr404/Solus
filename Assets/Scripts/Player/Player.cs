@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     public GameObject CoinManager;
     public Transform player;
 
+    public CoinTxt coinTxt;
+    private int moedasColetadas = 0;
+
+
     public float speed = 5;
     public float gravity;
 
@@ -31,7 +35,7 @@ public class Player : MonoBehaviour
 
 
     private bool gameOver = false;
-    //  private Touch touch;
+    
 
     void Start()
     {
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
         Coletavel = AudioController.instancia.GetComponent<AudioSource>();
         CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
         Audio_PowerUp = AudioController.instancia.GetComponent<AudioSource>();
+        
 
 
     }
@@ -106,11 +111,11 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
         {
             
-            other.gameObject.SetActive(false);
             Audio_PowerUp.PlayOneShot(AudioController.instancia.Audio_PowerUp, 1f); 
 
 
             StartCoroutine(itemScript.PowerUpInfiniteBattery());
+            other.gameObject.SetActive(false);
 
 
 
@@ -119,17 +124,23 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
-            other.gameObject.SetActive(false);
+            ColetarMoeda(other.gameObject);
             CoinCollect.PlayOneShot(AudioController.instancia.CoinCollect, 1f);
             coinController.coin++;
+            other.gameObject.SetActive(false);
 
         }
 
     }
+    void ColetarMoeda(GameObject moeda)
+    {
+        moedasColetadas++;
+        coinTxt.AtualizarMoedas(moedasColetadas);
+    }
 
-    
-    
 
 
-    
+
+
+
 }
