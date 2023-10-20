@@ -33,12 +33,12 @@ public class CoinController : MonoBehaviour
 
         if (amountOfCoins != null)
         {
-            amountOfCoins.text = coin.ToString();
+            amountOfCoins.text = coin.ToString("D4");
         }
     }
 
     public void UpdateCoins()
     {
-        amountOfCoins.text = coin.ToString();
+        amountOfCoins.text = coin.ToString("D4");
     }
 }

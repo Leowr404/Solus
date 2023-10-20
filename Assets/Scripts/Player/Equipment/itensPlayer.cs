@@ -43,11 +43,16 @@ public class ItensPlayer : MonoBehaviour
 
     private CameraItem cameraItemScript;
     private FlashLightItem flashlightItemScript;
+    private AudioSource Lanterna;
+    private AudioSource camera;
     public bool powerUpActivated = false;
 
    
     void Start()
     {
+        Lanterna = AudioController.instancia.GetComponent<AudioSource>();
+        camera = AudioController.instancia.GetComponent<AudioSource>();
+
         //verifica qual item o jogador escolheu no menu
         whichItem = PlayerPrefs.GetInt("ChosenItem");
 
@@ -199,7 +204,7 @@ public class ItensPlayer : MonoBehaviour
 
 
             itemButton.interactable = !itemButton.interactable;
-            AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
+            camera.PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
 
 
 
@@ -283,7 +288,7 @@ public class ItensPlayer : MonoBehaviour
 
         if(flashLightIndex <= 0 )
             itemButton.interactable = !itemButton.interactable;
-        AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
+        Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
 
 
 
@@ -292,7 +297,7 @@ public class ItensPlayer : MonoBehaviour
        
         if (buttonPressed)
         {
-            AudioController.instancia.GetComponent<AudioSource>().PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
+            Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
            
         }
         else 
