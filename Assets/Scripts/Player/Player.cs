@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     private AudioSource Audio_PowerUp;
 
 
-
     private bool gameOver = false;
     
 
@@ -43,11 +42,13 @@ public class Player : MonoBehaviour
         gameController = GameController.GetComponent<GameController>();
         itemScript = itemObject.GetComponent<ItensPlayer>();
         characterController = GetComponent<CharacterController>();
-        coinController = CoinManager.GetComponent<CoinController>();
+        
         Coletavel = AudioController.instancia.GetComponent<AudioSource>();
         CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
         Audio_PowerUp = AudioController.instancia.GetComponent<AudioSource>();
-        
+        coinController = CoinController.instance;
+
+
 
 
     }
@@ -125,8 +126,8 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
             ColetarMoeda(other.gameObject);
+            coinController.CollectCoin();
             CoinCollect.PlayOneShot(AudioController.instancia.CoinCollect, 1f);
-            coinController.coin++;
             other.gameObject.SetActive(false);
 
         }

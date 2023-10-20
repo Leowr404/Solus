@@ -4,41 +4,94 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class CoinController : MonoBehaviour
 {
-    public Text amountOfCoins;
+    [SerializeField]
+    private Text amountOfCoins;
 
-    private static CoinController instance;
+    public static CoinController instance;
 
     public int coin = 0;
 
     private void Awake()
     {
-        // Garante que apenas uma instância do SceneController exista na cena
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
-
+         DontDestroyOnLoad(transform.root.gameObject);
+        
 
     }
 
     private void Start()
     {
+        LoadCoins();
+        
+        amountOfCoins.text = coin.ToString("D4");
+    }
+    public void CollectCoin()
+    {
+        coin++;
+        UpdateCoins(); 
+    }
 
+    public void UpdateCoins()
+    {
+       SaveCoins();
+       FindCoinText();
+        if (amountOfCoins != null)
+        {
+            amountOfCoins.text = coin.ToString("D4");
+        }
+        else
+        {
+            Debug.LogError("Texto de moedas não encontrado dinamicamente.");
+        }
+       amountOfCoins.text = coin.ToString("D4");
+    }
+    private void OnEnable()
+    {
         if (amountOfCoins != null)
         {
             amountOfCoins.text = coin.ToString("D4");
         }
     }
 
-    public void UpdateCoins()
+    private void SaveCoins()
     {
-        amountOfCoins.text = coin.ToString("D4");
+        PlayerPrefs.SetInt("PlayerCoins", coin);
+        PlayerPrefs.Save();
+        Debug.Log("Moedas salvas: " + coin);
+    }
+
+    
+    private void LoadCoins()
+    {
+        if (PlayerPrefs.HasKey("PlayerCoins"))
+        {
+            coin = PlayerPrefs.GetInt("PlayerCoins");
+            Debug.Log("Moedas carregadas: " + coin);
+        }
+        else
+        {
+            Debug.Log("Nenhuma moeda salva encontrada.");
+        }
+    }
+
+    private void FindCoinText()
+    {
+        // Tente encontrar a referência do Text no objeto atual ou na cena
+        amountOfCoins = GetComponentInChildren<Text>();
+        if (amountOfCoins == null)
+        {
+            amountOfCoins = FindObjectOfType<Text>();
+        }
     }
 }
