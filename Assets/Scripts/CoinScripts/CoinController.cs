@@ -23,10 +23,23 @@ public class CoinController : MonoBehaviour
         CheckGameState();
         if (!isInGame)
         {
+            if(amountOfCoins != null) { 
             amountOfCoins.text = coin.ToString("D4");
+            }
+            if (amountOfCoinsloja != null) { 
             amountOfCoinsloja.text = coin.ToString("D4");
         }
+        }
     }
+
+   /* private void FixedUpdate()
+    {
+        if(Input.GetKeyUp(KeyCode.M)) {
+
+            coin = coin + 4000;
+            Debug.Log(coin);
+        }
+    }*/
     public void CollectCoin()
     {
         coin++;
