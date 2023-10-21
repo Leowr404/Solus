@@ -6,7 +6,7 @@ public class InventoryController : MonoBehaviour
 {
     private static InventoryController instance;
     public GameObject storeNavigation;
-    public List<bool> bought;
+    public List<bool> equipped;
 
     private StoreNavigation store;
 

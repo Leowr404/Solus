@@ -1510,21 +1510,16 @@ MonoBehaviour:
   - {fileID: 875854726}
   - {fileID: 63218225}
   - {fileID: 1795818355}
+  pricesText:
+  - {fileID: 448411809}
+  - {fileID: 181230798}
+  - {fileID: 1828330926}
+  - {fileID: 515485680}
   itemsPrice: 000000000a0000000f0000001400000019000000
+  textoEquipado: EQUIPADO
+  textoEquipar: Equipar
   coinManager: {fileID: 1407260142}
   inventoryControl: {fileID: 1007092394}
-  buyButton: {fileID: 1044542042}
-  buyText: {fileID: 351327822}
-  texts:
-  - {fileID: 219568445}
-  - {fileID: 1792383587}
-  - {fileID: 1029572276}
-  - {fileID: 757132426}
-  - {fileID: 34510329}
-  - {fileID: 239665684}
-  prices: 050000000a0000000f00000014000000190000001e000000
-  currentItem: 0
-  currentPrice: 0
 --- !u!1 &349562645
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,7 +4879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00040560824}
+  m_AnchoredPosition: {x: 0, y: -0.000115846975}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1188413510
@@ -8152,8 +8147,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 433274289}
   m_HandleRect: {fileID: 433274288}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99998504
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8395,7 +8390,17 @@ PrefabInstance:
     - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
         type: 3}
       propertyPath: bought.Array.size
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: equipped.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'bought.Array.data[0]'
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5917401539774217467, guid: 77719b5fdfc7c124c87850783ee5531e,
         type: 3}
