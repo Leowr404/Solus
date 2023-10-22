@@ -27,7 +27,7 @@ public class StoreNavigation : MonoBehaviour
     //obtem a variavel "coin" do CoinController e da a primeira atualizada no display  
     private void Start()
     {
-        itemsText[0].text = textoEquipado;
+
 
         coinController = coinManager.GetComponent<CoinController>();
         inventoryController = inventoryControl.GetComponent<InventoryController>();

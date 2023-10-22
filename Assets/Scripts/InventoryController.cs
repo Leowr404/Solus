@@ -21,6 +21,7 @@ public class InventoryController : MonoBehaviour
 
         // Carrega as listas de booleanos dos PlayerPrefs ao iniciar
 
+      
 
         LoadItems();
     }
