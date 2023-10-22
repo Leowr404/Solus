@@ -17,8 +17,6 @@ public class InventoryController : MonoBehaviour
         {
             store = storeNavigation.GetComponent<StoreNavigation>();
         }
-        PlayerPrefs.DeleteKey("EquippedItems");
-        PlayerPrefs.DeleteKey("BoughtItems");
 
         // Carrega as listas de booleanos dos PlayerPrefs ao iniciar
         LoadItems();
@@ -41,8 +39,8 @@ public class InventoryController : MonoBehaviour
             }
         }
 
-        SaveBought();
-        SaveItems();
+     SaveBought();
+     SaveItems();
     }
 
     public void CallSaveEquip()
