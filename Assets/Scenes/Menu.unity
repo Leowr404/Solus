@@ -1515,7 +1515,7 @@ MonoBehaviour:
   - {fileID: 181230798}
   - {fileID: 1828330926}
   - {fileID: 515485680}
-  itemsPrice: 000000000a0000000f0000001400000019000000
+  itemsPrice: 000000000a0000000f000000140000002d000000
   textoEquipado: EQUIPADO
   textoEquipar: Equipar
   coinManager: {fileID: 1407260142}

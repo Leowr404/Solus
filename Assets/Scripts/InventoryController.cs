@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,12 +17,32 @@ public class InventoryController : MonoBehaviour
         {
             store = storeNavigation.GetComponent<StoreNavigation>();
         }
+        PlayerPrefs.DeleteKey("EquippedItems");
+        PlayerPrefs.DeleteKey("BoughtItems");
 
         // Carrega as listas de booleanos dos PlayerPrefs ao iniciar
-
-      
-
         LoadItems();
+
+        if (equipped.Count == 1)
+        {
+            equipped[0] = true;  // Adiciona o primeiro item como verdadeiro
+            for (int i = 0; i < 4; i++)
+            {
+                equipped.Add(false);  // Restantes itens como falsos
+            }
+        }
+
+        if (bought.Count == 1)
+        {
+            bought[0] = true;  // Adiciona o primeiro item como verdadeiro
+            for (int i = 0; i < 4; i++)
+            {
+                bought.Add(false);  // Restantes itens como falsos
+            }
+        }
+
+        SaveBought();
+        SaveItems();
     }
 
     public void CallSaveEquip()
