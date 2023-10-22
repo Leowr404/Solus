@@ -8402,6 +8402,26 @@ PrefabInstance:
       propertyPath: 'bought.Array.data[0]'
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'equipped.Array.data[0]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'equipped.Array.data[2]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'equipped.Array.data[3]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'equipped.Array.data[4]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5917401539774217467, guid: 77719b5fdfc7c124c87850783ee5531e,
         type: 3}
       propertyPath: m_Name

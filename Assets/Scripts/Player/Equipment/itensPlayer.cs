@@ -47,7 +47,6 @@ public class ItensPlayer : MonoBehaviour
     private AudioSource camera;
     public bool powerUpActivated = false;
 
-   
     void Start()
     {
         Lanterna = AudioController.instancia.GetComponent<AudioSource>();

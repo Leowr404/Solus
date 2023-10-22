@@ -50,7 +50,7 @@ public class EnemyJumper : MonoBehaviour
 
     void ChooseNewPath()
     {
-        Debug.Log("CHAMADO MUDAR POSICAO ROXO");
+
 
         int randomNumber = UnityEngine.Random.Range(1, 4);
 

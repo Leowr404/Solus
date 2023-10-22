@@ -60,7 +60,7 @@ public class CoinController : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlayerCoins", coin);
         PlayerPrefs.Save();
-        Debug.Log("Moedas salvas: " + coin);
+    
     }
 
     

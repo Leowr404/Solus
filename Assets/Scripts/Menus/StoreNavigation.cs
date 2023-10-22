@@ -24,9 +24,11 @@ public class StoreNavigation : MonoBehaviour
     private InventoryController inventoryController;
 
 
-    //obtem a variavel "coin" do CoinController e da a primeira atualizada no display
+    //obtem a variavel "coin" do CoinController e da a primeira atualizada no display  
     private void Start()
     {
+        itemsText[0].text = textoEquipado;
+
         coinController = coinManager.GetComponent<CoinController>();
         inventoryController = inventoryControl.GetComponent<InventoryController>();
 
@@ -79,10 +81,11 @@ public class StoreNavigation : MonoBehaviour
     public void EquipItem(int buttonIndex)
     {
 
-        itemsText[buttonIndex].text = textoEquipado;
+           itemsText[buttonIndex].text = textoEquipado;
 
         inventoryController.equipped[buttonIndex] = true;
         UnequipItem(buttonIndex);
+        inventoryController.CallSave();
     }
 
     void UnequipItem(int buttonIndex)
