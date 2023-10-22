@@ -53,7 +53,7 @@ public class ItensPlayer : MonoBehaviour
         camera = AudioController.instancia.GetComponent<AudioSource>();
 
         //verifica qual item o jogador escolheu no menu
-        whichItem = PlayerPrefs.GetInt("ChosenItem");
+      //  whichItem = PlayerPrefs.GetInt("ChosenItem");
 
         if(whichItem == 1)
         {

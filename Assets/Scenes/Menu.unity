@@ -8400,12 +8400,27 @@ PrefabInstance:
     - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
         type: 3}
       propertyPath: 'bought.Array.data[0]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'bought.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'bought.Array.data[2]'
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
         type: 3}
       propertyPath: 'equipped.Array.data[0]'
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
+        type: 3}
+      propertyPath: 'equipped.Array.data[1]'
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3494139583681359648, guid: 77719b5fdfc7c124c87850783ee5531e,
         type: 3}
@@ -8504,6 +8519,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 2042839416704621089}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 330585546}
@@ -8512,4 +8528,3 @@ SceneRoots:
   - {fileID: 719697434}
   - {fileID: 3215635269833979397}
   - {fileID: 1444581411}
-  - {fileID: 2042839416704621089}

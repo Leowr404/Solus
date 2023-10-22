@@ -32,10 +32,40 @@ public class StoreNavigation : MonoBehaviour
         coinController = coinManager.GetComponent<CoinController>();
         inventoryController = inventoryControl.GetComponent<InventoryController>();
 
+        SetBoughtItems();
         SetPricesText();
         StartingPriceDisplay();
 
      
+    }
+
+    void SetBoughtItems()
+    {
+        for(int i = 0; i < itemsText.Count; i++)
+        {
+            if (inventoryController.bought[i])
+            {
+
+                itemsButtons[i].gameObject.SetActive(false);
+                equipButtons[i].gameObject.SetActive(true);
+
+                itemsText[i].text = textoEquipar;
+
+            }
+
+        }
+
+        for(int i = 0; i < itemsText.Count;i++)
+        {
+            if (inventoryController.equipped[i]) {
+
+                itemsText[i].text = textoEquipado;
+            
+            }
+
+        }
+
+
     }
 
     void SetPricesText()
@@ -54,7 +84,8 @@ public class StoreNavigation : MonoBehaviour
         coinController.UpdateCoins();
 
         //torna o bool de item obtido no script de inventario verdadeiro
-    
+        inventoryController.bought[buttonIndex] = true;
+        inventoryController.CallSaveBought();
 
         itemsButtons[buttonIndex].gameObject.SetActive(false);
         equipButtons[buttonIndex].gameObject.SetActive(true);
@@ -85,7 +116,7 @@ public class StoreNavigation : MonoBehaviour
 
         inventoryController.equipped[buttonIndex] = true;
         UnequipItem(buttonIndex);
-        inventoryController.CallSave();
+        inventoryController.CallSaveEquip();
     }
 
     void UnequipItem(int buttonIndex)

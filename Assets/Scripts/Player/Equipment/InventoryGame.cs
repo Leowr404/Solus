@@ -16,12 +16,8 @@ public class InventoryGame : MonoBehaviour
 
     public List<bool> equipped;
 
-  
     public ItensPlayer itensPlayer;
     
-   
-
-    // Start is called before the first frame update
     void Awake()
     {
 
@@ -59,7 +55,7 @@ public class InventoryGame : MonoBehaviour
             }
             else
             {
-                // Se não for possível converter para int, assume false
+                // Se nao for possível converter para int, assume false
                 equipped.Add(false);
             }
         }
@@ -79,7 +75,9 @@ public class InventoryGame : MonoBehaviour
         }
 
         if (equipped[0]) itensPlayer.whichItem = 2;
-        if (equipped[1]) itensPlayer.whichItem = 1;
+        else if (equipped[1])  itensPlayer.whichItem = 1;
+            
+       else { itensPlayer.whichItem = 2; } 
 
     }
 }

@@ -7,96 +7,96 @@ public class InventoryController : MonoBehaviour
     private static InventoryController instance;
     public GameObject storeNavigation;
     public List<bool> equipped;
+    public List<bool> bought;
 
 
     private StoreNavigation store;
 
-   /* private void Awake()
+    void Awake()
     {
-        // Garante que apenas uma instância do SceneController exista na cena
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }*/
-
-    void Start()
-    {
-        
         if (storeNavigation != null)
         {
             store = storeNavigation.GetComponent<StoreNavigation>();
         }
 
-        // Carrega a lista de booleanos dos PlayerPrefs ao iniciar
-        LoadItems();
+        // Carrega as listas de booleanos dos PlayerPrefs ao iniciar
 
-        for(int i = 0; i < equipped.Count; i++) {
-            Debug.Log(equipped[i]);
-        }
+
+        LoadItems();
     }
 
-    public void CallSave()
+    public void CallSaveEquip()
     {
         SaveItems();
     }
-    /*
-    public void CallLoad()
+
+    public void CallSaveBought()
     {
-        LoadItems();
+        SaveBought();
     }
-    */
 
     private void SaveItems()
     {
-        Debug.Log("salvar chamado");
-        string equippedAsString = "";
-
-        // Converte a lista de booleanos em uma string
-        for (int i = 0; i < equipped.Count; i++)
-        {
-            equippedAsString += equipped[i] ? "1" : "0";
-
-            // Adiciona uma vírgula, exceto para o último item
-            if (i < equipped.Count - 1)
-            {
-                equippedAsString += ",";
-            }
-        }
-
-        // Salva a string no PlayerPrefs
+        // Salva a lista equipped
+        string equippedAsString = ConvertBoolListToString(equipped);
         PlayerPrefs.SetString("EquippedItems", equippedAsString);
+
         PlayerPrefs.Save();
+    }
+
+    private void SaveBought()
+    {
+        // Salva a lista bought
+        string boughtAsString = ConvertBoolListToString(bought);
+        PlayerPrefs.SetString("BoughtItems", boughtAsString);
+
+        PlayerPrefs.Save();
+
     }
 
     private void LoadItems()
     {
-        // Carrega a string do PlayerPrefs
+        // Carrega a string do PlayerPrefs para a lista equipped
         string equippedAsString = PlayerPrefs.GetString("EquippedItems", "");
+        equipped = ConvertStringToBoolList(equippedAsString);
 
-        // Converte a string de volta para uma lista de booleanos
-        equipped = new List<bool>();
-        string[] equippedArray = equippedAsString.Split(',');
+        // Carrega a string do PlayerPrefs para a lista bought
+        string boughtAsString = PlayerPrefs.GetString("BoughtItems", "");
+        bought = ConvertStringToBoolList(boughtAsString);
+    }
 
-        // Converte a string em uma lista de booleanos
-        for (int i = 0; i < equippedArray.Length; i++)
+    private string ConvertBoolListToString(List<bool> list)
+    {
+        string result = "";
+        for (int i = 0; i < list.Count; i++)
+        {
+            result += list[i] ? "1" : "0";
+            if (i < list.Count - 1)
+            {
+                result += ",";
+            }
+        }
+        return result;
+    }
+
+    private List<bool> ConvertStringToBoolList(string str)
+    {
+        List<bool> boolList = new List<bool>();
+        string[] strArray = str.Split(',');
+
+        for (int i = 0; i < strArray.Length; i++)
         {
             int intValue;
-            if (int.TryParse(equippedArray[i], out intValue))
+            if (int.TryParse(strArray[i], out intValue))
             {
-                equipped.Add(intValue == 1);
+                boolList.Add(intValue == 1);
             }
             else
             {
-                // Se não for possível converter para int, assume false
-                equipped.Add(false);
+                boolList.Add(false);
             }
         }
-    }
 
+        return boolList;
+    }
 }
