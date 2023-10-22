@@ -27,17 +27,9 @@ public class AudioController : MonoBehaviour
     //public AudioClip Audio_;
     //public AudioClip Audio_;
 
-    void Awake()
+    private void Awake()
     {
-        if (instancia == null)
-        {
-            instancia = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instancia = this;
     }
     void Start()
     {
