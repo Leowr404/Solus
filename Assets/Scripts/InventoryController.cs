@@ -43,6 +43,32 @@ public class InventoryController : MonoBehaviour
      SaveItems();
     }
 
+    public void ResetStore()
+    {
+        Debug.Log("botao pressionado");
+        bought = new List<bool>(); // Inicializa a lista bought antes de usá-la
+        bought.Add(true);  // Adiciona o primeiro item como verdadeiro
+        for (int i = 0; i < 4; i++)
+        {
+            bought.Add(false);  // Restantes itens como falsos
+        }
+
+        equipped = new List<bool>();
+        equipped.Add(true);
+        for (int i = 0; i < 4; i++)
+        {
+            equipped.Add(false);  // Restantes itens como falsos
+        }
+
+        SaveBought();
+        SaveItems();
+
+        //O PROBLEMA TA AQUI, CONTINUAR MEXENDO DPS
+        store.SetBoughtItems();
+        store.SetPricesText();
+        store.StartingPriceDisplay();
+    }
+
     public void CallSaveEquip()
     {
         SaveItems();

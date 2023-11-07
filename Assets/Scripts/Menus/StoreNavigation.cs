@@ -39,8 +39,9 @@ public class StoreNavigation : MonoBehaviour
      
     }
 
-    void SetBoughtItems()
+    public void SetBoughtItems()
     {
+
         for(int i = 0; i < itemsText.Count; i++)
         {
             if (inventoryController.bought[i])
@@ -68,7 +69,7 @@ public class StoreNavigation : MonoBehaviour
 
     }
 
-    void SetPricesText()
+    public void SetPricesText()
     {
         for(int i=0; i<pricesText.Count; i++)
         {
