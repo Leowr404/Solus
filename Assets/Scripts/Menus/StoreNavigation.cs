@@ -50,6 +50,8 @@ for(int i = 1; i < itemsButtons.Count; i++)
 
         itemsText[0].text = textoEquipado;
 
+        StartingPriceDisplay();
+
     }
 
     public void SetBoughtItems()
@@ -118,6 +120,8 @@ for(int i = 1; i < itemsButtons.Count; i++)
 
          
             }
+
+            else itemsButtons[i].interactable = true;
 
         }
 

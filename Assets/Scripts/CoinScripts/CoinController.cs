@@ -81,4 +81,17 @@ public class CoinController : MonoBehaviour
         // Verifique se a cena atual é a cena do jogo
         isInGame = SceneManager.GetActiveScene().name == "Jogo";
     }
+
+    public void ResetCoin()
+    {
+        PlayerPrefs.SetInt("PlayerCoins", 0);
+        PlayerPrefs.Save();
+        LoadCoins();
+
+        if (!isInGame)
+        {
+            amountOfCoins.text = coin.ToString("D4");
+            amountOfCoinsloja.text = coin.ToString("D4");
+        }
+    }
 }
