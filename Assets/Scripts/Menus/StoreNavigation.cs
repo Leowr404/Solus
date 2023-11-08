@@ -39,6 +39,19 @@ public class StoreNavigation : MonoBehaviour
      
     }
 
+    public void ResetStore()
+    {
+for(int i = 1; i < itemsButtons.Count; i++)
+        {
+            itemsButtons[i].gameObject.SetActive(true);
+            equipButtons[i].gameObject.SetActive(false);
+
+        }
+
+        itemsText[0].text = textoEquipado;
+
+    }
+
     public void SetBoughtItems()
     {
 

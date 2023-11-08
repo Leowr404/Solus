@@ -64,9 +64,7 @@ public class InventoryController : MonoBehaviour
         SaveItems();
 
         //O PROBLEMA TA AQUI, CONTINUAR MEXENDO DPS
-        store.SetBoughtItems();
-        store.SetPricesText();
-        store.StartingPriceDisplay();
+        store.ResetStore();
     }
 
     public void CallSaveEquip()
