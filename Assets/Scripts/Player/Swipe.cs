@@ -9,17 +9,24 @@ public class Swipe : MonoBehaviour
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
     public GameObject Player;
+    public GameObject ItensPlayer;
     public float swipeSensitivity = 50f;
     public float minX = -3.5f; // Ajuste conforme necessário
     public float maxX = 3.5f; // Ajuste conforme necessário
 
     public Text cheatAtivado;
+    public Text cheatDesativado;
+    public Text bateriaInfinitaCheat;
 
     private Player player;
+    private ItensPlayer itensPlayer;
 
     private void Start()
     {
         player = Player.GetComponent<Player>();
+        itensPlayer = ItensPlayer.GetComponent<ItensPlayer>();
+
+
     }
 
     private void Update()
@@ -43,25 +50,50 @@ public class Swipe : MonoBehaviour
         //IMPLEMENTE O CHEAT AQUI
         if(Input.touchCount == 5 )
         {
-            Debug.Log("TEXTO DE CHEAT CHAMADO");
+
+            if(player.cheatOn == false) { 
             cheatAtivado.gameObject.SetActive(true);
 
             player.cheatOn = true;
 
-               StartCoroutine(DesativarTextoCheat(cheatAtivado));  
+               StartCoroutine(DesativarTextoCheat(cheatAtivado));
+            }
 
+         /*   else
+            {
+                cheatDesativado.gameObject.SetActive(true);
+
+                player.cheatOn = false;
+
+                StartCoroutine(DesativarTextoCheat(cheatDesativado));
+
+            }*/
 
 
         }
-    }
+
+        if (Input.touchCount == 3 && itensPlayer.cheatBateria == false)
+        { 
+        itensPlayer.cheatBateria = true;
+            itensPlayer.InfiniteBattery();
+            
+            bateriaInfinitaCheat.gameObject.SetActive(true);
+            
+
+            StartCoroutine(DesativarTextoCheat(bateriaInfinitaCheat));
+
+        }
+
+
+        }
 
     private IEnumerator DesativarTextoCheat(Text cheatText)
     {
         yield return new WaitForSeconds(3);
 
-        cheatAtivado.gameObject.SetActive(false);
+        cheatText.gameObject.SetActive(false);
 
-        Debug.Log("TEXTO DE CHEAT DESATIVADO");
+
     }
 
     private void HandleSwipe()

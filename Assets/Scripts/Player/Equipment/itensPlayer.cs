@@ -46,6 +46,7 @@ public class ItensPlayer : MonoBehaviour
     private AudioSource Lanterna;
     private AudioSource camera;
     public bool powerUpActivated = false;
+    public bool cheatBateria = false;
 
     void Start()
     {
@@ -101,7 +102,10 @@ public class ItensPlayer : MonoBehaviour
             if (buttonPressed)
         {
                 flashlightItemScript.FlashlightOn();
-                if(powerUpActivated == false) { 
+
+                
+
+                if(powerUpActivated == false && cheatBateria == false) { 
                 activatedTime += Time.deltaTime;
 
 
@@ -153,12 +157,28 @@ public class ItensPlayer : MonoBehaviour
         #endregion
     }
 
+    public void InfiniteBattery()
+    {
+        ColorBlock colorBlock = chargeSlider.colors;
+        colorBlock.disabledColor = powerUpColor;
+        colorBlock.normalColor = powerUpColor;
+        colorBlock.highlightedColor = powerUpColor;
+        colorBlock.pressedColor = powerUpColor;
+
+        chargeSlider.colors = colorBlock;
+
+        chargeSlider.value = 4;
+
+        itemButton.interactable = true;
+
+    }
+
     //modifica a cor da bateria a medida que a energia eh gasta ou restaurada
     public void OnSliderValueChanged()
     {
 
         
-        if(powerUpActivated == false) { 
+        if(powerUpActivated == false && cheatBateria == false) { 
         ColorBlock colorBlock = chargeSlider.colors;
         switch (chargeSlider.value)
         {
@@ -190,6 +210,7 @@ public class ItensPlayer : MonoBehaviour
     
 
             }
+        
     }
 
     #region scriptCamera
@@ -202,21 +223,24 @@ public class ItensPlayer : MonoBehaviour
         {
 
 
-            itemButton.interactable = !itemButton.interactable;
+            if(cheatBateria == false) itemButton.interactable = !itemButton.interactable;
+
             camera.PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
 
 
-
+            if(cheatBateria == false) { 
 
 
             chargeSlider.value = 0;
             InvokeRepeating("ReloadCamera", batteryReloadTime, batteryReloadTime);
 
 
-
+            }
 
 
         }
+        
+      
     }
     void ReloadCamera()
     {
@@ -285,7 +309,7 @@ public class ItensPlayer : MonoBehaviour
     void ActivateItemFlashlight()
     {
 
-        if(flashLightIndex <= 0 )
+        if(flashLightIndex < 0 )
             itemButton.interactable = !itemButton.interactable;
         Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
 
