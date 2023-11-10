@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Swipe : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Swipe : MonoBehaviour
     public float swipeSensitivity = 50f;
     public float minX = -3.5f; // Ajuste conforme necessário
     public float maxX = 3.5f; // Ajuste conforme necessário
+
+    public Text cheatAtivado;
 
     private Player player;
 
@@ -40,9 +43,25 @@ public class Swipe : MonoBehaviour
         //IMPLEMENTE O CHEAT AQUI
         if(Input.touchCount == 5 )
         {
+            Debug.Log("TEXTO DE CHEAT CHAMADO");
+            cheatAtivado.gameObject.SetActive(true);
+
             player.cheatOn = true;
-          
+
+               StartCoroutine(DesativarTextoCheat(cheatAtivado));  
+
+
+
         }
+    }
+
+    private IEnumerator DesativarTextoCheat(Text cheatText)
+    {
+        yield return new WaitForSeconds(3);
+
+        cheatAtivado.gameObject.SetActive(false);
+
+        Debug.Log("TEXTO DE CHEAT DESATIVADO");
     }
 
     private void HandleSwipe()
