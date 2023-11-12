@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject storeMenu;
+    public GameObject creditsMenu;
 
 
 
@@ -32,6 +33,16 @@ public class MainMenu : MonoBehaviour
         storeMenu.SetActive(false);
         mainMenu.SetActive(true);
 
+    }
+
+    public void OpenCreditsMenu()
+    {
+        creditsMenu.SetActive(true);
+    }
+
+    public void CloseCredisMenu()
+    {
+        creditsMenu.SetActive(false);
     }
 
 
