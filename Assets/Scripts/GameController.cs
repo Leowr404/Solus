@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject GameOverUI;
     public GameObject GameRunningUI;
     public GameObject GamePausedUI;
+    public GameObject ConfirmarUI;
 
     void Awake()
     {
@@ -64,6 +65,18 @@ public class GameController : MonoBehaviour
 
 
     }
-    
+
+    public void ConfirmarTrue()
+    {
+        ConfirmarUI.SetActive(true);
+        
+    }
+
+    public void Confirmarfalse()
+    {
+        ConfirmarUI.SetActive(false);
+
+    }
+
 
 }
