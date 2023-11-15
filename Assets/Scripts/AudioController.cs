@@ -24,6 +24,7 @@ public class AudioController : MonoBehaviour
     public AudioClip Audio_Coletavel;
     public AudioClip Audio_Morte;
     public AudioClip Audio_Pause;
+    public AudioClip Audio_Cheat;
     //public AudioClip Audio_;
     //public AudioClip Audio_;
 

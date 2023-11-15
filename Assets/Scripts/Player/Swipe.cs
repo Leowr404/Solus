@@ -20,11 +20,13 @@ public class Swipe : MonoBehaviour
 
     private Player player;
     private ItensPlayer itensPlayer;
+    private AudioSource Audio_Cheat;
 
     private void Start()
     {
         player = Player.GetComponent<Player>();
         itensPlayer = ItensPlayer.GetComponent<ItensPlayer>();
+        Audio_Cheat = AudioController.instancia.GetComponent<AudioSource>();
 
 
     }
@@ -50,11 +52,11 @@ public class Swipe : MonoBehaviour
         //IMPLEMENTE O CHEAT AQUI
         if(Input.touchCount == 5 )
         {
-
-            if(player.cheatOn == false) { 
+            if (player.cheatOn == false) { 
             cheatAtivado.gameObject.SetActive(true);
+            Audio_Cheat.PlayOneShot(AudioController.instancia.CoinCollect, 1f);
 
-            player.cheatOn = true;
+                player.cheatOn = true;
 
                StartCoroutine(DesativarTextoCheat(cheatAtivado));
             }

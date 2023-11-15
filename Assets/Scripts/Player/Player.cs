@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private AudioSource Coletavel;
     private AudioSource CoinCollect;
     private AudioSource Audio_PowerUp;
+    
 
 
     private bool gameOver = false;
@@ -46,7 +47,8 @@ public class Player : MonoBehaviour
         
         Coletavel = AudioController.instancia.GetComponent<AudioSource>();
         CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
-        Audio_PowerUp = AudioController.instancia.GetComponent<AudioSource>();
+        CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
+        
         
 
 
@@ -105,6 +107,7 @@ public class Player : MonoBehaviour
             gameController.ActivateGameOverMenu();
             }
             else other.gameObject.SetActive(false);
+            
 
         }
         
