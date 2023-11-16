@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyJumper : MonoBehaviour
 {
     private float speed = 10f;
-    public float timeOnCurrentPath = 2f; // Tempo que o inimigo fica em um caminho antes de mudar
+    public float timeOnCurrentPath = 2f;
     private bool estaVivo = true;
 
     private Vector3 targetPosition;
@@ -17,30 +16,28 @@ public class EnemyJumper : MonoBehaviour
         if (estaVivo)
         {
             gameObject.SetActive(false);
-            
-
         }
+    }
+
+    void OnEnable()
+    {
+        // Chama ChooseNewPath quando o inimigo é ativado (reciclado)
+        ChooseNewPath();
     }
 
     void Start()
     {
-        
         timeSinceLastPathChange = 0f;
-        ChooseNewPath();
-        
     }
 
     void Update()
     {
-        // Move o inimigo em direção à posição alvo de forma suave
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        // Se o inimigo atingir a posição alvo, contar o tempo no caminho atual
         if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             timeSinceLastPathChange += Time.deltaTime;
 
-            // Se o tempo no caminho atual exceder o limite, escolha um novo caminho
             if (timeSinceLastPathChange >= timeOnCurrentPath)
             {
                 ChooseNewPath();
@@ -50,8 +47,6 @@ public class EnemyJumper : MonoBehaviour
 
     void ChooseNewPath()
     {
-
-
         int randomNumber = UnityEngine.Random.Range(1, 4);
 
         switch (randomNumber)
@@ -69,7 +64,6 @@ public class EnemyJumper : MonoBehaviour
                 break;
         }
 
-        // Reinicia o contador de tempo no caminho atual
         timeSinceLastPathChange = 0f;
     }
 }
