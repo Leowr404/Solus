@@ -48,6 +48,8 @@ public class ItensPlayer : MonoBehaviour
     public bool powerUpActivated = false;
     public bool cheatBateria = false;
 
+    private bool flashlightOn = false;
+
     void Start()
     {
         Lanterna = AudioController.instancia.GetComponent<AudioSource>();
@@ -99,7 +101,7 @@ public class ItensPlayer : MonoBehaviour
         #region bateriaLanterna
         if (whichItem == 2) { 
 
-            if (buttonPressed)
+            if (buttonPressed || flashlightOn)
         {
                 flashlightItemScript.FlashlightOn();
 
@@ -328,8 +330,41 @@ public class ItensPlayer : MonoBehaviour
             flashlightItemScript.FlashlightOff();
         }
     }
-    
 
+    //ativacao de lanterna por double tap
+    void ActivateFlashLightByTap() {
+        Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
+
+    }
+
+    //chamado com o doubletap
+    public void ActivateItem()
+    {
+        if(whichItem == 1)
+        {
+            if(chargeSlider.value == 4) { 
+            ActivateItemCamera();
+                
+            }
+        }
+
+        if (whichItem == 2)
+        {
+            //            ActivateItemFlashlight();
+            if (flashlightOn == false)
+            {
+                flashlightOn = true;
+                ActivateFlashLightByTap();
+
+            }
+
+            //terminar a parte da lanterna dps, ainda ta muito bugada
+            else
+            {
+                flashlightOn = false;
+            }
+        }
+    }
 
 
   

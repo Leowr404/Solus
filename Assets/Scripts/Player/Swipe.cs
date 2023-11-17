@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +11,7 @@ public class Swipe : MonoBehaviour
     public float swipeSensitivity = 50f;
     public float minX = -3.5f; // Ajuste conforme necessário
     public float maxX = 3.5f; // Ajuste conforme necessário
-
+    private float tapSensitivity = 10f;
     public Text cheatAtivado;
     public Text cheatDesativado;
     public Text bateriaInfinitaCheat;
@@ -22,80 +20,95 @@ public class Swipe : MonoBehaviour
     private ItensPlayer itensPlayer;
     private AudioSource Audio_Cheat;
 
+    public bool doubleTap = false;
+    public bool FUNCIONOU = false;
+    private float tapCD = 0.7f;
+
     private void Start()
     {
         player = Player.GetComponent<Player>();
         itensPlayer = ItensPlayer.GetComponent<ItensPlayer>();
         Audio_Cheat = AudioController.instancia.GetComponent<AudioSource>();
-
-
     }
 
     private void Update()
+{
+    if (Input.touchCount > 0)
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
+        Touch touch = Input.GetTouch(0);
+
+            
+            if (Input.touchCount == 1 && doubleTap == true)
+            {
+                float tapDeltaX = touch.position.x - startTouchPosition.x;
+                if (Mathf.Abs(tapDeltaX) < tapSensitivity)
+                {
+                    FUNCIONOU = true;
+                    itensPlayer.ActivateItem();
+                }
+
+            }
 
             switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    startTouchPosition = touch.position;
-                    break;
-
-                case TouchPhase.Ended:
-                    endTouchPosition = touch.position;
-                    HandleSwipe();
-                    break;
-            }
-        }
-        //IMPLEMENTE O CHEAT AQUI
-        if(Input.touchCount == 5 )
         {
-            if (player.cheatOn == false) { 
-            cheatAtivado.gameObject.SetActive(true);
-            Audio_Cheat.PlayOneShot(AudioController.instancia.CoinCollect, 1f);
+            case TouchPhase.Began:
+                startTouchPosition = touch.position;
+                break;
+
+            case TouchPhase.Ended:
+                endTouchPosition = touch.position;
+                HandleSwipe();
+
+                // Verifica se é um toque simples dentro da área especificada
+                float swipeDeltaX = endTouchPosition.x - startTouchPosition.x;
+                if (touch.tapCount == 1 && Mathf.Abs(swipeDeltaX) < swipeSensitivity)
+                {
+                    StartCoroutine(DoubleTapCooldown());
+                }
+
+                break;
+        }
+    }
+
+        if (Input.touchCount == 5)
+        {
+            if (player.cheatOn == false)
+            {
+                cheatAtivado.gameObject.SetActive(true);
+                Audio_Cheat.PlayOneShot(AudioController.instancia.CoinCollect, 1f);
 
                 player.cheatOn = true;
 
-               StartCoroutine(DesativarTextoCheat(cheatAtivado));
+                StartCoroutine(DesativarTextoCheat(cheatAtivado));
             }
-
-         /*   else
-            {
-                cheatDesativado.gameObject.SetActive(true);
-
-                player.cheatOn = false;
-
-                StartCoroutine(DesativarTextoCheat(cheatDesativado));
-
-            }*/
-
-
         }
 
         if (Input.touchCount == 3 && itensPlayer.cheatBateria == false)
-        { 
-        itensPlayer.cheatBateria = true;
+        {
+            itensPlayer.cheatBateria = true;
             itensPlayer.InfiniteBattery();
-            
+
             bateriaInfinitaCheat.gameObject.SetActive(true);
-            
 
             StartCoroutine(DesativarTextoCheat(bateriaInfinitaCheat));
-
         }
 
+     
+    }
 
-        }
 
     private IEnumerator DesativarTextoCheat(Text cheatText)
     {
         yield return new WaitForSeconds(3);
 
         cheatText.gameObject.SetActive(false);
+    }
 
-
+    private IEnumerator DoubleTapCooldown()
+    {
+        doubleTap = true;
+        yield return new WaitForSeconds(tapCD);
+        doubleTap = false;
     }
 
     private void HandleSwipe()
@@ -130,6 +143,4 @@ public class Swipe : MonoBehaviour
         Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
         Debug.Log("Swipe para a esquerda");
     }
-    
-
 }
