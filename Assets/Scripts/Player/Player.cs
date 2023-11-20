@@ -115,13 +115,14 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("PowerUp"))
         {
-            
-            Audio_PowerUp.PlayOneShot(AudioController.instancia.Audio_PowerUp, 1f); 
+
+            Debug.Log("Coletou Power up");
 
 
             StartCoroutine(itemScript.PowerUpInfiniteBattery());
             other.gameObject.SetActive(false);
 
+            Audio_PowerUp.PlayOneShot(AudioController.instancia.Audio_PowerUp, 1f); 
 
 
         }

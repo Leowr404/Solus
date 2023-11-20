@@ -90,11 +90,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0b7f7e4417898940beb52af2021990a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 938908856871941834}
+      addedObject: {fileID: 2202249711398652818}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0b7f7e4417898940beb52af2021990a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2202249711398652818}
+      addedObject: {fileID: 94006472264009098}
   m_SourcePrefab: {fileID: 100100000, guid: d0b7f7e4417898940beb52af2021990a, type: 3}
 --- !u!1 &6955465574839517192 stripped
 GameObject:
@@ -102,8 +102,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7802397050637237593}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &938908856871941834
-CapsuleCollider:
+--- !u!114 &2202249711398652818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955465574839517192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f46a1d1aee9e88409e628f81f49ad15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
+--- !u!65 &94006472264009098
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,21 +133,6 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.008253697
-  m_Height: 0.02505633
-  m_Direction: 1
-  m_Center: {x: 0.000053673983, y: 0.00029232353, z: 2.3283064e-10}
---- !u!114 &2202249711398652818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6955465574839517192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f46a1d1aee9e88409e628f81f49ad15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 50
+  serializedVersion: 3
+  m_Size: {x: 0.01816584, y: 0.025333866, z: 0.00856867}
+  m_Center: {x: 0.000012284518, y: 0.00043107272, z: -0.00037548493}

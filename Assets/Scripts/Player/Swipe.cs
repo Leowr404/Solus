@@ -133,7 +133,7 @@ public class Swipe : MonoBehaviour
         float newX = Player.transform.position.x + 3.5f;
         newX = Mathf.Clamp(newX, minX, maxX);
         Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
-        Debug.Log("Swipe para a direita");
+    
     }
 
     private void LeftSwipe()
@@ -141,6 +141,6 @@ public class Swipe : MonoBehaviour
         float newX = Player.transform.position.x - 3.5f;
         newX = Mathf.Clamp(newX, minX, maxX);
         Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
-        Debug.Log("Swipe para a esquerda");
+     
     }
 }
