@@ -99,10 +99,12 @@ public class ItensPlayer : MonoBehaviour
        
 
         #region bateriaLanterna
-        if (whichItem == 2) { 
+        if (whichItem == 2) {
+           
 
             if (buttonPressed || flashlightOn)
         {
+
                 flashlightItemScript.FlashlightOn();
 
                 
@@ -331,13 +333,21 @@ public class ItensPlayer : MonoBehaviour
         }
     }
 
-    //ativacao de lanterna por double tap
-    void ActivateFlashLightByTap() {
+
+    private void ActivateFlashLightByTap() {
         Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
+        
+      
 
     }
 
-    //chamado com o doubletap
+    private void DisableFlashLightByTap()
+    {
+        flashlightItemScript.FlashlightOff();
+
+    }
+
+
     public void ActivateItem()
     {
         if(whichItem == 1)
@@ -351,17 +361,20 @@ public class ItensPlayer : MonoBehaviour
         if (whichItem == 2)
         {
             //            ActivateItemFlashlight();
-            if (flashlightOn == false)
+            if (flashlightOn == false && flashLightIndex > -1)
             {
+              //  Debug.Log("lanterna ativada");
                 flashlightOn = true;
                 ActivateFlashLightByTap();
 
             }
 
             //terminar a parte da lanterna dps, ainda ta muito bugada
-            else
+            else if(flashlightOn == true)
             {
+                Debug.Log("lanterna desativada");
                 flashlightOn = false;
+                DisableFlashLightByTap();
             }
         }
     }
