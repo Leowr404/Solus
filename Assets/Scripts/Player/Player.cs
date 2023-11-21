@@ -48,8 +48,9 @@ public class Player : MonoBehaviour
         Coletavel = AudioController.instancia.GetComponent<AudioSource>();
         CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
         CoinCollect = AudioController.instancia.GetComponent<AudioSource>();
-        
-        
+        Audio_PowerUp = AudioController.instancia.GetComponent<AudioSource>();
+
+
 
 
 
@@ -121,9 +122,7 @@ public class Player : MonoBehaviour
 
             StartCoroutine(itemScript.PowerUpInfiniteBattery());
             other.gameObject.SetActive(false);
-
-            Audio_PowerUp.PlayOneShot(AudioController.instancia.Audio_PowerUp, 1f); 
-
+            Audio_PowerUp.PlayOneShot(AudioController.instancia.Audio_PowerUp, 1f);
 
         }
 
