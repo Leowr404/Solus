@@ -106,6 +106,8 @@ for(int i = 1; i < itemsButtons.Count; i++)
         itemsButtons[buttonIndex].gameObject.SetActive(false);
         equipButtons[buttonIndex].gameObject.SetActive(true);
 
+        StartingPriceDisplay();
+
     }
 
    
@@ -114,8 +116,10 @@ for(int i = 1; i < itemsButtons.Count; i++)
     {
         for(int i = 0; i < itemsPrice.Count; i++)
         {
+            
             if (coinController.coin < itemsPrice[i])
             {
+
                 itemsButtons[i].interactable = false;
 
          

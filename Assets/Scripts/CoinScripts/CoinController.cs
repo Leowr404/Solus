@@ -17,7 +17,7 @@ public class CoinController : MonoBehaviour
     private bool isInGame = false;
     public int coin = 0;
     
-    private void Start()
+    private void Awake()
     {
         LoadCoins();
         CheckGameState();
@@ -84,7 +84,7 @@ public class CoinController : MonoBehaviour
 
     public void ResetCoin()
     {
-        PlayerPrefs.SetInt("PlayerCoins", 0);
+        PlayerPrefs.SetInt("PlayerCoins", 16);
         PlayerPrefs.Save();
         LoadCoins();
 
