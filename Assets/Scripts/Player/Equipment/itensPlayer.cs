@@ -287,6 +287,8 @@ public class ItensPlayer : MonoBehaviour
     public IEnumerator PowerUpInfiniteBattery()
     {
         powerUpActivated = true;
+        //testar se causa algum bug mais tarde
+       // flashlightOn = true;
         Debug.Log("powerUp ativo!");
         activatedTime = 0;
         chargeSlider.value = 4;
@@ -336,8 +338,6 @@ public class ItensPlayer : MonoBehaviour
 
     private void ActivateFlashLightByTap() {
         Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
-        
-      
 
     }
 
@@ -350,6 +350,31 @@ public class ItensPlayer : MonoBehaviour
 
     public void ActivateItem()
     {
+        if (whichItem == 1)
+        {
+            if (chargeSlider.value == 4)
+            {
+                ActivateItemCamera();
+            }
+        }
+
+        if (whichItem == 2)
+        {
+            if (flashlightOn)
+            {
+                flashlightOn = false;
+                DisableFlashLightByTap();
+            }
+            else if (flashLightIndex > -1)
+            {
+                flashlightOn = true;
+                ActivateFlashLightByTap();
+            }
+        }
+    }
+
+    /*public void ActivateItem()
+    {
         if(whichItem == 1)
         {
             if(chargeSlider.value == 4) { 
@@ -360,26 +385,35 @@ public class ItensPlayer : MonoBehaviour
 
         if (whichItem == 2)
         {
+
             //            ActivateItemFlashlight();
-            if (flashlightOn == false && flashLightIndex > -1)
+
+            bool canTurnOn = true;
+
+            if (flashlightOn == true)
+            {
+ 
+                flashlightOn = false;
+                DisableFlashLightByTap();
+
+                canTurnOn = false;
+            }
+            
+
+            else if (flashlightOn == false && flashLightIndex > -1 && canTurnOn == true)
             {
               //  Debug.Log("lanterna ativada");
                 flashlightOn = true;
                 ActivateFlashLightByTap();
 
             }
+            Debug.Log(canTurnOn);
 
             //terminar a parte da lanterna dps, ainda ta muito bugada
-            else if(flashlightOn == true)
-            {
-                Debug.Log("lanterna desativada");
-                flashlightOn = false;
-                DisableFlashLightByTap();
-            }
+
         }
-    }
+    }*/
 
 
-  
-#endregion
-    }
+    #endregion
+}
