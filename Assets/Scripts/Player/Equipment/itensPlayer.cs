@@ -14,7 +14,7 @@ public class ItensPlayer : MonoBehaviour
     public Color safeColor;
     public Color riskyColor;
     public Color dangerColor;
-    
+
 
     [Header("Game Objects")]
     public GameObject CameraGO;
@@ -48,7 +48,7 @@ public class ItensPlayer : MonoBehaviour
     public bool powerUpActivated = false;
     public bool cheatBateria = false;
 
-    private bool flashlightOn = false;
+    public bool flashlightOn = false;
 
     void Start()
     {
@@ -56,110 +56,115 @@ public class ItensPlayer : MonoBehaviour
         camera = AudioController.instancia.GetComponent<AudioSource>();
 
         //verifica qual item o jogador escolheu no menu
-      //  whichItem = PlayerPrefs.GetInt("ChosenItem");
+        //  whichItem = PlayerPrefs.GetInt("ChosenItem");
 
-        if(whichItem == 1)
+        if (whichItem == 1)
         {
             CameraGO.SetActive(true);
-}
+        }
         else
         {
             FlashlightGO.SetActive(true);
 
         }
 
-        
+
         if (chargeSlider != null)
         {
 
 
             ColorBlock colorBlock = chargeSlider.colors;
-            colorBlock.disabledColor = safeColor; 
+            colorBlock.disabledColor = safeColor;
 
-          
+
             chargeSlider.colors = colorBlock;
         }
-            chargeSlider.value = 4;
+        chargeSlider.value = 4;
         cameraItemScript = CameraGO.GetComponent<CameraItem>();
         flashlightItemScript = FlashlightGO.GetComponent<FlashLightItem>();
 
         flashLightIndex = 3;
         int cargas = battery.Count;
 
-        if(whichItem == 1)
-        itemButton.onClick.AddListener(ActivateItemCamera);
+        if (whichItem == 1)
+            itemButton.onClick.AddListener(ActivateItemCamera);
 
-        else if(whichItem == 2)
+        else if (whichItem == 2)
             itemButton.onClick.AddListener(ActivateItemFlashlight);
     }
 
-    void Update()
-    {
- 
+     void Update()
+     {
+
        
+            if (flashlightOn)
+            {
+                ActivateFlashLightByTap();
+            }
+        
 
         #region bateriaLanterna
         if (whichItem == 2) {
-           
-
-            if (buttonPressed || flashlightOn)
-        {
-
-                flashlightItemScript.FlashlightOn();
-
-                
-
-                if(powerUpActivated == false && cheatBateria == false) { 
-                activatedTime += Time.deltaTime;
 
 
-                if(activatedTime > timeForEachBaterry && flashLightIndex == 3) {
-                    
-                    chargeSlider.value -= 1;
+             if (buttonPressed || flashlightOn)
+         {
 
-                    if(flashLightIndex > 0)
-                    flashLightIndex--;
-                }
+                 flashlightItemScript.FlashlightOn();
 
 
-                else if (activatedTime > 2*timeForEachBaterry && flashLightIndex == 2)
-                {
-                   
-                    chargeSlider.value -= 1;
 
-                    if (flashLightIndex > 0)
-                        flashLightIndex--;
-                }
+                 if(powerUpActivated == false && cheatBateria == false) { 
+                 activatedTime += Time.deltaTime;
 
 
-                else if (activatedTime > 3 * timeForEachBaterry && flashLightIndex == 1)
-                {
-                    
-                    chargeSlider.value -= 1;
+                 if(activatedTime > timeForEachBaterry && flashLightIndex == 3) {
 
-                    if (flashLightIndex > 0)
-                        flashLightIndex--;
-                }
+                     chargeSlider.value -= 1;
+
+                     if(flashLightIndex > 0)
+                     flashLightIndex--;
+                 }
 
 
-                else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == 0)
-                {
-                   
+                 else if (activatedTime > 2*timeForEachBaterry && flashLightIndex == 2)
+                 {
 
-                    itemButton.interactable = false;
-                    buttonPressed = false;
-                    flashlightItemScript.FlashlightOff();
+                     chargeSlider.value -= 1;
 
-                    chargeSlider.value -= 1;
+                     if (flashLightIndex > 0)
+                         flashLightIndex--;
+                 }
 
-                    if (flashLightIndex > 0)
-                        flashLightIndex--;
-                }
-            }
-            }
-        }
-        #endregion
-    }
+
+                 else if (activatedTime > 3 * timeForEachBaterry && flashLightIndex == 1)
+                 {
+
+                     chargeSlider.value -= 1;
+
+                     if (flashLightIndex > 0)
+                         flashLightIndex--;
+                 }
+
+
+                 else if (activatedTime > 4 * timeForEachBaterry && flashLightIndex == 0)
+                 {
+
+
+                     itemButton.interactable = false;
+                     buttonPressed = false;
+                     flashlightItemScript.FlashlightOff();
+
+                     chargeSlider.value -= 1;
+
+                     if (flashLightIndex > 0)
+                         flashLightIndex--;
+                 }
+             }
+             }
+         }
+         #endregion
+     }
 
     public void InfiniteBattery()
     {
@@ -181,70 +186,72 @@ public class ItensPlayer : MonoBehaviour
     public void OnSliderValueChanged()
     {
 
-        
-        if(powerUpActivated == false && cheatBateria == false) { 
-        ColorBlock colorBlock = chargeSlider.colors;
-        switch (chargeSlider.value)
+
+        if (powerUpActivated == false && cheatBateria == false)
         {
-            case 1:
-                colorBlock.disabledColor = dangerColor;
-                colorBlock.normalColor = dangerColor; 
-                colorBlock.highlightedColor = dangerColor; 
-                colorBlock.pressedColor = dangerColor; 
-                
-                break;
-            case 2:
-                colorBlock.disabledColor = riskyColor;
-                colorBlock.normalColor = riskyColor;
-                colorBlock.highlightedColor = riskyColor;
-                colorBlock.pressedColor = riskyColor;
-                
-                break;
-            default:
-                colorBlock.disabledColor = safeColor;
-                colorBlock.normalColor = safeColor;
-                colorBlock.highlightedColor = safeColor;
-                colorBlock.pressedColor = safeColor;
-             
-                break;
+            ColorBlock colorBlock = chargeSlider.colors;
+            switch (chargeSlider.value)
+            {
+                case 1:
+                    colorBlock.disabledColor = dangerColor;
+                    colorBlock.normalColor = dangerColor;
+                    colorBlock.highlightedColor = dangerColor;
+                    colorBlock.pressedColor = dangerColor;
+
+                    break;
+                case 2:
+                    colorBlock.disabledColor = riskyColor;
+                    colorBlock.normalColor = riskyColor;
+                    colorBlock.highlightedColor = riskyColor;
+                    colorBlock.pressedColor = riskyColor;
+
+                    break;
+                default:
+                    colorBlock.disabledColor = safeColor;
+                    colorBlock.normalColor = safeColor;
+                    colorBlock.highlightedColor = safeColor;
+                    colorBlock.pressedColor = safeColor;
+
+                    break;
+            }
+
+            chargeSlider.colors = colorBlock;
+
+
+
         }
 
-        chargeSlider.colors = colorBlock;
-
-    
-
-            }
-        
     }
 
     #region scriptCamera
     void ActivateItemCamera()
     {
-       
-            cameraItemScript.StartCoroutine(cameraItemScript.LigarCameraPorTempo(1f));
+
+        cameraItemScript.StartCoroutine(cameraItemScript.LigarCameraPorTempo(1f));
 
         if (powerUpActivated == false)
         {
 
 
-            if(cheatBateria == false) itemButton.interactable = !itemButton.interactable;
+            if (cheatBateria == false) itemButton.interactable = !itemButton.interactable;
 
             camera.PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
 
 
-            if(cheatBateria == false) { 
+            if (cheatBateria == false)
+            {
 
 
-            chargeSlider.value = 0;
-            InvokeRepeating("ReloadCamera", batteryReloadTime, batteryReloadTime);
+                chargeSlider.value = 0;
+                InvokeRepeating("ReloadCamera", batteryReloadTime, batteryReloadTime);
 
 
             }
 
 
         }
-        
-      
+
+
     }
     void ReloadCamera()
     {
@@ -252,13 +259,14 @@ public class ItensPlayer : MonoBehaviour
 
         chargeSlider.value += 1;
 
-        if (index == 3) {
+        if (index == 3)
+        {
             itemButton.interactable = !itemButton.interactable;
             index = -1;
             CancelInvoke("ReloadCamera");
- 
+
         }
-        
+
         index++;
 
 
@@ -288,7 +296,7 @@ public class ItensPlayer : MonoBehaviour
     {
         powerUpActivated = true;
         //testar se causa algum bug mais tarde
-       // flashlightOn = true;
+        // flashlightOn = true;
         Debug.Log("powerUp ativo!");
         activatedTime = 0;
         chargeSlider.value = 4;
@@ -304,7 +312,7 @@ public class ItensPlayer : MonoBehaviour
         chargeSlider.colors = colorBlock;
 
         itemButton.interactable = true;
-        
+
         yield return new WaitForSeconds(powerUpDuration);
 
         powerUpActivated = false;
@@ -315,29 +323,31 @@ public class ItensPlayer : MonoBehaviour
     void ActivateItemFlashlight()
     {
 
-        if(flashLightIndex < 0 )
+        if (flashLightIndex < 0)
             itemButton.interactable = !itemButton.interactable;
         Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
 
 
 
-        buttonPressed = !buttonPressed; 
+        buttonPressed = !buttonPressed;
 
-       
+
         if (buttonPressed)
         {
             Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
-           
+
         }
-        else 
+        else
         {
             flashlightItemScript.FlashlightOff();
         }
     }
 
+    
+    private void ActivateFlashLightByTap()
+    {
+        flashlightItemScript.FlashlightOn();
 
-    private void ActivateFlashLightByTap() {
-        Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
 
     }
 
@@ -368,7 +378,8 @@ public class ItensPlayer : MonoBehaviour
             else if (flashLightIndex > -1)
             {
                 flashlightOn = true;
-                ActivateFlashLightByTap();
+                Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
+                // ActivateFlashLightByTap();
             }
         }
     }

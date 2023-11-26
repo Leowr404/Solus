@@ -22,7 +22,7 @@ public class Swipe : MonoBehaviour
 
     public bool doubleTap = false;
     public bool FUNCIONOU = false;
-    private float tapCD = 0.7f;
+    private float tapCD = 0.2f;
 
     private void Start()
     {
@@ -45,9 +45,12 @@ public class Swipe : MonoBehaviour
                 {
                     FUNCIONOU = true;
                     itensPlayer.ActivateItem();
+                    
                 }
 
+
             }
+          
 
             switch (touch.phase)
         {

@@ -4004,6 +4004,7 @@ MonoBehaviour:
   powerUpDuration: 6
   powerUpActivated: 0
   cheatBateria: 0
+  flashlightOn: 0
 --- !u!1 &932049521
 GameObject:
   m_ObjectHideFlags: 0
@@ -11665,8 +11666,8 @@ MonoBehaviour:
   EnemyJumperCd: 5
   spawnBatteryCd: 20
   batteryChance: 8
-  spawnPowerUpCd: 6
-  powerUpChance: 10
+  spawnPowerUpCd: 15
+  powerUpChance: 4
   coinSpawnDistance: 140
   spawnCoinCd: 11
   coinChance: 6
