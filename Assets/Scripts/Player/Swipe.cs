@@ -24,6 +24,9 @@ public class Swipe : MonoBehaviour
     public bool FUNCIONOU = false;
     private float tapCD = 0.2f;
 
+    private int quantidade = 0;
+    private bool canActivateItem = true;
+
     private void Start()
     {
         player = Player.GetComponent<Player>();
@@ -37,20 +40,23 @@ public class Swipe : MonoBehaviour
     {
         Touch touch = Input.GetTouch(0);
 
-            
+
             if (Input.touchCount == 1 && doubleTap == true)
             {
                 float tapDeltaX = touch.position.x - startTouchPosition.x;
                 if (Mathf.Abs(tapDeltaX) < tapSensitivity)
                 {
+                    quantidade++;
                     FUNCIONOU = true;
-                    itensPlayer.ActivateItem();
-                    
+
+                    if (canActivateItem)
+                    {
+                        StartCoroutine(ActivateItemCooldown());
+                        itensPlayer.ActivateItem();
+                    }
                 }
-
-
             }
-          
+
 
             switch (touch.phase)
         {
@@ -145,5 +151,12 @@ public class Swipe : MonoBehaviour
         newX = Mathf.Clamp(newX, minX, maxX);
         Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
      
+    }
+
+    private IEnumerator ActivateItemCooldown()
+    {
+        canActivateItem = false;
+        yield return new WaitForSeconds(0.5f); // Intervalo desejado (meio segundo)
+        canActivateItem = true;
     }
 }

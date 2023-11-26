@@ -9,6 +9,8 @@ public class CameraItem : MonoBehaviour
     public LayerMask monstrosLayer;
     private bool podeLigarCamera = true;
 
+
+
     private void Start()
     {
         luz.enabled = false;

@@ -41,6 +41,7 @@ public class FlashLightItem : MonoBehaviour
         
 
         Invoke("DetectMonstersInRange", 0f);
+        Debug.Log("Matando monstros");
 
     
     }

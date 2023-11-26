@@ -110,7 +110,7 @@ public class ItensPlayer : MonoBehaviour
              if (buttonPressed || flashlightOn)
          {
 
-                 flashlightItemScript.FlashlightOn();
+              //   flashlightItemScript.FlashlightOn();
 
 
 
@@ -153,6 +153,8 @@ public class ItensPlayer : MonoBehaviour
 
                      itemButton.interactable = false;
                      buttonPressed = false;
+
+                        flashlightOn = false;
                      flashlightItemScript.FlashlightOff();
 
                      chargeSlider.value -= 1;
@@ -375,11 +377,10 @@ public class ItensPlayer : MonoBehaviour
                 flashlightOn = false;
                 DisableFlashLightByTap();
             }
-            else if (flashLightIndex > -1)
+            else if (flashLightIndex > 0)
             {
                 flashlightOn = true;
                 Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
-                // ActivateFlashLightByTap();
             }
         }
     }
