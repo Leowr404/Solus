@@ -10,6 +10,7 @@ public class EnemyJumper : MonoBehaviour
 
     private Vector3 targetPosition;
     private float timeSinceLastPathChange;
+private Animator animator;
 
     public void Morrer()
     {
@@ -28,6 +29,7 @@ public class EnemyJumper : MonoBehaviour
     void Start()
     {
         timeSinceLastPathChange = 0f;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -40,7 +42,10 @@ public class EnemyJumper : MonoBehaviour
 
             if (timeSinceLastPathChange >= timeOnCurrentPath)
             {
+                animator.SetBool("Jump", true);
+                Debug.Log("animator chamado");
                 ChooseNewPath();
+
             }
         }
     }
@@ -64,6 +69,8 @@ public class EnemyJumper : MonoBehaviour
                 break;
         }
 
+
         timeSinceLastPathChange = 0f;
+
     }
 }

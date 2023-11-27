@@ -84,7 +84,7 @@ public class CoinController : MonoBehaviour
 
     public void ResetCoin()
     {
-        PlayerPrefs.SetInt("PlayerCoins",11);
+        PlayerPrefs.SetInt("PlayerCoins",0);
         PlayerPrefs.Save();
         LoadCoins();
 

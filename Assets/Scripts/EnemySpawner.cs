@@ -114,6 +114,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 position = player.transform.position;
         position.z += spawnDistance;
+        position.y -= 1.0f;
         int randomNumber = UnityEngine.Random.Range(1, 4);
         switch (randomNumber)
         {
@@ -130,8 +131,8 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-
-        SpawnFromPool("JumperEnemy", position, Quaternion.identity);
+        Quaternion rotation = Quaternion.Euler(0, 180, 0);
+        SpawnFromPool("JumperEnemy", position, rotation);
 
     }
 
