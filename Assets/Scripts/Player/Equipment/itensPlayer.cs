@@ -385,46 +385,6 @@ public class ItensPlayer : MonoBehaviour
         }
     }
 
-    /*public void ActivateItem()
-    {
-        if(whichItem == 1)
-        {
-            if(chargeSlider.value == 4) { 
-            ActivateItemCamera();
-                
-            }
-        }
-
-        if (whichItem == 2)
-        {
-
-            //            ActivateItemFlashlight();
-
-            bool canTurnOn = true;
-
-            if (flashlightOn == true)
-            {
- 
-                flashlightOn = false;
-                DisableFlashLightByTap();
-
-                canTurnOn = false;
-            }
-            
-
-            else if (flashlightOn == false && flashLightIndex > -1 && canTurnOn == true)
-            {
-              //  Debug.Log("lanterna ativada");
-                flashlightOn = true;
-                ActivateFlashLightByTap();
-
-            }
-            Debug.Log(canTurnOn);
-
-            //terminar a parte da lanterna dps, ainda ta muito bugada
-
-        }
-    }*/
 
 
     #endregion
