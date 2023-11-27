@@ -6,6 +6,9 @@ public class TutorialMenu : MonoBehaviour
 {
     public GameObject[] tutorialPanels;
     private int currentPanelIndex = 0;
+    public GameObject[] tutorialDialogues;
+    private int currentDialogueIndex = 0;
+
 
     void Start()
     {
@@ -17,6 +20,7 @@ public class TutorialMenu : MonoBehaviour
         for (int i = 0; i < tutorialPanels.Length; i++)
         {
             tutorialPanels[i].SetActive(i == currentPanelIndex);
+            
         }
     }
 
@@ -51,6 +55,7 @@ public class TutorialMenu : MonoBehaviour
         // Salva que o tutorial foi concluído para não exibir novamente
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
+        
 
         // Adicione aqui qualquer lógica para o que você quer fazer após o tutorial.
     }
