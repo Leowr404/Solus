@@ -12,7 +12,6 @@ public class EnemyJumper : MonoBehaviour
     private Animator animator;
 
     private int currentPlataform = 5;
-    private float timer = 0;
 
     public void Morrer()
     {
@@ -24,15 +23,12 @@ public class EnemyJumper : MonoBehaviour
 
     void OnEnable()
     {
-        timer = 0;
         // Chama ChooseNewPath quando o inimigo é ativado (reciclado)
         ChooseNewPath();
     }
 
     void Start()
     {
-        //5 segundos
-        StartCoroutine(ActivateDiveAttack());
         timeSinceLastPathChange = 0f;
         animator = GetComponent<Animator>();
     }
@@ -47,7 +43,8 @@ public class EnemyJumper : MonoBehaviour
 
             if (timeSinceLastPathChange >= timeOnCurrentPath)
             {
-                //  ChooseNewPath();
+
+                 ChooseNewPath();
             }
         }
     }
@@ -55,6 +52,7 @@ public class EnemyJumper : MonoBehaviour
     void ChooseNewPath()
     {
         int randomNumber = UnityEngine.Random.Range(1, 4);
+
 
         if (currentPlataform > randomNumber)
         {
@@ -66,6 +64,7 @@ public class EnemyJumper : MonoBehaviour
         {
             //animacao normal
             StartCoroutine(ActivateJumpAndCooldown());
+
         }
 
         currentPlataform = randomNumber;
@@ -101,6 +100,7 @@ public class EnemyJumper : MonoBehaviour
 
     IEnumerator ActivateMirrorJumpAndCooldown()
     {
+
         // Ativa o estado de salto
         animator.SetBool("JumpMirror", true);
 
@@ -109,11 +109,13 @@ public class EnemyJumper : MonoBehaviour
 
         // Desativa o estado de salto
         animator.SetBool("JumpMirror", false);
+
     }
 
     IEnumerator ActivateDiveAttack()
     {
-        yield return new WaitForSeconds(5.55f);
+
+        Debug.Log("Ataque chamado");
         // Ativa o estado de salto
         animator.SetBool("Attack", true);
 
@@ -121,15 +123,20 @@ public class EnemyJumper : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Desativa o estado de salto
-        animator.SetBool("Attack", false);
+        //animator.SetBool("Attack", false);
+
     }
 
-    //AINDA NAO FUNCIONANDO, COLISAO NAO ESTA SENDO DETECTADA, COLISOR DENTRO DO PLAYER, ARRUMAR DEPOIS
-    void OnCollisionStay(Collision collision)
+    void OnTriggerStay(Collider other)
     {
-        if (collision.gameObject.CompareTag("AttackTrigger"))
+
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("AttackTrigger"))
         {
-            Debug.Log("COLISÃO DE ATAQUE DETECTADA");
+
+            StartCoroutine(ActivateDiveAttack());
+
         }
+
     }
 }
