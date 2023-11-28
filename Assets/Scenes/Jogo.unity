@@ -768,7 +768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149233925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521313, y: 0.00000003296683, z: -0.000000004838502, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 3, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2077,8 +2077,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.871475, y: 6.545308, z: 17.52985}
-  m_Center: {x: -0.641235, y: 0.7033663, z: 8.264925}
+  m_Size: {x: 3.871475, y: 6.545308, z: 15.269947}
+  m_Center: {x: -0.641235, y: 0.7033663, z: 7.1349735}
 --- !u!1 &536650245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4279,7 +4279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954711448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521313, y: 0.00000003296683, z: -0.000000004838502, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 3, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11695,7 +11695,7 @@ MonoBehaviour:
   - tag: baseEnemy
     baseEnemy: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
       type: 3}
-    size: 0
+    size: 6
   - tag: battery
     baseEnemy: {fileID: 6673286731539176024, guid: dce42e423f805414c88be2f6bcd2c09b,
       type: 3}
@@ -11711,13 +11711,13 @@ MonoBehaviour:
   - tag: JumperEnemy
     baseEnemy: {fileID: 2515436861282319814, guid: a48ee969b68b5a74396fe690b6988203,
       type: 3}
-    size: 7
+    size: 3
   enemyCommon: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 100
   MainEnemyspawnCd: 1.5
-  EnemyJumperCd: 3
+  EnemyJumperCd: 5
   spawnBatteryCd: 20
   batteryChance: 8
   spawnPowerUpCd: 15

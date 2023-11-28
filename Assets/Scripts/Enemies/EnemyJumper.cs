@@ -44,7 +44,7 @@ public class EnemyJumper : MonoBehaviour
             if (timeSinceLastPathChange >= timeOnCurrentPath)
             {
 
-                 ChooseNewPath();
+                ChooseNewPath();
             }
         }
     }
