@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyJumper : MonoBehaviour
@@ -10,7 +9,10 @@ public class EnemyJumper : MonoBehaviour
 
     private Vector3 targetPosition;
     private float timeSinceLastPathChange;
-private Animator animator;
+    private Animator animator;
+
+    private int currentPlataform = 5;
+    private float timer = 0;
 
     public void Morrer()
     {
@@ -22,12 +24,15 @@ private Animator animator;
 
     void OnEnable()
     {
+        timer = 0;
         // Chama ChooseNewPath quando o inimigo é ativado (reciclado)
         ChooseNewPath();
     }
 
     void Start()
     {
+        //5 segundos
+        StartCoroutine(ActivateDiveAttack());
         timeSinceLastPathChange = 0f;
         animator = GetComponent<Animator>();
     }
@@ -42,10 +47,7 @@ private Animator animator;
 
             if (timeSinceLastPathChange >= timeOnCurrentPath)
             {
-                animator.SetBool("Jump", true);
-                Debug.Log("animator chamado");
-                ChooseNewPath();
-
+                //  ChooseNewPath();
             }
         }
     }
@@ -54,6 +56,19 @@ private Animator animator;
     {
         int randomNumber = UnityEngine.Random.Range(1, 4);
 
+        if (currentPlataform > randomNumber)
+        {
+            //animacao espelhada
+            StartCoroutine(ActivateMirrorJumpAndCooldown());
+        }
+
+        else if (currentPlataform < randomNumber)
+        {
+            //animacao normal
+            StartCoroutine(ActivateJumpAndCooldown());
+        }
+
+        currentPlataform = randomNumber;
         switch (randomNumber)
         {
             case 1:
@@ -69,8 +84,52 @@ private Animator animator;
                 break;
         }
 
-
         timeSinceLastPathChange = 0f;
+    }
 
+    IEnumerator ActivateJumpAndCooldown()
+    {
+        // Ativa o estado de salto
+        animator.SetBool("Jump", true);
+
+        // Aguarda 0.3 segundos
+        yield return new WaitForSeconds(0.3f);
+
+        // Desativa o estado de salto
+        animator.SetBool("Jump", false);
+    }
+
+    IEnumerator ActivateMirrorJumpAndCooldown()
+    {
+        // Ativa o estado de salto
+        animator.SetBool("JumpMirror", true);
+
+        // Aguarda 0.3 segundos
+        yield return new WaitForSeconds(0.3f);
+
+        // Desativa o estado de salto
+        animator.SetBool("JumpMirror", false);
+    }
+
+    IEnumerator ActivateDiveAttack()
+    {
+        yield return new WaitForSeconds(5.55f);
+        // Ativa o estado de salto
+        animator.SetBool("Attack", true);
+
+        // Aguarda 0.3 segundos
+        yield return new WaitForSeconds(0.5f);
+
+        // Desativa o estado de salto
+        animator.SetBool("Attack", false);
+    }
+
+    //AINDA NAO FUNCIONANDO, COLISAO NAO ESTA SENDO DETECTADA, COLISOR DENTRO DO PLAYER, ARRUMAR DEPOIS
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("AttackTrigger"))
+        {
+            Debug.Log("COLISÃO DE ATAQUE DETECTADA");
+        }
     }
 }
