@@ -156,7 +156,7 @@ public class Swipe : MonoBehaviour
     private IEnumerator ActivateItemCooldown()
     {
         canActivateItem = false;
-        yield return new WaitForSeconds(0.5f); // Intervalo desejado (meio segundo)
+        yield return new WaitForSeconds(0.3f); // Intervalo desejado (meio segundo)
         canActivateItem = true;
     }
 }

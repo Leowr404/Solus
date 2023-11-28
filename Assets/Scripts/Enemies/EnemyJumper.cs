@@ -100,6 +100,7 @@ public class EnemyJumper : MonoBehaviour
 
     IEnumerator ActivateMirrorJumpAndCooldown()
     {
+        StartCoroutine(MirrorModel());
 
         // Ativa o estado de salto
         animator.SetBool("JumpMirror", true);
@@ -112,6 +113,14 @@ public class EnemyJumper : MonoBehaviour
 
     }
 
+    IEnumerator MirrorModel()
+    {
+        transform.localScale = new Vector3(-1.9f, 1.9f, 1.9f);
+
+        yield return new WaitForSeconds(0.8f);
+
+        transform.localScale = new Vector3(1.9f, 1.9f, 1.9f);
+    }
     IEnumerator ActivateDiveAttack()
     {
 
@@ -120,10 +129,10 @@ public class EnemyJumper : MonoBehaviour
         animator.SetBool("Attack", true);
 
         // Aguarda 0.3 segundos
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
 
         // Desativa o estado de salto
-        //animator.SetBool("Attack", false);
+        animator.SetBool("Attack", false);
 
     }
 

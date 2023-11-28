@@ -374,13 +374,15 @@ public class ItensPlayer : MonoBehaviour
         {
             if (flashlightOn)
             {
+                Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
                 flashlightOn = false;
                 DisableFlashLightByTap();
             }
             else if (flashLightIndex > 0)
             {
-                flashlightOn = true;
                 Lanterna.PlayOneShot(AudioController.instancia.Audio_Lanterna, 1f);
+                flashlightOn = true;
+
             }
         }
     }
