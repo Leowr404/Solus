@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialMenu : MonoBehaviour
 {
-    public GameObject[] tutorialPanels;
-    private int currentPanelIndex = 0;
-    public GameObject[] tutorialDialogues;
-    private int currentDialogueIndex = 0;
+    [System.Serializable]
+    public class TutorialPanel
+    {
+        public GameObject panelObject;
+        public Text dialogueText;
+        public string dialogue;
+    }
 
+    public TutorialPanel[] tutorialPanels;
+    private int currentPanelIndex = 0;
+    public float typingSpeed = 0.05f;
 
     void Start()
     {
@@ -19,17 +26,31 @@ public class TutorialMenu : MonoBehaviour
     {
         for (int i = 0; i < tutorialPanels.Length; i++)
         {
-            tutorialPanels[i].SetActive(i == currentPanelIndex);
-            
+            tutorialPanels[i].panelObject.SetActive(i == currentPanelIndex);
+
+            // Se for o painel atual, exibe o diálogo
+            if (i == currentPanelIndex)
+            {
+                StartCoroutine(TypeDialogue(tutorialPanels[i].dialogueText, tutorialPanels[i].dialogue));
+            }
+        }
+    }
+
+    IEnumerator TypeDialogue(Text textObject, string dialogue)
+    {
+        textObject.text = "";
+
+        foreach (char letter in dialogue.ToCharArray())
+        {
+            textObject.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
         }
     }
 
     void Update()
     {
-        // Verifica se houve um toque na tela
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            // Conduz para o próximo painel do tutorial
             NextPanel();
         }
     }
@@ -52,11 +73,7 @@ public class TutorialMenu : MonoBehaviour
     {
         Debug.Log("Tutorial concluído!");
 
-        // Salva que o tutorial foi concluído para não exibir novamente
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
-        
-
-        // Adicione aqui qualquer lógica para o que você quer fazer após o tutorial.
     }
 }
