@@ -19,7 +19,18 @@ public class TutorialMenu : MonoBehaviour
 
     void Start()
     {
-        ShowCurrentPanel();
+        if (!PlayerPrefs.HasKey("TutorialCompleted"))
+        {
+            ShowCurrentPanel();
+        }
+        else
+        {
+            // Se já foi concluído, desativa todos os painéis
+            foreach (var panel in tutorialPanels)
+            {
+                panel.panelObject.SetActive(false);
+            }
+        }
     }
 
     void ShowCurrentPanel()
@@ -75,5 +86,19 @@ public class TutorialMenu : MonoBehaviour
 
         PlayerPrefs.SetInt("TutorialCompleted", 1);
         PlayerPrefs.Save();
+        foreach (var panel in tutorialPanels)
+        {
+            panel.panelObject.SetActive(false);
+        }
+    }
+
+    public void RestartTutorial()
+    {
+        // Limpa a chave de PlayerPrefs
+        PlayerPrefs.DeleteKey("TutorialCompleted");
+
+        // Reinicia o tutorial
+        currentPanelIndex = 0;
+        Start();
     }
 }
