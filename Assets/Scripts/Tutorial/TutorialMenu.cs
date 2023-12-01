@@ -2,24 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static TutorialGame;
 
 public class TutorialMenu : MonoBehaviour
 {
-    [System.Serializable]
-    public class TutorialPanel
-    {
-        public GameObject panelObject;
-        public Text dialogueText;
-        public string dialogue;
-    }
-
     public TutorialPanel[] tutorialPanels;
     private int currentPanelIndex = 0;
     public float typingSpeed = 0.05f;
 
+    private bool tutorialCompleted = false;
+
     void Start()
     {
-        if (!PlayerPrefs.HasKey("TutorialCompleted"))
+        tutorialCompleted = PlayerPrefs.HasKey("TutorialCompleted");
+
+        if (!tutorialCompleted)
         {
             ShowCurrentPanel();
         }
@@ -35,15 +32,12 @@ public class TutorialMenu : MonoBehaviour
 
     void ShowCurrentPanel()
     {
-        for (int i = 0; i < tutorialPanels.Length; i++)
+        if (currentPanelIndex < tutorialPanels.Length)
         {
-            tutorialPanels[i].panelObject.SetActive(i == currentPanelIndex);
+            tutorialPanels[currentPanelIndex].panelObject.SetActive(true);
 
             // Se for o painel atual, exibe o diálogo
-            if (i == currentPanelIndex)
-            {
-                StartCoroutine(TypeDialogue(tutorialPanels[i].dialogueText, tutorialPanels[i].dialogue));
-            }
+            StartCoroutine(TypeDialogue(tutorialPanels[currentPanelIndex].dialogueText, tutorialPanels[currentPanelIndex].dialogue));
         }
     }
 
@@ -60,7 +54,7 @@ public class TutorialMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (!tutorialCompleted && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             NextPanel();
         }
@@ -68,15 +62,19 @@ public class TutorialMenu : MonoBehaviour
 
     public void NextPanel()
     {
-        currentPanelIndex++;
+        if (!tutorialCompleted)
+        {
+            tutorialPanels[currentPanelIndex].panelObject.SetActive(false);
+            currentPanelIndex++;
 
-        if (currentPanelIndex < tutorialPanels.Length)
-        {
-            ShowCurrentPanel();
-        }
-        else
-        {
-            EndTutorial();
+            if (currentPanelIndex < tutorialPanels.Length)
+            {
+                ShowCurrentPanel();
+            }
+            else
+            {
+                EndTutorial();
+            }
         }
     }
 
@@ -85,11 +83,7 @@ public class TutorialMenu : MonoBehaviour
         Debug.Log("Tutorial concluído!");
 
         PlayerPrefs.SetInt("TutorialCompleted", 1);
-        PlayerPrefs.Save();
-        foreach (var panel in tutorialPanels)
-        {
-            panel.panelObject.SetActive(false);
-        }
+        PlayerPrefs.Save(); // Certifica-se de salvar imediatamente
     }
 
     public void RestartTutorial()
