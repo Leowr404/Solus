@@ -47,6 +47,7 @@ public class Cenas : MonoBehaviour
         else
         {
             SceneManager.LoadSceneAsync(2);
+            Time.timeScale = 1.0f;
         }
     }
 
