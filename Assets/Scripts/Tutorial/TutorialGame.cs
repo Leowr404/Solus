@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TutorialGame : MonoBehaviour
-{
 
     [System.Serializable]
     public class TutorialPanel
@@ -14,116 +13,91 @@ public class TutorialGame : MonoBehaviour
         public string dialogue;
     }
 
-    public TutorialPanel[] tutorialPanels;
-    private int currentPanelIndex = 0;
-    public float typingSpeed = 0.05f;
-
-    private bool isTyping = false;
-    private bool isTutorialActive = true;
-
-    void Start()
+    public class TutorialGame : MonoBehaviour
     {
-        if (!PlayerPrefs.HasKey("TutorialCompleted"))
+        public TutorialPanel[] tutorialPanels;
+        private int currentPanelIndex = 0;
+        public float typingSpeed = 0.05f;
+
+        private bool tutorialCompleted = false;
+
+        void Start()
         {
-            StartCoroutine(ShowTutorial());
-        }
-        else
-        {
-            // Se já foi concluído, desativa todos os painéis
-            foreach (var panel in tutorialPanels)
+            
+            tutorialCompleted = PlayerPrefs.HasKey("TutorialGameCompleted");
+
+            if (!tutorialCompleted)
             {
-                panel.panelObject.SetActive(false);
-            }
-        }
-    }
-
-    IEnumerator ShowTutorial()
-    {
-        while (currentPanelIndex < tutorialPanels.Length)
-        {
-            Time.timeScale = isTutorialActive ? 0 : 1;
-
-            var panel = tutorialPanels[currentPanelIndex];
-            panel.panelObject.SetActive(true);
-
-            if (!isTyping)
-            {
-                yield return StartCoroutine(TypeDialogue(panel.dialogueText, panel.dialogue));
-            }
-
-            panel.panelObject.SetActive(false);
-            Time.timeScale = 1;
-
-            yield return new WaitForSeconds(0.1f); // Pequeno atraso para evitar problemas de entrada
-            currentPanelIndex++;
-        }
-
-        // Fim do tutorial
-        EndTutorial();
-    }
-
-    IEnumerator TypeDialogue(Text textObject, string dialogue)
-    {
-        isTyping = true;
-        textObject.text = "";
-
-        foreach (char letter in dialogue.ToCharArray())
-        {
-            textObject.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
-
-        isTyping = false;
-    }
-
-    void Update()
-    {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            if (isTutorialActive)
-            {
-                NextPanel();
+                ShowCurrentPanel();
             }
             else
             {
-                // Lidar com a entrada durante o jogo normal
+                // Se já foi concluído, desativa todos os painéis
+                foreach (var panel in tutorialPanels)
+                {
+                    panel.panelObject.SetActive(false);
+                }
+                 SceneManager.LoadSceneAsync(1);
             }
         }
-    }
 
-    void NextPanel()
-    {
-        if (currentPanelIndex < tutorialPanels.Length)
+        void ShowCurrentPanel()
         {
-            StartCoroutine(ShowTutorial());
+            if (currentPanelIndex < tutorialPanels.Length)
+            {
+                tutorialPanels[currentPanelIndex].panelObject.SetActive(true);
+
+                // Se for o painel atual, exibe o diálogo
+                StartCoroutine(TypeDialogue(tutorialPanels[currentPanelIndex].dialogueText, tutorialPanels[currentPanelIndex].dialogue));
+            }
         }
-        else
+
+        IEnumerator TypeDialogue(Text textObject, string dialogue)
         {
-            EndTutorial();
+            textObject.text = "";
+
+            foreach (char letter in dialogue.ToCharArray())
+            {
+                textObject.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
         }
-    }
 
-    void EndTutorial()
-    {
-        Debug.Log("Tutorial concluído!");
-        PlayerPrefs.SetInt("TutorialCompleted", 1);
-        PlayerPrefs.Save();
-
-        isTutorialActive = false;
-        foreach (var panel in tutorialPanels)
+        void Update()
         {
-            panel.panelObject.SetActive(false);
+            if (!tutorialCompleted && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                NextPanel();
+            }
         }
+
+        public void NextPanel()
+        {
+            if (!tutorialCompleted)
+            {
+                tutorialPanels[currentPanelIndex].panelObject.SetActive(false);
+                currentPanelIndex++;
+
+                if (currentPanelIndex < tutorialPanels.Length)
+                {
+                    ShowCurrentPanel();
+                }
+                else
+                {
+                    EndTutorial();
+                }
+            }
+        }
+
+        void EndTutorial()
+        {
+            Debug.Log("Tutorial concluído!");
+
+            PlayerPrefs.SetInt("TutorialGameCompleted", 1);
+            PlayerPrefs.Save(); // Certifica-se de salvar imediatamente
+            SceneManager.LoadSceneAsync(1);
     }
 
-    public void RestartTutorial()
-    {
-        // Limpa a chave de PlayerPrefs
-        PlayerPrefs.DeleteKey("TutorialCompleted");
-
-        // Reinicia o tutorial
-        currentPanelIndex = 0;
-        isTutorialActive = true;
-        Start();
+        
     }
-}
+    
