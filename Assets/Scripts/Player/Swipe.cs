@@ -26,9 +26,13 @@ public class Swipe : MonoBehaviour
 
     private int quantidade = 0;
     private bool canActivateItem = true;
+    public Animator animator;
+
 
     private void Start()
     {
+        
+        
         player = Player.GetComponent<Player>();
         itensPlayer = ItensPlayer.GetComponent<ItensPlayer>();
         Audio_Cheat = AudioController.instancia.GetComponent<AudioSource>();
@@ -74,7 +78,7 @@ public class Swipe : MonoBehaviour
                 {
                     StartCoroutine(DoubleTapCooldown());
                 }
-
+                
                 break;
         }
     }
@@ -104,8 +108,7 @@ public class Swipe : MonoBehaviour
 
      
     }
-
-
+    
     private IEnumerator DesativarTextoCheat(Text cheatText)
     {
         yield return new WaitForSeconds(3);
@@ -129,28 +132,64 @@ public class Swipe : MonoBehaviour
             if (swipeDeltaX > 0)
             {
                 RightSwipe();
+                
+
             }
             else
             {
                 LeftSwipe();
+                
             }
+            animator.SetBool("Running", true);
         }
+        
+    }
+    IEnumerator ActivateEsquedaCooldown()
+    {
+        // Ativa o trigger de salto para a esquerda
+        animator.SetTrigger("EsquerdaT");
+
+        // Aguarda o tempo da animação de pulo
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+
+        // Reseta o trigger para evitar travamentos
+        animator.ResetTrigger("EsquerdaT");
+
+        
+    }
+
+    IEnumerator ActivateDireitaCooldown()
+    {
+        // Ativa o trigger de salto para a direita
+        animator.SetTrigger("DireitaT");
+
+        // Aguarda o tempo da animação de pulo
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+
+        // Reseta o trigger para evitar travamentos
+        animator.ResetTrigger("DireitaT");
+
+        
     }
 
     private void RightSwipe()
     {
-        float newX = Player.transform.position.x + 3.5f;
-        newX = Mathf.Clamp(newX, minX, maxX);
-        Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
-    
+        StartCoroutine(ActivateDireitaCooldown());
+        float targetX = Mathf.Clamp(Player.transform.position.x + 3.5f, minX, maxX);
+        StartCoroutine(MovePlayerSmoothly(targetX, "Direita"));
+
+
+
+
     }
 
     private void LeftSwipe()
     {
-        float newX = Player.transform.position.x - 3.5f;
-        newX = Mathf.Clamp(newX, minX, maxX);
-        Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
-     
+        StartCoroutine(ActivateEsquedaCooldown());
+        float targetX = Mathf.Clamp(Player.transform.position.x - 3.5f, minX, maxX);
+        StartCoroutine(MovePlayerSmoothly(targetX, "Esquerda"));
+
+
     }
 
     private IEnumerator ActivateItemCooldown()
@@ -159,4 +198,17 @@ public class Swipe : MonoBehaviour
         yield return new WaitForSeconds(0.3f); // Intervalo desejado (meio segundo)
         canActivateItem = true;
     }
+
+    private IEnumerator MovePlayerSmoothly(float targetX, string animationTrigger)
+    {
+        float smoothSpeed = 15f; // Ajuste conforme necessário
+        while (Mathf.Abs(Player.transform.position.x - targetX) > 0.1f)
+        {
+            float newX = Mathf.MoveTowards(Player.transform.position.x, targetX, smoothSpeed * Time.deltaTime);
+            Player.transform.position = new Vector3(newX, Player.transform.position.y, Player.transform.position.z);
+            yield return null;
+        }
+    }
+
+    
 }
