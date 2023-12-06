@@ -42,7 +42,7 @@ public class baseEnemy : MonoBehaviour
         GameObject deathEffectInstance = Instantiate(DeathEffect, transform.position, Quaternion.identity);
 
         // Configura um tempo para destruir o DeathEffect
-        StartCoroutine(DestroyDeathEffect(deathEffectInstance, 2f));
+        
     }
 
     private IEnumerator DestroyDeathEffect(GameObject deathEffectInstance, float delay)
