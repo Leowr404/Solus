@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f8c69cdfe408148973ccdc28e2a15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}

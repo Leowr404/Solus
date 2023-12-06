@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class EnemyJumper : MonoBehaviour
     private Animator animator;
 
     private int currentPlataform = 5;
+
+    public GameObject DeathEffect;
 
     public void Morrer()
     {
@@ -147,5 +150,26 @@ public class EnemyJumper : MonoBehaviour
 
         }
 
+    }
+
+    private void OnDisable()
+    {
+        // Define a posição do DeathEffect com um aumento em Y
+        Vector3 deathEffectPosition = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
+
+        // Instancia o DeathEffect na posição do inimigo com o aumento em Y
+        GameObject deathEffectInstance = Instantiate(DeathEffect, deathEffectPosition, Quaternion.identity);
+
+        // Configura um tempo para destruir o DeathEffect
+        StartCoroutine(DestroyDeathEffect(deathEffectInstance, 2f));
+    }
+
+    private IEnumerator DestroyDeathEffect(GameObject deathEffectInstance, float delay)
+    {
+        // Aguarda o tempo especificado
+        yield return new WaitForSeconds(delay);
+
+        // Destrói o DeathEffect
+        Destroy(deathEffectInstance);
     }
 }

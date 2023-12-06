@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOnCurrentPath: 2.2
+  DeathEffect: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
 --- !u!136 &5620938901529927119
 CapsuleCollider:
   m_ObjectHideFlags: 0
