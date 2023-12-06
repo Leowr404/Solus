@@ -39,13 +39,13 @@ public class GerenciadorCaminhos : MonoBehaviour
     private void GerarCenariosIniciais()
     {
         Vector3 posicaoInicialGerador = new Vector3(-4.5f, 1.97f, 13.06f);
+        Vector3 posicaoAtual = posicaoInicialGerador;
         // Gera os cenários laterais iniciais.
         for (int i = 0; i < cenariosPrefabs.Count; i++)
         {
-            Vector3 posicaoInicialCenario = posicaoInicialGerador + new Vector3(i * distanciaEntreCaminhos, 0f, 0f);
-
-            GameObject novoCenario = Instantiate(cenariosPrefabs[i], posicaoInicialCenario, Quaternion.identity);
+            GameObject novoCenario = Instantiate(cenariosPrefabs[i], posicaoAtual, Quaternion.identity);
             cenariosAtivos.Add(novoCenario.transform);
+            posicaoAtual += Vector3.forward * distanciaEntreCaminhos;
         }
     }
 
