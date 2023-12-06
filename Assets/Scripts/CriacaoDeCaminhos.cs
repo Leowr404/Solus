@@ -4,19 +4,24 @@ using UnityEngine;
 public class GerenciadorCaminhos : MonoBehaviour
 {
     public List<GameObject> caminhosPrefabs = new List<GameObject>();
+    public List<GameObject> cenariosPrefabs = new List<GameObject>(); // Adiciona os prefabs dos cenários laterais aqui.
 
     private List<Transform> caminhosAtivos = new List<Transform>();
+    private List<Transform> cenariosAtivos = new List<Transform>(); // Lista para rastrear os cenários laterais.
+
     private float distanciaReciclagem = 170f;
     private float distanciaEntreCaminhos = 300f;
 
     private void Start()
     {
         GerarCaminhosIniciais();
+        GerarCenariosIniciais(); // Adiciona a geração dos cenários iniciais.
     }
 
     private void Update()
     {
         ReciclarCaminhos();
+        ReciclarCenarios(); // Adiciona a reciclagem dos cenários laterais.
     }
 
     private void GerarCaminhosIniciais()
@@ -31,12 +36,25 @@ public class GerenciadorCaminhos : MonoBehaviour
         }
     }
 
+    private void GerarCenariosIniciais()
+    {
+        Vector3 posicaoInicialGerador = new Vector3(-4.5f, 1.97f, 13.06f);
+        // Gera os cenários laterais iniciais.
+        for (int i = 0; i < cenariosPrefabs.Count; i++)
+        {
+            Vector3 posicaoInicialCenario = posicaoInicialGerador + new Vector3(i * distanciaEntreCaminhos, 0f, 0f);
+
+            GameObject novoCenario = Instantiate(cenariosPrefabs[i], posicaoInicialCenario, Quaternion.identity);
+            cenariosAtivos.Add(novoCenario.transform);
+        }
+    }
+
     private void ReciclarCaminhos()
     {
         GameObject jogador = GameObject.FindGameObjectWithTag("Player");
 
         if (jogador == null)
-            return; // Não encontrou o jogador com a tag "Player".
+            return;
 
         if (caminhosAtivos.Count == 0)
             return;
@@ -46,12 +64,31 @@ public class GerenciadorCaminhos : MonoBehaviour
 
         if (distanciaJogadorPrimeiroCaminho > distanciaReciclagem)
         {
-            // Mova o primeiro caminho para a frente.
             primeiroCaminho.position += Vector3.forward * (distanciaEntreCaminhos * caminhosPrefabs.Count);
-
-            // Remova o primeiro caminho da lista e adicione-o ao final.
             caminhosAtivos.RemoveAt(0);
             caminhosAtivos.Add(primeiroCaminho);
+        }
+    }
+
+    private void ReciclarCenarios()
+    {
+        GameObject jogador = GameObject.FindGameObjectWithTag("Player");
+
+        if (jogador == null)
+            return;
+
+        if (cenariosAtivos.Count == 0)
+            return;
+
+        Transform primeiroCenario = cenariosAtivos[0];
+        float distanciaJogadorPrimeiroCenario = jogador.transform.position.z - primeiroCenario.position.z;
+
+        // Lógica de reciclagem para os cenários laterais.
+        if (distanciaJogadorPrimeiroCenario > distanciaReciclagem)
+        {
+            primeiroCenario.position += Vector3.forward * (distanciaEntreCaminhos * caminhosPrefabs.Count);
+            cenariosAtivos.RemoveAt(0);
+            cenariosAtivos.Add(primeiroCenario);
         }
     }
 }
