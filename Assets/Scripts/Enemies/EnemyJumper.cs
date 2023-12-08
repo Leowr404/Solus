@@ -28,6 +28,9 @@ public class EnemyJumper : MonoBehaviour
     {
         // Chama ChooseNewPath quando o inimigo é ativado (reciclado)
         ChooseNewPath();
+        animator.SetBool("Attack", false);
+        animator.SetBool("Jump", false);
+        animator.SetBool("JumpMirror", false);
     }
 
     void Start()
