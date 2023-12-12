@@ -843,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149233925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -1.6271901e-15, z: 2.6894993e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5384,7 +5384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954711448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -1.6271901e-15, z: 2.6894993e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13565,7 +13565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: baseEnemy
-    baseEnemy: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
+    baseEnemy: {fileID: 410713800698590070, guid: 0fbc2fc650c217f4d9eb9f1a6251276b,
       type: 3}
     size: 6
   - tag: battery
@@ -13584,7 +13584,7 @@ MonoBehaviour:
     baseEnemy: {fileID: 2515436861282319814, guid: a48ee969b68b5a74396fe690b6988203,
       type: 3}
     size: 3
-  enemyCommon: {fileID: 1326824353345877972, guid: 9e52e0fe51d52004ebecc08c20feb8a5,
+  enemyCommon: {fileID: 410713800698590070, guid: 0fbc2fc650c217f4d9eb9f1a6251276b,
     type: 3}
   player: {fileID: 1724025742}
   spawnDistance: 100
