@@ -32,7 +32,7 @@ public class baseEnemy : MonoBehaviour
     void FixedUpdate()
     {
         float displacement = speed * Time.fixedDeltaTime;
-        transform.Translate(Vector3.forward * displacement* -1);
+        transform.Translate(Vector3.up * displacement* -1);
             
     }
 

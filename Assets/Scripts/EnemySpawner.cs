@@ -106,8 +106,8 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-        
-        SpawnFromPool("baseEnemy", position, Quaternion.identity);
+
+        SpawnFromPool("baseEnemy", position, Quaternion.Euler(-90, 0, 0)); 
     }
 
     public void SpawnEnemyJumper()
