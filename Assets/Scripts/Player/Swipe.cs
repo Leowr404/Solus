@@ -83,7 +83,7 @@ public class Swipe : MonoBehaviour
         }
     }
 
-        if (Input.touchCount == 5)
+        if (Input.touchCount == 4)
         {
             if (player.cheatOn == false)
             {

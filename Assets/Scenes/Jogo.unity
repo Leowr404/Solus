@@ -843,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149233925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -1.6271901e-15, z: 2.6894993e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -8.619646e-15, z: 9.284736e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5384,7 +5384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954711448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -1.6271901e-15, z: 2.6894993e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -8.619646e-15, z: 9.284736e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13590,13 +13590,13 @@ MonoBehaviour:
   spawnDistance: 100
   MainEnemyspawnCd: 1.5
   EnemyJumperCd: 5
-  spawnBatteryCd: 20
+  spawnBatteryCd: 10
   batteryChance: 8
   spawnPowerUpCd: 15
   powerUpChance: 4
   coinSpawnDistance: 140
-  spawnCoinCd: 11
-  coinChance: 6
+  spawnCoinCd: 9
+  coinChance: 90
 --- !u!4 &2107321987
 Transform:
   m_ObjectHideFlags: 0

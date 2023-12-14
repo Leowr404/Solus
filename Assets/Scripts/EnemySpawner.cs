@@ -107,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
 
-        SpawnFromPool("baseEnemy", position, Quaternion.Euler(-90, 0, 0)); 
+        SpawnFromPool("baseEnemy", position, Quaternion.Euler(-90, 180, 0)); 
     }
 
     public void SpawnEnemyJumper()

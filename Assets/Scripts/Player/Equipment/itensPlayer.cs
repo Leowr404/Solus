@@ -231,13 +231,13 @@ public class ItensPlayer : MonoBehaviour
 
         cameraItemScript.StartCoroutine(cameraItemScript.LigarCameraPorTempo(1f));
 
+            camera.PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
         if (powerUpActivated == false)
         {
 
 
             if (cheatBateria == false) itemButton.interactable = !itemButton.interactable;
 
-            camera.PlayOneShot(AudioController.instancia.Audio_Camera, 1f);
 
 
             if (cheatBateria == false)
