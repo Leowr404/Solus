@@ -843,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149233925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -8.619646e-15, z: 9.284736e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2613,7 +2613,7 @@ GameObject:
   - component: {fileID: 487347086}
   - component: {fileID: 487347089}
   - component: {fileID: 487347088}
-  - component: {fileID: 487347087}
+  - component: {fileID: 487347090}
   m_Layer: 0
   m_Name: CollectedCoins
   m_TagString: Untagged
@@ -2640,19 +2640,6 @@ RectTransform:
   m_AnchoredPosition: {x: 300, y: 497}
   m_SizeDelta: {x: 305.9153, y: 57.3592}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &487347087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487347085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e28e2c32f9d1854dab5b2beb3956dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textoMoedas: {fileID: 487347088}
 --- !u!114 &487347088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2695,6 +2682,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487347085}
   m_CullTransparentMesh: 1
+--- !u!114 &487347090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487347085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b654bd64d064543a48c34fa7b14566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Coin: {fileID: 1462926746}
+  thisText: {fileID: 487347088}
 --- !u!1 &507208929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5384,7 +5385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954711448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521314, y: -8.619646e-15, z: 9.284736e-16, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

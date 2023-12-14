@@ -16,6 +16,8 @@ public class EnemyJumper : MonoBehaviour
 
     public GameObject DeathEffect;
 
+    public AudioSource attackSound;
+
     public void Morrer()
     {
         if (estaVivo)
