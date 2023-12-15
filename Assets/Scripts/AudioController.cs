@@ -15,7 +15,7 @@ public class AudioController : MonoBehaviour
     private const string MusicVolumeKey = "MusicVolume";
 
 
-    [Header("Configura��es de Sons")]
+    [Header("Configuracoes de Sons")]
     //public AudioClip bgmSound;
     public AudioClip CoinCollect;
     public AudioClip Audio_Lanterna;
@@ -25,6 +25,7 @@ public class AudioController : MonoBehaviour
     public AudioClip Audio_Morte;
     public AudioClip Audio_Pause;
     public AudioClip Audio_Cheat;
+    public AudioClip Adabadashi_Attack;
     //public AudioClip Audio_;
     //public AudioClip Audio_;
 

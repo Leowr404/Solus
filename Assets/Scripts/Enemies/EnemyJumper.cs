@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,7 +15,10 @@ public class EnemyJumper : MonoBehaviour
 
     public GameObject DeathEffect;
 
-    public AudioSource attackSound;
+    private AudioSource AdabadashiAttack;
+
+    private bool canPlayAudio = true;
+    private float cooldownTime = 3f;
 
     public void Morrer()
     {
@@ -39,6 +41,8 @@ public class EnemyJumper : MonoBehaviour
     {
         timeSinceLastPathChange = 0f;
         animator = GetComponent<Animator>();
+
+        AdabadashiAttack = AudioController.instancia.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -51,7 +55,6 @@ public class EnemyJumper : MonoBehaviour
 
             if (timeSinceLastPathChange >= timeOnCurrentPath)
             {
-
                 ChooseNewPath();
             }
         }
@@ -61,18 +64,15 @@ public class EnemyJumper : MonoBehaviour
     {
         int randomNumber = UnityEngine.Random.Range(1, 4);
 
-
         if (currentPlataform > randomNumber)
         {
-            //animacao espelhada
+            // animacao espelhada
             StartCoroutine(ActivateMirrorJumpAndCooldown());
         }
-
         else if (currentPlataform < randomNumber)
         {
-            //animacao normal
+            // animacao normal
             StartCoroutine(ActivateJumpAndCooldown());
-
         }
 
         currentPlataform = randomNumber;
@@ -118,21 +118,24 @@ public class EnemyJumper : MonoBehaviour
 
         // Desativa o estado de salto
         animator.SetBool("JumpMirror", false);
-
     }
 
     IEnumerator MirrorModel()
     {
         transform.localScale = new Vector3(-1.9f, 1.9f, 1.9f);
-
         yield return new WaitForSeconds(0.8f);
-
         transform.localScale = new Vector3(1.9f, 1.9f, 1.9f);
     }
+
     IEnumerator ActivateDiveAttack()
     {
+        if (canPlayAudio)
+        {
+            AdabadashiAttack.PlayOneShot(AudioController.instancia.Adabadashi_Attack, 0.5f);
+            canPlayAudio = false;
+            StartCoroutine(AudioCooldown());
+        }
 
-        Debug.Log("Ataque chamado");
         // Ativa o estado de salto
         animator.SetBool("Attack", true);
 
@@ -141,26 +144,25 @@ public class EnemyJumper : MonoBehaviour
 
         // Desativa o estado de salto
         animator.SetBool("Attack", false);
+    }
 
+    IEnumerator AudioCooldown()
+    {
+        yield return new WaitForSeconds(cooldownTime);
+        canPlayAudio = true;
     }
 
     void OnTriggerStay(Collider other)
     {
-
-
         if (other.gameObject.layer == LayerMask.NameToLayer("AttackTrigger"))
         {
-
             StartCoroutine(ActivateDiveAttack());
-
         }
-
     }
 
     private void OnDisable()
     {
         GameObject deathEffectInstance = Instantiate(DeathEffect, transform.position, Quaternion.identity);
-   
     }
 
     private IEnumerator DestroyDeathEffect(GameObject deathEffectInstance, float delay)
