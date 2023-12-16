@@ -1022,6 +1022,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115871320}
   m_CullTransparentMesh: 1
+--- !u!1001 &126134277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: Equip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9afa29a57ba730542b2a8d6abcf51121, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: backgroundMusicMenu
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b18b8d67fdd7204c8b092f7b78c41f4, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: backgroundMusicGameplay
+      value: 
+      objectReference: {fileID: 8300000, guid: 0183283d8147fa840b59c29baefd0142, type: 3}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 677.29956
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 507.09314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.19055
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523812373721881357, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 477e19c6553024c439c67b80f97affc1, type: 3}
 --- !u!1 &139779525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,7 +2569,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -7069,7 +7152,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962737021}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &962737024
 Camera:
   m_ObjectHideFlags: 0
@@ -8604,37 +8687,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271913749}
   m_CullTransparentMesh: 1
---- !u!1 &1281413205
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1281413206}
-  m_Layer: 0
-  m_Name: DialogueControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1281413206
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281413205}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 244.46819, y: 1916.691, z: 132.8103}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287370917
 GameObject:
   m_ObjectHideFlags: 0
@@ -11179,7 +11231,7 @@ MonoBehaviour:
     dialogueText: {fileID: 1239519477}
     dialogue: "Agora \xE9 a hora de se aventurar! Toque em 'Jogar' para embarcar
       na sua jornada."
-  typingSpeed: 0.02
+  typingSpeed: 0.01
 --- !u!1 &1795818353
 GameObject:
   m_ObjectHideFlags: 0
@@ -13223,6 +13275,6 @@ SceneRoots:
   - {fileID: 1384037399}
   - {fileID: 719697434}
   - {fileID: 3215635269833979397}
-  - {fileID: 1281413206}
   - {fileID: 412497187}
   - {fileID: 962737025}
+  - {fileID: 126134277}

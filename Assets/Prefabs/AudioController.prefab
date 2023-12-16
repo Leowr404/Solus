@@ -49,12 +49,16 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 3bfa0858034fe4d43ab941be7d2db0e7, type: 2}
   SFXSlider: {fileID: 0}
   MusicSlider: {fileID: 0}
+  CoinCollect: {fileID: 0}
   Audio_Lanterna: {fileID: 8300000, guid: cc6c4350610a53f41acb8ce43332c27a, type: 3}
   Audio_Camera: {fileID: 0}
   Audio_PowerUp: {fileID: 0}
   Audio_Coletavel: {fileID: 0}
   Audio_Morte: {fileID: 0}
   Audio_Pause: {fileID: 0}
+  Audio_Cheat: {fileID: 0}
+  Adabadashi_Attack: {fileID: 0}
+  Buy_Loja: {fileID: 8300000, guid: 3dcb022d19c72f04e874fb928a028f2a, type: 3}
 --- !u!81 &9164588549054657615
 AudioListener:
   m_ObjectHideFlags: 0

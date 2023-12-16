@@ -843,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149233925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521313, y: 0.000000032966824, z: -0.000000004838501, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1612,10 +1612,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1200, y: 800}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -5385,7 +5385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954711448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521313, y: 0.000000032966824, z: -0.000000004838501, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: -5.1799038e-15, z: 7.130392e-16, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 4.08, z: -8.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13485,7 +13485,7 @@ MonoBehaviour:
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 155
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -13623,6 +13623,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
+      propertyPath: Buy_Loja
+      value: 
+      objectReference: {fileID: 8300000, guid: 3dcb022d19c72f04e874fb928a028f2a, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
       propertyPath: SFXSlider
       value: 
       objectReference: {fileID: 1987620777}
@@ -13666,6 +13671,11 @@ PrefabInstance:
       propertyPath: Adabadashi_Attack
       value: 
       objectReference: {fileID: 8300000, guid: 33aa9eca9f70a68419e3d06d2f229a0a, type: 3}
+    - target: {fileID: 942212587007803911, guid: 477e19c6553024c439c67b80f97affc1,
+        type: 3}
+      propertyPath: backgroundMusicGameplay
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b18b8d67fdd7204c8b092f7b78c41f4, type: 3}
     - target: {fileID: 1963146271681751843, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13725,8 +13735,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: -7696507610062288073, guid: 3bfa0858034fe4d43ab941be7d2db0e7,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3523812373721881357, guid: 477e19c6553024c439c67b80f97affc1,
         type: 3}
       propertyPath: m_Name

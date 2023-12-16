@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,8 @@ public class StoreNavigation : MonoBehaviour
 
     private CoinController coinController;
     private InventoryController inventoryController;
+    private AudioSource Buy_Loja;
+    private AudioSource equip;
 
 
     //obtem a variavel "coin" do CoinController e da a primeira atualizada no display  
@@ -31,7 +34,8 @@ public class StoreNavigation : MonoBehaviour
 
         coinController = coinManager.GetComponent<CoinController>();
         inventoryController = inventoryControl.GetComponent<InventoryController>();
-
+        equip = AudioController.instancia.GetComponent<AudioSource>();
+        Buy_Loja = AudioController.instancia.GetComponent<AudioSource>();
         SetBoughtItems();
         SetPricesText();
         StartingPriceDisplay();
@@ -96,6 +100,7 @@ for(int i = 1; i < itemsButtons.Count; i++)
 
     public void BuyItem(int buttonIndex)
     {
+        Buy_Loja.PlayOneShot(AudioController.instancia.Buy_Loja, 1f);
         coinController.coin = coinController.coin - itemsPrice[buttonIndex];
         coinController.UpdateCoins();
 
@@ -105,7 +110,6 @@ for(int i = 1; i < itemsButtons.Count; i++)
 
         itemsButtons[buttonIndex].gameObject.SetActive(false);
         equipButtons[buttonIndex].gameObject.SetActive(true);
-
         StartingPriceDisplay();
 
     }
@@ -134,8 +138,8 @@ for(int i = 1; i < itemsButtons.Count; i++)
     public void EquipItem(int buttonIndex)
     {
 
-           itemsText[buttonIndex].text = textoEquipado;
-
+        itemsText[buttonIndex].text = textoEquipado;
+        equip.PlayOneShot(AudioController.instancia.Equip, 1f);
         inventoryController.equipped[buttonIndex] = true;
         UnequipItem(buttonIndex);
         inventoryController.CallSaveEquip();
