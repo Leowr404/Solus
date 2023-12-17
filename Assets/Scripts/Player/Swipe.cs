@@ -174,8 +174,11 @@ public class Swipe : MonoBehaviour
 
     private void RightSwipe()
     {
-        StartCoroutine(ActivateDireitaCooldown());
-        float targetX = Mathf.Clamp(Player.transform.position.x + 3.5f, minX, maxX);
+        if (player.transform.position.x != 3.5)
+        {
+            StartCoroutine(ActivateDireitaCooldown());
+        }
+            float targetX = Mathf.Clamp(Player.transform.position.x + 3.5f, minX, maxX);
         StartCoroutine(MovePlayerSmoothly(targetX, "Direita"));
 
 
@@ -185,7 +188,9 @@ public class Swipe : MonoBehaviour
 
     private void LeftSwipe()
     {
+        if(player.transform.position.x != -3.5) { 
         StartCoroutine(ActivateEsquedaCooldown());
+        }
         float targetX = Mathf.Clamp(Player.transform.position.x - 3.5f, minX, maxX);
         StartCoroutine(MovePlayerSmoothly(targetX, "Esquerda"));
 
