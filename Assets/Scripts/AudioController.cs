@@ -28,6 +28,9 @@ public class AudioController : MonoBehaviour
     public AudioClip Adabadashi_Attack;
     public AudioClip Buy_Loja;
     public AudioClip Equip;
+    public AudioClip dash;
+    public AudioClip Poof;
+    public AudioClip Death;
     public AudioClip backgroundMusicMenu;
     public AudioClip backgroundMusicGameplay;
     private AudioSource backgroundMusicSource;

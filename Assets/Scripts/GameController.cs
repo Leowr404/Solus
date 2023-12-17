@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject GameRunningUI;
     public GameObject GamePausedUI;
     public GameObject ConfirmarUI;
+    private AudioSource morte;
 
     void Awake()
     {
@@ -32,11 +33,13 @@ public class GameController : MonoBehaviour
         GameOverUI.SetActive(false);
         GameRunningUI.SetActive(true);
         GamePausedUI.SetActive(false);
+        morte = AudioController.instancia.GetComponent<AudioSource>();
 
     }
 
     public void ActivateGameOverMenu()
     {
+       morte.PlayOneShot(AudioController.instancia.Death, 0.8f);
         Time.timeScale = 0f;
         GameOverUI.SetActive(true);
         GameRunningUI.SetActive(false);

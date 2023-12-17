@@ -5,13 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Cenas : MonoBehaviour
 {
-    private static Cenas instance;
+    public static Cenas instance;
     public static bool TutorialCompleted { get; private set; } = false;
-    void Start()
-    {
-        // Carrega o estado do tutorial ao iniciar o jogo
-        TutorialCompleted = PlayerPrefs.HasKey("TutorialGameCompleted");
-    }
+    
     public static void CompleteTutorial()
     {
         // Marca o tutorial como concluído
@@ -39,16 +35,10 @@ public class Cenas : MonoBehaviour
     }
     public void CarregarJogo()
     {
-        if (TutorialCompleted)
-        {
+        
             SceneManager.LoadSceneAsync(1);
             Time.timeScale = 1.0f;
-        }
-        else
-        {
-            SceneManager.LoadSceneAsync(2);
-            Time.timeScale = 1.0f;
-        }
+       
     }
 
 
@@ -58,10 +48,12 @@ public class Cenas : MonoBehaviour
         Time.timeScale = 1.0f;
     }
     public void RestartTutorial()
-    {      
+    {
         PlayerPrefs.DeleteKey("TutorialGameCompleted");
-        PlayerPrefs.DeleteKey("TutorialGameCompleted");
-        PlayerPrefs.DeleteKey("TutorialGameCompleted");
+        
+        PlayerPrefs.Save();
+        TutorialCompleted = false;
+        
 
     }
 

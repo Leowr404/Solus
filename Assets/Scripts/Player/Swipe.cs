@@ -27,7 +27,7 @@ public class Swipe : MonoBehaviour
     private int quantidade = 0;
     private bool canActivateItem = true;
     public Animator animator;
-
+    private AudioSource Dash;
 
     private void Start()
     {
@@ -36,6 +36,7 @@ public class Swipe : MonoBehaviour
         player = Player.GetComponent<Player>();
         itensPlayer = ItensPlayer.GetComponent<ItensPlayer>();
         Audio_Cheat = AudioController.instancia.GetComponent<AudioSource>();
+        Dash = AudioController.instancia.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -178,7 +179,8 @@ public class Swipe : MonoBehaviour
         {
             StartCoroutine(ActivateDireitaCooldown());
         }
-            float targetX = Mathf.Clamp(Player.transform.position.x + 3.5f, minX, maxX);
+        float targetX = Mathf.Clamp(Player.transform.position.x + 3.5f, minX, maxX);
+        Dash.PlayOneShot(AudioController.instancia.dash, 0.2f);
         StartCoroutine(MovePlayerSmoothly(targetX, "Direita"));
 
 
@@ -192,6 +194,7 @@ public class Swipe : MonoBehaviour
         StartCoroutine(ActivateEsquedaCooldown());
         }
         float targetX = Mathf.Clamp(Player.transform.position.x - 3.5f, minX, maxX);
+        Dash.PlayOneShot(AudioController.instancia.dash, 0.2f);
         StartCoroutine(MovePlayerSmoothly(targetX, "Esquerda"));
 
 

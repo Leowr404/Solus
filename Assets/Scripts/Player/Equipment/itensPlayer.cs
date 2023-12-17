@@ -19,6 +19,7 @@ public class ItensPlayer : MonoBehaviour
     [Header("Game Objects")]
     public GameObject CameraGO;
     public GameObject FlashlightGO;
+    public GameObject CelularGO;
 
     [Header("Buttons and battery")]
     public Button itemButton;
@@ -45,6 +46,7 @@ public class ItensPlayer : MonoBehaviour
     private FlashLightItem flashlightItemScript;
     private AudioSource Lanterna;
     private AudioSource camera;
+    private AudioSource Celular;
     public bool powerUpActivated = false;
     public bool cheatBateria = false;
 
@@ -54,6 +56,7 @@ public class ItensPlayer : MonoBehaviour
     {
         Lanterna = AudioController.instancia.GetComponent<AudioSource>();
         camera = AudioController.instancia.GetComponent<AudioSource>();
+        Celular = AudioController.instancia.GetComponent<AudioSource>();
 
         //verifica qual item o jogador escolheu no menu
         //  whichItem = PlayerPrefs.GetInt("ChosenItem");
@@ -390,4 +393,7 @@ public class ItensPlayer : MonoBehaviour
 
 
     #endregion
+
+
+    
 }
