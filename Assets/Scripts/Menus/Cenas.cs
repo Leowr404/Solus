@@ -57,6 +57,13 @@ public class Cenas : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
         Time.timeScale = 1.0f;
     }
+    public void RestartTutorial()
+    {      
+        PlayerPrefs.DeleteKey("TutorialGameCompleted");
+        PlayerPrefs.DeleteKey("TutorialGameCompleted");
+        PlayerPrefs.DeleteKey("TutorialGameCompleted");
+
+    }
 
 
 }

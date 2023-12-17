@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static TutorialGame;
+
 
 public class TutorialMenu : MonoBehaviour
 {
@@ -14,20 +14,8 @@ public class TutorialMenu : MonoBehaviour
 
     void Start()
     {
-        tutorialCompleted = PlayerPrefs.HasKey("TutorialCompleted");
+        tutorialCompleted = true;
 
-        if (!tutorialCompleted)
-        {
-            ShowCurrentPanel();
-        }
-        else
-        {
-            // Se já foi concluído, desativa todos os painéis
-            foreach (var panel in tutorialPanels)
-            {
-                panel.panelObject.SetActive(false);
-            }
-        }
     }
 
     void ShowCurrentPanel()
@@ -62,37 +50,32 @@ public class TutorialMenu : MonoBehaviour
 
     public void NextPanel()
     {
-        if (!tutorialCompleted)
+            
+        tutorialPanels[currentPanelIndex].panelObject.SetActive(false);
+        currentPanelIndex++;
+
+        if (currentPanelIndex < tutorialPanels.Length)
         {
-            tutorialPanels[currentPanelIndex].panelObject.SetActive(false);
-            currentPanelIndex++;
-
-            if (currentPanelIndex < tutorialPanels.Length)
-            {
-                ShowCurrentPanel();
-            }
-            else
-            {
-                EndTutorial();
-            }
+            ShowCurrentPanel();
         }
+        else
+        {
+
+        }
+        EndTutorial();
     }
 
-    void EndTutorial()
+    public void EndTutorial()
     {
-        Debug.Log("Tutorial concluído!");
-
-        PlayerPrefs.SetInt("TutorialCompleted", 1);
-        PlayerPrefs.Save(); // Certifica-se de salvar imediatamente
+        Debug.Log("Tutorial Terminado");
     }
+
+    
 
     public void RestartTutorial()
     {
-        // Limpa a chave de PlayerPrefs
-        PlayerPrefs.DeleteKey("TutorialCompleted");
-
-        // Reinicia o tutorial
+        tutorialCompleted = false;
         currentPanelIndex = 0;
-        Start();
+        ShowCurrentPanel();  
     }
 }
